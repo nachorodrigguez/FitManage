@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1760979037 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\clase.cpp
+
+1760979176 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\clasexsocio.cpp
+	<iostream>
+
+1760980492 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\cobranza.cpp
+
+1760980519 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\instructor.cpp
+
+1760980501 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\plan.cpp
+
+1760980497 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\socio.cpp
+
+1760980547 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\main.cpp
+	<iostream>
+	"persona.h"
+
+1760980452 c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\persona.h
+	<string>
+
+1760980236 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\persona.cpp
+	"persona.h"
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="FitManage" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="clase/;clasexsocio/;cobranza/;instructor/;plan/;persona/;socio/" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/FitManage" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/FitManage" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="clase.cpp">
+			<Option virtualFolder="clase/" />
+		</Unit>
+		<Unit filename="clase.h">
+			<Option virtualFolder="clase/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="clasexsocio.cpp">
+			<Option virtualFolder="clasexsocio/" />
+		</Unit>
+		<Unit filename="clasexsocio.h">
+			<Option virtualFolder="clasexsocio/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="cobranza.cpp">
+			<Option virtualFolder="cobranza/" />
+		</Unit>
+		<Unit filename="cobranza.h">
+			<Option virtualFolder="cobranza/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="instructor.cpp">
+			<Option virtualFolder="instructor/" />
+		</Unit>
+		<Unit filename="instructor.h">
+			<Option virtualFolder="instructor/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="main.cpp" />
+		<Unit filename="persona.cpp">
+			<Option virtualFolder="persona/" />
+		</Unit>
+		<Unit filename="persona.h">
+			<Option virtualFolder="persona/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="plan.cpp">
+			<Option virtualFolder="plan/" />
+		</Unit>
+		<Unit filename="plan.h">
+			<Option virtualFolder="plan/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="socio.cpp">
+			<Option virtualFolder="socio/" />
+		</Unit>
+		<Unit filename="socio.h">
+			<Option virtualFolder="socio/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
