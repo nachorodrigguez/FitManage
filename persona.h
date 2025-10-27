@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-//#include "Fecha.h"
+
+#include "Fecha.h"
 
 class Persona{
     private:
@@ -8,7 +9,7 @@ class Persona{
     char apellido[50];
     char domicilio[50];
     char telefono[15];
-    //Fecha FechaNacimiento;
+    Fecha fechaNacimiento;
 
     public:
     Persona();
@@ -17,15 +18,14 @@ class Persona{
     const char* getApellido();
     const char* getDomicilio();
     const char* getTelefono();
-    //Fecha getFechaNacimiento();
+    Fecha getFechaNacimiento();
 
     void setNombre(const char *);
     void setApellido(const char *);
     void setDomicilio(const char *);
     void setTelefono(const char *);
-    //void setFechaNacimiento(Fecha);
+    void setFechaNacimiento(Fecha);
 
     void Cargar();
     void Mostrar();
-
 } ;
