@@ -1,26 +1,27 @@
 #pragma once
-#include <string>
-//#include "Fecha.h"
+#include "fecha.h"
 
-class Socio{
-    private:
+class Socio {
+private:
     int idSocio;
-    //Fecha fechaInscripcion;
+    Fecha inscripcion;
     bool estado;
 
-    public:
+public:
     Socio();
 
-    int getidSocio();
+    int getId();
+    Fecha getInscripcion();
     bool getEstado();
 
-    //Fecha getInscripcion();
-
-    void setidSocio(int);
+    void setId(int);
+    void setInscripcion(Fecha);
     void setEstado(bool);
-    //void setFechaInscripcion(Fecha);
 
     void Cargar();
     void Mostrar();
 
-} ;
+    //bool escribirDisco(int pos);
+    //bool leerDisco(int pos);
+};
+
