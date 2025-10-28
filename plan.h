@@ -12,7 +12,8 @@ class Plan{
 
     public:
     Plan(int id = 0, const char* tip = "", const char* per = "", float pre = 0.0, int dur = 0);
-    
+
+    void setIdPlan(int id);
     void setTipoPlan(const char * tip);    
     void setPeriodo(const char* per);
     void setPrecio(float pre);
@@ -29,4 +30,5 @@ class Plan{
     void Mostrar();
 
 } ;
+
 
