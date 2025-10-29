@@ -1,25 +1,31 @@
 #pragma once
-#include <string>
 
 class Fecha{
     private:
-        int _dia;
-        int _mes;
-        int _anio;
+        int dia;
+        int mes;
+        int anio;
+//helpers
+static bool esBisiesto(int a);
+static int diasDelMes(int m, int a);
+static bool esValida(int d, int m, int a);
 
     public:
-        Fecha(int dia=1, int mes=1, int anio=1900);
+        //constructor
+        Fecha();
+        Fecha(int d, int m, int a);
 
-        void setDia(int);
-        void setMes(int);
-        void setAnio(int);
-
-        int getDia();
-        int getMes();
-        int getAnio();
+        int getDia() const;
+        int getMes() const;
+        int getAnio() const;
+            
+        void setDia(int d);
+        void setMes(int m);
+        void setAnio(int a);
 
         void Cargar();
-        void Mostrar();
+        void Mostrar() const;
 };
 
-#endif 
+ 
+
