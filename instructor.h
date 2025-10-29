@@ -1,10 +1,12 @@
 #pragma once
 #include <string>
 
-class Instructor{
+#include "Persona.h"
+
+class Instructor: public Persona{
     private:
-    int idInstructor;
-    char especialidad[50];
+    int _idInstructor;
+    char _especialidad[50];
 
     public:
     Instructor();
@@ -12,10 +14,11 @@ class Instructor{
     int getidInstructor();
     const char* getEspecialidad();
 
-    void setidInstructorint);
+    void setidInstructor(int);
     void setEspecialidad(const char *);
 
     void Cargar();
     void Mostrar();
 
 } ;
+
