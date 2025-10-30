@@ -4,7 +4,7 @@
 using namespace std;
 
 ManagerInstructores::ManagerInstructores(){
-    _cantidadOpcines = 9 ;
+    _cantidadOpcines = 3 ;
 }
 
 void ManagerInstructores::run(){
