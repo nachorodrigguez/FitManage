@@ -1,4 +1,4 @@
-FitManage 
+
 FitManage es una plataforma online para la
 gestión operativa de gimnasios:
 administración de socios, planes, clases,
