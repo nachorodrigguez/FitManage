@@ -14,12 +14,12 @@ class Plan{
     Plan(int id = 0, const char* tip = "", const char* per = "", float pre = 0.0, int dur = 0);
 
     void setIdPlan(int id);
-    void setTipoPlan(const char * tip);    
+    void setTipoPlan(const char * tip);
     void setPeriodo(const char* per);
     void setPrecio(float pre);
     void setDuracion(int dur);
 
-    int getIdPlan();
+    int getIdPlan() const;
     const char* getTipo() const;
     const char* getDescripcion() const;
     const char* getPeriodo() const;
@@ -27,7 +27,7 @@ class Plan{
     int getDuracion() const;
 
     void Cargar();
-    void Mostrar();
+    void Mostrar() const;
 
 } ;
 
