@@ -18,11 +18,12 @@ class Clase{
 
     void setNombreclase(const char *);
     void setDescripcion (const char *);
-    void setTiempoDuracion(int);
-    void setCapacidadMax(int);
+    void setTiempoDuracion(int tDur);
+    void setCapacidadMax(int cMax);
 
     void Cargar();
     void Mostrar();
 
 } ;
+
 
