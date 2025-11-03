@@ -1,24 +1,23 @@
 #pragma once
 #include <string>
-
 #include "Persona.h"
 
 class Instructor: public Persona{
     private:
-    int _idInstructor;
-    char _especialidad[50];
+        int _idInstructor;
+        char _especialidad[50];
 
     public:
-    Instructor();
+        Instructor();
 
-    int getidInstructor();
-    const char* getEspecialidad();
+        int getidInstructor();
+        const char* getEspecialidad();
 
-    void setidInstructor(int);
-    void setEspecialidad(const char *);
+        void setidInstructor(int);
+        void setEspecialidad(const char *);
 
-    void Cargar();
-    void Mostrar();
+        void Cargar();
+        void Mostrar();
 
 } ;
 

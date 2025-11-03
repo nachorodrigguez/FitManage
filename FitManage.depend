@@ -28,12 +28,12 @@
 
 1762123101 source:c:\users\carre\documents\github\fitmanage\cobranza.cpp
 
-1762118954 source:c:\users\carre\documents\github\fitmanage\instructor.cpp
+1762135516 source:c:\users\carre\documents\github\fitmanage\instructor.cpp
 	<iostream>
 	<cstring>
 	"instructor.h"
 
-1762123369 c:\users\carre\documents\github\fitmanage\instructor.h
+1762132548 c:\users\carre\documents\github\fitmanage\instructor.h
 	<string>
 	"Persona.h"
 
@@ -51,7 +51,7 @@
 	"ManagerInstructores.h"
 	"socio.h"
 
-1762118954 c:\users\carre\documents\github\fitmanage\managerinstructores.h
+1762135530 c:\users\carre\documents\github\fitmanage\managerinstructores.h
 	"instructor.h"
 
 1761694241 source:c:\users\carre\documents\github\fitmanage\persona.cpp
@@ -59,12 +59,12 @@
 	<cstring>
 	"persona.h"
 
-1762127405 source:c:\users\carre\documents\github\fitmanage\socio.cpp
+1762132781 source:c:\users\carre\documents\github\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
 
-1762128136 c:\users\carre\documents\github\fitmanage\socio.h
+1762132764 c:\users\carre\documents\github\fitmanage\socio.h
 	"fecha.h"
 	"persona.h"
 
@@ -86,7 +86,7 @@
 	<iomanip>
 	<limits>
 
-1762125231 source:c:\users\carre\documents\github\fitmanage\managerinstructores.cpp
+1762135564 source:c:\users\carre\documents\github\fitmanage\managerinstructores.cpp
 	<iostream>
 	"ManagerInstructores.h"
 

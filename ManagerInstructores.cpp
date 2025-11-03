@@ -38,18 +38,17 @@ int ManagerInstructores::seleccionOpcion(){
         cin  >> opcion;
     }
     return opcion;
+
 }
 
 void ManagerInstructores::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1:{
-        Instructor ins;
         ins.Cargar();
         system("pause");
         break;
         }
         case 2 : {
-        Instructor ins;
         ins.Mostrar();
         system("pause");
         break;

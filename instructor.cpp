@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstring>
-
 #include "instructor.h"
 
 using namespace std;
@@ -13,6 +12,7 @@ Instructor::Instructor(){
 int Instructor::getidInstructor(){
     return _idInstructor;
 }
+
 const char* Instructor::getEspecialidad(){
     return _especialidad;
 }
@@ -20,6 +20,7 @@ const char* Instructor::getEspecialidad(){
 void Instructor::setidInstructor(int ID){
     _idInstructor = ID;
 }
+
 void Instructor::setEspecialidad(const char *n){
     strcpy(_especialidad,n);
 }
@@ -34,6 +35,7 @@ void Instructor::Cargar(){
 }
 void Instructor::Mostrar(){
     Persona::Mostrar();
+    cout << endl;
     cout << "Id Instructor: " << _idInstructor << endl;
     cout << "Especialidad: " << _especialidad << endl;
 }
