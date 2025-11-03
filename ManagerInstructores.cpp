@@ -45,8 +45,14 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
         case 1:{
         Instructor ins;
         ins.Cargar();
-        break;
         system("pause");
+        break;
+        }
+        case 2 : {
+        Instructor ins;
+        ins.Mostrar();
+        system("pause");
+        break;
         }
         case 0:{
         break;
