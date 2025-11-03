@@ -1,7 +1,7 @@
 #pragma once
 #include <cstring>
 
-#include "Fecha.h"
+#include "fecha.h"
 
 class Persona{
     private:
@@ -29,3 +29,4 @@ class Persona{
     void Cargar();
     void Mostrar();
 } ;
+
