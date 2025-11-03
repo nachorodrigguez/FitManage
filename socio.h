@@ -4,7 +4,6 @@
 
 class Socio : public Persona{
 private:
-    Persona persona;
     int idSocio;
     Fecha inscripcion;
     bool estado;

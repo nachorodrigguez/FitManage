@@ -38,7 +38,8 @@ void Socio::Cargar() {
     cout << "Ingrese ID del socio ( DNI ): ";
     cin >> idSocio;
 
-    persona.Cargar();
+    Persona::Cargar();
+    cout << endl;
 
     cout << "Ingrese fecha de inscripcion: " << endl;
     inscripcion.Cargar();
@@ -51,7 +52,7 @@ void Socio::Mostrar() {
     cout << endl;
     cout << "ID del socio: " << idSocio << endl;
 
-    persona.Mostrar();
+    Persona::Mostrar();
 
     cout << "Fecha de inscripcion: ";
     inscripcion.Mostrar();
