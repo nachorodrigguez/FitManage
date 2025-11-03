@@ -49,6 +49,11 @@ int App::seleccionOpcion(){
 
 void App::ejecutarOpcion(int opcion){
     switch(opcion){
+        case 1:{
+        socio.run();
+        break;
+        system("pause");
+        }
         case 2:{
         managerIns.run();
         break;

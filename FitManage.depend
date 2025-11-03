@@ -47,8 +47,9 @@
 	<iostream>
 	"app.h"
 
-1762118954 c:\users\carre\documents\github\fitmanage\app.h
+1762126203 c:\users\carre\documents\github\fitmanage\app.h
 	"ManagerInstructores.h"
+	"socio.h"
 
 1762118954 c:\users\carre\documents\github\fitmanage\managerinstructores.h
 	"instructor.h"
@@ -58,13 +59,14 @@
 	<cstring>
 	"persona.h"
 
-1761694063 source:c:\users\carre\documents\github\fitmanage\socio.cpp
+1762127405 source:c:\users\carre\documents\github\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
 
-1761693921 c:\users\carre\documents\github\fitmanage\socio.h
+1762128136 c:\users\carre\documents\github\fitmanage\socio.h
 	"fecha.h"
+	"persona.h"
 
 1762124269 source:c:\users\carre\documents\github\fitmanage\plan.cpp
 	<iostream>
@@ -74,7 +76,7 @@
 1762124249 c:\users\carre\documents\github\fitmanage\plan.h
 	<string>
 
-1762118954 source:c:\users\carre\documents\github\fitmanage\app.cpp
+1762126237 source:c:\users\carre\documents\github\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 
@@ -84,7 +86,7 @@
 	<iomanip>
 	<limits>
 
-1762118954 source:c:\users\carre\documents\github\fitmanage\managerinstructores.cpp
+1762125231 source:c:\users\carre\documents\github\fitmanage\managerinstructores.cpp
 	<iostream>
 	"ManagerInstructores.h"
 
