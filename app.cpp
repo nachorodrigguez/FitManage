@@ -50,7 +50,7 @@ int App::seleccionOpcion(){
 void App::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1:{
-        socio.run();
+        managersocios.run();
         break;
         system("pause");
         }
@@ -59,5 +59,11 @@ void App::ejecutarOpcion(int opcion){
         break;
         system("pause");
         }
+        case 3:{
+        managerplanes.run();
+        break;
+        system("pause");
+        }
+
     }
 }

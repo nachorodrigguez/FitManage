@@ -26,7 +26,7 @@ void ManagerPlanes::mostrarOpciones(){
         cout << "======================"<< endl;
 }
 
-int ManagerInstructores::seleccionOpcion(){
+int ManagerPlanes::seleccionOpcion(){
     int opcion;
     mostrarOpciones();
     cout << "Opcion: ";
