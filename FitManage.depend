@@ -126,3 +126,7 @@
 1762289760 c:\users\carre\documents\github\fitmanage\managerplanes.h
 	"plan.h"
 
+1762298944 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
+	<iostream>
+	"managerPlanes.h"
+
