@@ -1,17 +1,21 @@
 #include "clase.h"
 #include <iostream>
 #include <cstring>   // strcpy
-#include <limits>    
+#include <limits>
 
 using namespace std;
 
 Clase::Clase() {
+    _IDClase = 0;
     strcpy(nombreClase, "SIN CLASE");
     strcpy(descripcion, "SIN DESCRIPCION");
     tiempoDuracion = 0;
     capacidadMax = 0;
 }
 
+int Clase::getIDClase(){
+    return _IDClase;
+}
 
 const char* Clase::getNombreClase() {
     return nombreClase;
@@ -29,7 +33,9 @@ int Clase::getCapacidadMax() {
     return capacidadMax;
 }
 
-
+void Clase::setIDClase(int IDClase){
+        _IDClase = IDClase;
+}
 
 void Clase::setNombreclase(const char *n) {
     if (n != nullptr) {
@@ -87,6 +93,8 @@ void Clase::Cargar() {
     // Limpiar el '\n' que queda después de leer la opción
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+    _IDClase = opcion;
+
     switch (opcion) {
         case 1: setNombreclase("Spinning");  break;
         case 2: setNombreclase("Boxeo");     break;
@@ -95,7 +103,7 @@ void Clase::Cargar() {
         case 5: setNombreclase("Pilates");   break;
         case 6: setNombreclase("Funcional"); break;
     }
-
+    cout << "Clase seleccionada: " << nombreClase << "(ID: " << _IDClase << ")\n\n";
     cout << "Descripcion de la clase: ";
     cin.getline(descripcion, 100);
 
@@ -139,6 +147,7 @@ void Clase::Cargar() {
 
 // Mostrar: muestra todos los datos de la clase
 void Clase::Mostrar() {
+    cout << "ID Clase: " << _IDClase;
     cout << "Clase: " << nombreClase << endl;
     cout << "Descripcion: " << descripcion << endl;
     cout << "Duracion: " << tiempoDuracion << " minutos" << endl;
