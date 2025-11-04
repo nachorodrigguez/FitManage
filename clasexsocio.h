@@ -1,27 +1,29 @@
 #pragma once
 #include <string>
+#include "Fecha.h"
+#include "clase.h"
+#include "socio.h"
 
 class ClasexSocio{
     private:
-    char nombreClase[50];
-    char descripcion[50];
-    int tiempoDuracion;
-    int capacidadMax;
+    int _IDClasexSocio;
+    Clase _IDClase;
+    Socio _idSocio;
+    Fecha _fechaInscripcion;
 
     public:
     ClasexSocio();
 
-    const char* getNombreClase();
-    const char* getDescripcion();
-    int getTiempoDuracion();
-    int getCapacidadMax();
+    int getIDClasexSocio();
+    Clase getIDClase();
+    Socio getId();
+    Fecha getFechaInscripcion();
 
-    void setNombreclase(const char *);
-    void setDescripcion (const char *);
-    void setTiempoDuracion(int);
-    void setCapacidadMax(int);
+    void setIDClasexSocios(int);
+    void setIDClase(Clase);
+    void setidSocio(Socio);
+    void setFechaInscripcion(Fecha);
 
     void Cargar();
     void Mostrar();
-
 } ;
