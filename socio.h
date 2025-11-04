@@ -1,17 +1,14 @@
 #pragma once
 #include "fecha.h"
 #include "persona.h"
+#include "cobranza.h"
 
 class Socio : public Persona{
 private:
     int idSocio;
     Fecha inscripcion;
     bool estado;
-
-protected:
-    void mostrarOpciones();
-    int seleccionOpcion();
-    void ejecutarOpcion(int opcion);
+    Cobranza cobranza;
 
 public:
     Socio();
@@ -26,9 +23,5 @@ public:
 
     void Cargar();
     void Mostrar();
-    void run();
-
-    //bool escribirDisco(int pos);
-    //bool leerDisco(int pos);
 };
 

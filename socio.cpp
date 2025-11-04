@@ -46,6 +46,9 @@ void Socio::Cargar() {
 
     cout << "Ingrese estado (1 = activo, 0 = inactivo): ";
     cin >> estado;
+
+    cout << "COBRRANZAS" << endl;
+    cobranza.Cargar();
 }
 
 void Socio::Mostrar() {
@@ -58,57 +61,5 @@ void Socio::Mostrar() {
     inscripcion.Mostrar();
     cout << endl;
     cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
-}
-
-
-void Socio::run(){
-    int opcion;
-    do{
-        system("cls");
-        opcion = seleccionOpcion();
-        system("cls");
-        ejecutarOpcion(opcion);
-    }while(opcion!=0);
-}
-
-void Socio::mostrarOpciones(){
-        cout << "MENU PRINCIPAL"<<endl;
-        cout << "====================="<< endl;
-        cout << "1 - CARGAR SOCIO"<< endl;
-        cout << "2 - MOSTRAR SOCIO" << endl;
-        cout << "0 - SALIR"<< endl;
-        cout << "======================"<< endl;
-}
-
-int Socio::seleccionOpcion(){
-    int opcion;
-    mostrarOpciones();
-    cout << "Opcion: ";
-    cin >> opcion;
-
-    while (opcion < 0 || opcion > 3){
-        cout << "Opcion incorrecta..." << endl;
-        cout << "Opcion: ";
-        cin  >> opcion;
-    }
-    return opcion;
-}
-
-void Socio::ejecutarOpcion(int opcion){
-    switch(opcion){
-        case 1:{
-        Cargar();
-        system("pause");
-        break;
-        }
-        case 2:{
-        Mostrar();
-        system("pause");
-        break;
-        }
-        case 0:{
-        break;
-        }
-    }
 }
 
