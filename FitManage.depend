@@ -22,11 +22,20 @@
 1760980236 source:c:\users\nacho\desktop\programacion\utn\programacion ii\fitmanage\fitmanage\persona.cpp
 	"persona.h"
 
-1761689828 source:c:\users\carre\documents\github\fitmanage\clase.cpp
+1762289760 source:c:\users\carre\documents\github\fitmanage\clase.cpp
+	"clase.h"
+	<iostream>
+	<cstring>
+	<limits>
 
-1761689828 source:c:\users\carre\documents\github\fitmanage\clasexsocio.cpp
+1762289760 source:c:\users\carre\documents\github\fitmanage\clasexsocio.cpp
+	<cstring>
+	"clasexsocio.h"
 
-1762123101 source:c:\users\carre\documents\github\fitmanage\cobranza.cpp
+1762289760 source:c:\users\carre\documents\github\fitmanage\cobranza.cpp
+	<iostream>
+	<cstring>
+	"cobranza.h"
 
 1762135516 source:c:\users\carre\documents\github\fitmanage\instructor.cpp
 	<iostream>
@@ -37,9 +46,9 @@
 	<string>
 	"Persona.h"
 
-1761769559 c:\users\carre\documents\github\fitmanage\persona.h
+1762214614 c:\users\carre\documents\github\fitmanage\persona.h
 	<cstring>
-	"Fecha.h"
+	"fecha.h"
 
 1761769559 c:\users\carre\documents\github\fitmanage\fecha.h
 
@@ -47,9 +56,11 @@
 	<iostream>
 	"app.h"
 
-1762126203 c:\users\carre\documents\github\fitmanage\app.h
+1762298895 c:\users\carre\documents\github\fitmanage\app.h
 	"ManagerInstructores.h"
 	"socio.h"
+	"managersocios.h"
+	"managerPlanes.h"
 
 1762135530 c:\users\carre\documents\github\fitmanage\managerinstructores.h
 	"instructor.h"
@@ -59,14 +70,15 @@
 	<cstring>
 	"persona.h"
 
-1762132781 source:c:\users\carre\documents\github\fitmanage\socio.cpp
+1762289760 source:c:\users\carre\documents\github\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
 
-1762132764 c:\users\carre\documents\github\fitmanage\socio.h
+1762289760 c:\users\carre\documents\github\fitmanage\socio.h
 	"fecha.h"
 	"persona.h"
+	"cobranza.h"
 
 1762124269 source:c:\users\carre\documents\github\fitmanage\plan.cpp
 	<iostream>
@@ -76,7 +88,7 @@
 1762124249 c:\users\carre\documents\github\fitmanage\plan.h
 	<string>
 
-1762126237 source:c:\users\carre\documents\github\fitmanage\app.cpp
+1762298895 source:c:\users\carre\documents\github\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 
@@ -89,4 +101,28 @@
 1762135564 source:c:\users\carre\documents\github\fitmanage\managerinstructores.cpp
 	<iostream>
 	"ManagerInstructores.h"
+
+1762289760 c:\users\carre\documents\github\fitmanage\cobranza.h
+	<string>
+	"fecha.h"
+
+1762289760 c:\users\carre\documents\github\fitmanage\clase.h
+	<string>
+	"instructor.h"
+
+1762289760 c:\users\carre\documents\github\fitmanage\clasexsocio.h
+	<string>
+	"Fecha.h"
+	"clase.h"
+	"socio.h"
+
+1762289760 c:\users\carre\documents\github\fitmanage\managersocios.h
+	"socio.h"
+
+1762289760 source:c:\users\carre\documents\github\fitmanage\managersocios.cpp
+	<iostream>
+	"managersocios.h"
+
+1762289760 c:\users\carre\documents\github\fitmanage\managerplanes.h
+	"plan.h"
 
