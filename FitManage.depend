@@ -80,12 +80,12 @@
 	"persona.h"
 	"cobranza.h"
 
-1762124269 source:c:\users\carre\documents\github\fitmanage\plan.cpp
+1762303430 source:c:\users\carre\documents\github\fitmanage\plan.cpp
 	<iostream>
 	<cstring>
 	"Plan.h"
 
-1762124249 c:\users\carre\documents\github\fitmanage\plan.h
+1762301869 c:\users\carre\documents\github\fitmanage\plan.h
 	<string>
 
 1762298895 source:c:\users\carre\documents\github\fitmanage\app.cpp
@@ -123,10 +123,10 @@
 	<iostream>
 	"managersocios.h"
 
-1762289760 c:\users\carre\documents\github\fitmanage\managerplanes.h
+1762299550 c:\users\carre\documents\github\fitmanage\managerplanes.h
 	"plan.h"
 
-1762298944 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
+1762300851 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
 	<iostream>
 	"managerPlanes.h"
 

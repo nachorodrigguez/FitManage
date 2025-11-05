@@ -4,9 +4,9 @@
 
 using namespace std;
 
-
+int Plan::ultimoID = 0;
 Plan::Plan(int id, const char* tip, const char* per, float pre, int dur){
-  idPlan = id;
+  idPlan = ++ultimoID;
   strcpy(tipoPlan, "Indefinido");
   strcpy(periodo, "Mensual o anual");
   precio = pre;
@@ -19,27 +19,67 @@ Plan::Plan(int id, const char* tip, const char* per, float pre, int dur){
 }
 
 void Plan::Cargar() {
-  cout << "Ingrese ID del plan: ";
-  cin >> idPlan;
-  cin.ignore();
+    cout << "Cargando Plan #" << idPlan << endl;
 
-  cout << "Ingrese tipo de plan (Flex / Plus / Total): ";
-  cin.getline(tipoPlan, 30);
+    int opcionTipo;
+    do {
+    cout << "\nSeleccione el tipo de plan:" << endl;
+    cout << "1 - Flex" << endl;
+    cout << "2 - Plus" << endl;
+    cout << "3 - Total" << endl;
+    cout << "Opcion: ";
+    cin >> opcionTipo;
 
-  if (strcmp(tipoPlan, "Flex") == 0) strcpy(descripcion, "Gimnasio");
-  else if (strcmp(tipoPlan, "Plus") == 0) strcpy(descripcion, "Gimnasio + 1 Clase");
-  else if (strcmp(tipoPlan, "Total") == 0) strcpy(descripcion, "Todo Libre");
-  else strcpy(descripcion, "Error");
+    if (opcionTipo < 1 || opcionTipo > 3) {
+            cout << "Opción inválida. Intente nuevamente.\n";
+        }
+} while (opcionTipo < 1 || opcionTipo > 3);
 
-  cout << "Ingrese periodo (Mensual / Anual): ";
-  cin.getline(periodo, 20);
+    switch (opcionTipo) {
+        case 1:
+            strcpy(tipoPlan, "Flex");
+            strcpy(descripcion, "Gimnasio");
+            break;
+        case 2:
+            strcpy(tipoPlan, "Plus");
+            strcpy(descripcion, "Gimnasio + 1 Clase");
+            break;
+        case 3:
+            strcpy(tipoPlan, "Total");
+            strcpy(descripcion, "Todo Libre");
+            break;
+        default:
+            strcpy(tipoPlan, "Desconocido");
+            strcpy(descripcion, "Error");
+            break;
+    }
 
-  cout << "Ingrese precio: $";
-  cin >> precio;
+    int opcionPeriodo;
+    do {
+        cout << "\nSeleccione el periodo:" << endl;
+        cout << "1 - Mensual" << endl;
+        cout << "2 - Anual" << endl;
+        cout << "Opcion: ";
+        cin >> opcionPeriodo;
 
-  cout << "Ingrese duracion (en meses): ";
-  cin >> duracionMeses;
+        if (opcionPeriodo < 1 || opcionPeriodo > 2) {
+            cout << "Opcion invalida. Intente nuevamente.\n";
+        }
+    } while (opcionPeriodo < 1 || opcionPeriodo > 2);
+
+
+
+    if (opcionPeriodo == 1) strcpy(periodo, "Mensual");
+    else if (opcionPeriodo == 2) strcpy(periodo, "Anual");
+    else strcpy(periodo, "Indefinido");
+
+    cout << "\nIngrese precio: $";
+    cin >> precio;
+
+    cout << "Ingrese duracion (en meses): ";
+    cin >> duracionMeses;
 }
+
 
 void Plan::Mostrar() const {
   cout << "ID Plan: " << idPlan << endl;
@@ -47,7 +87,7 @@ void Plan::Mostrar() const {
   cout << "Descripcion: " << descripcion << endl;
   cout << "Periodo: " << periodo << endl;
   cout << "Precio: $" << precio << endl;
-  cout << "Duración: " << duracionMeses << " meses" << endl;
+  cout << "Duracion: " << duracionMeses << " meses" << endl;
 }
 
 void Plan::setIdPlan(int id) { idPlan = id; }

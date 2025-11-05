@@ -20,8 +20,9 @@ void ManagerPlanes::run(){
 void ManagerPlanes::mostrarOpciones(){
         cout << "MENU PRINCIPAL"<<endl;
         cout << "====================="<< endl;
-        cout << "1 - PLANES"<< endl;
-        cout << "2 - EDITAR PRECIOS" << endl;
+        cout << "1 - CARGAR PLANES "<< endl;
+        cout << "2 - MOSTRAR PLANES "<< endl;
+        cout << "3 - MODIFICAR PLAN EXISTENTE" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -44,10 +45,12 @@ int ManagerPlanes::seleccionOpcion(){
 void ManagerPlanes::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1:{
+        plan.Cargar();
         system("pause");
         break;
         }
-        case 2 : {
+        case 2 :{
+        plan.Mostrar();
         system("pause");
         break;
         }

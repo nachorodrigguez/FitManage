@@ -13,6 +13,6 @@ class ManagerPlanes{
 
     private:
     int _cantidadOpcines;
-    Plan Plan;
+    Plan plan;
 
 };
