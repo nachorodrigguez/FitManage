@@ -80,9 +80,10 @@
 	"persona.h"
 	"cobranza.h"
 
-1762303430 source:c:\users\carre\documents\github\fitmanage\plan.cpp
+1762377245 source:c:\users\carre\documents\github\fitmanage\plan.cpp
 	<iostream>
 	<cstring>
+	<string>
 	"Plan.h"
 
 1762301869 c:\users\carre\documents\github\fitmanage\plan.h

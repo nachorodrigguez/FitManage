@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include "Plan.h"
 
 using namespace std;
@@ -21,38 +22,16 @@ Plan::Plan(int id, const char* tip, const char* per, float pre, int dur){
 void Plan::Cargar() {
     cout << "Cargando Plan #" << idPlan << endl;
 
-    int opcionTipo;
-    do {
-    cout << "\nSeleccione el tipo de plan:" << endl;
-    cout << "1 - Flex" << endl;
-    cout << "2 - Plus" << endl;
-    cout << "3 - Total" << endl;
-    cout << "Opcion: ";
-    cin >> opcionTipo;
+    string  tipoDePlan;
 
-    if (opcionTipo < 1 || opcionTipo > 3) {
-            cout << "Opción inválida. Intente nuevamente.\n";
-        }
-} while (opcionTipo < 1 || opcionTipo > 3);
+    cout << "INGRESE EL NOMBRE DEL PLAN:" << endl;
+    cin >> tipoDePlan;
 
-    switch (opcionTipo) {
-        case 1:
-            strcpy(tipoPlan, "Flex");
-            strcpy(descripcion, "Gimnasio");
-            break;
-        case 2:
-            strcpy(tipoPlan, "Plus");
-            strcpy(descripcion, "Gimnasio + 1 Clase");
-            break;
-        case 3:
-            strcpy(tipoPlan, "Total");
-            strcpy(descripcion, "Todo Libre");
-            break;
-        default:
-            strcpy(tipoPlan, "Desconocido");
-            strcpy(descripcion, "Error");
-            break;
-    }
+
+    //strcpy(tipoPlan, tipoDePlan);
+    // copiar a char[] con límite seguro
+    strncpy(tipoPlan, tipoDePlan.c_str(), sizeof(tipoPlan) - 1);
+    tipoPlan[sizeof(tipoPlan) - 1] = '\0';
 
     int opcionPeriodo;
     do {
