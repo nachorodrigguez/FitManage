@@ -42,19 +42,51 @@ void Cobranza::setMontoTotal(float montoTotal){
     _montoTotal = montoTotal;
 }
 
+void Cobranza::setMetodoPago(){
+    int opcion;
+    cout << "METODO DE PAGO" << endl;
+    cout << "======================" << endl;
+    cout << "1 - EFECTIVO" << endl;
+    cout << "2 - TRANSFERENCIA" << endl;
+    cout << "3 - TARJETA CREDITO" << endl;
+    cout << "======================" << endl;
+
+    cout << "Opcion: ";
+    cin >> opcion;
+
+    while (opcion < 0 || opcion > 3){
+        cout << "Opcion incorrecta..." << endl;
+        cout << "Opcion: " ;
+        cin >> opcion;
+    }
+
+    switch(opcion){
+        case 1: {
+            strcpy(_metodoPago, "Efectivo");
+            break;
+        }
+        case 2:{
+            strcpy(_metodoPago, "Transferencia");
+            break;
+        }
+        case 3:{
+            strcpy(_metodoPago, "Tarjeta Credito");
+            break;
+        }
+    }
+}
+
 void Cobranza::Cargar(){
         _numTransaccion++;
         float descuentos;
-
+        cout << "Ingrese DNI: " ;
         cout << "Numero de transaccion: " << _numTransaccion << endl;
         cout << "Fecha de transaccion: ";
         _fechaTransaccion.Mostrar();
 
         cout << endl;
-        cin.ignore();
 
-        cout << "Metodo de pago: ";
-        cin.getline(_metodoPago,50);
+        setMetodoPago();
 
         cout << "Descuentos: ";
         cin >> descuentos;

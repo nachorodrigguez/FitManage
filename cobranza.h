@@ -2,6 +2,7 @@
 #include <string>
 #include "fecha.h"
 
+
 class Cobranza{
     private:
     int _numTransaccion;
@@ -23,6 +24,7 @@ class Cobranza{
     void setFechaTransaccion(Fecha);
     void setDescuentos(float);
     void setMontoTotal(float);
+    void setMetodoPago();
 
     void Cargar();
     void Mostrar();
