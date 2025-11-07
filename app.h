@@ -1,6 +1,6 @@
 #pragma once
 #include "ManagerInstructores.h"
-#include "managersocios.h"
+#include "managerSocios.h"
 #include "managerPlanes.h"
 #include "managerCobranzas.h"
 #include "ManagerListados.h"

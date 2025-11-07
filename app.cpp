@@ -3,7 +3,7 @@
 
 using namespace std;
 
-App::App(){
+App::App(): managersocios("socios.dat"){
     _cantidadOpcines = 9 ;
 }
 
