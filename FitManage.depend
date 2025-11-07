@@ -155,10 +155,9 @@
 	<string>
 	"socio.h"
 
-1762466971 c:\users\nacho\documents\github4\fitmanage\socio.h
+1762538284 c:\users\nacho\documents\github4\fitmanage\socio.h
 	"fecha.h"
 	"persona.h"
-	"cobranza.h"
 
 1762466971 c:\users\nacho\documents\github4\fitmanage\persona.h
 	<cstring>
@@ -212,9 +211,9 @@
 	<iostream>
 	"app.h"
 
-1762536408 c:\users\nacho\documents\github4\fitmanage\app.h
+1762539357 c:\users\nacho\documents\github4\fitmanage\app.h
 	"ManagerInstructores.h"
-	"managersocios.h"
+	"managerSocios.h"
 	"managerPlanes.h"
 	"managerCobranzas.h"
 	"ManagerListados.h"
@@ -222,8 +221,9 @@
 1762466971 c:\users\nacho\documents\github4\fitmanage\managerinstructores.h
 	"instructor.h"
 
-1762466971 c:\users\nacho\documents\github4\fitmanage\managersocios.h
+1762537478 c:\users\nacho\documents\github4\fitmanage\managersocios.h
 	"socio.h"
+	"archivoSocios.h"
 
 1762466971 c:\users\nacho\documents\github4\fitmanage\managerplanes.h
 	"plan.h"
@@ -246,9 +246,9 @@
 	<iostream>
 	"managerPlanes.h"
 
-1762466971 source:c:\users\nacho\documents\github4\fitmanage\managersocios.cpp
+1762539753 source:c:\users\nacho\documents\github4\fitmanage\managersocios.cpp
 	<iostream>
-	"managersocios.h"
+	"ManagerSocios.h"
 
 1762466971 source:c:\users\nacho\documents\github4\fitmanage\persona.cpp
 	<iostream>
@@ -261,18 +261,18 @@
 	<string>
 	"Plan.h"
 
-1762466971 source:c:\users\nacho\documents\github4\fitmanage\socio.cpp
+1762538248 source:c:\users\nacho\documents\github4\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
 
-1762536408 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
+1762539859 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 
-1762536003 c:\users\nacho\documents\github4\fitmanage\managerlistados.h
+1762539323 c:\users\nacho\documents\github4\fitmanage\managerlistados.h
 
-1762536485 source:c:\users\nacho\documents\github4\fitmanage\managerlistados.cpp
+1762539305 source:c:\users\nacho\documents\github4\fitmanage\managerlistados.cpp
 	<iostream>
 	"ManagerListados.h"
 
