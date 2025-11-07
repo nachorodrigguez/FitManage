@@ -1,6 +1,5 @@
 #pragma once
 #include "ManagerInstructores.h"
-
 #include "managersocios.h"
 #include "managerPlanes.h"
 
@@ -15,7 +14,6 @@ class App{
     void ejecutarOpcion(int opcion);
 
     ManagerInstructores managerIns;
-
     ManagerSocios managersocios;
     ManagerPlanes managerplanes;
 
