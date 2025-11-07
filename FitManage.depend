@@ -56,9 +56,8 @@
 	<iostream>
 	"app.h"
 
-1762298895 c:\users\carre\documents\github\fitmanage\app.h
+1762467546 c:\users\carre\documents\github\fitmanage\app.h
 	"ManagerInstructores.h"
-	"socio.h"
 	"managersocios.h"
 	"managerPlanes.h"
 
@@ -138,4 +137,11 @@
 1762460078 c:\users\carre\documents\github\fitmanage\archivosocios.h
 	<string>
 	"socio.h"
+
+1762466566 source:c:\users\carre\documents\github\fitmanage\managercobranzas.cpp
+	<iostream>
+	"ManagerCobranzas.h"
+
+1762466566 c:\users\carre\documents\github\fitmanage\managercobranzas.h
+	"cobranza.h"
 
