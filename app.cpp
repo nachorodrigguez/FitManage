@@ -64,6 +64,9 @@ void App::ejecutarOpcion(int opcion){
         break;
         system("pause");
         }
-
+        case 5:{
+        managercob.run();
+        break;
+        }
     }
 }
