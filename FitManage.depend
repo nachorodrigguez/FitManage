@@ -145,7 +145,7 @@
 1762466566 c:\users\carre\documents\github\fitmanage\managercobranzas.h
 	"cobranza.h"
 
-1762466971 source:c:\users\nacho\documents\github4\fitmanage\archivosocios.cpp
+1762535796 source:c:\users\nacho\documents\github4\fitmanage\archivosocios.cpp
 	"Fecha.h"
 	"ArchivoSocios.h"
 
@@ -203,7 +203,7 @@
 	<iomanip>
 	<limits>
 
-1762466971 source:c:\users\nacho\documents\github4\fitmanage\instructor.cpp
+1762529765 source:c:\users\nacho\documents\github4\fitmanage\instructor.cpp
 	<iostream>
 	<cstring>
 	"instructor.h"
@@ -212,11 +212,12 @@
 	<iostream>
 	"app.h"
 
-1762529164 c:\users\nacho\documents\github4\fitmanage\app.h
+1762536408 c:\users\nacho\documents\github4\fitmanage\app.h
 	"ManagerInstructores.h"
 	"managersocios.h"
 	"managerPlanes.h"
 	"managerCobranzas.h"
+	"ManagerListados.h"
 
 1762466971 c:\users\nacho\documents\github4\fitmanage\managerinstructores.h
 	"instructor.h"
@@ -265,7 +266,13 @@
 	<cstdio>
 	"socio.h"
 
-1762529246 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
+1762536408 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
 	<iostream>
 	"app.h"
+
+1762536003 c:\users\nacho\documents\github4\fitmanage\managerlistados.h
+
+1762536485 source:c:\users\nacho\documents\github4\fitmanage\managerlistados.cpp
+	<iostream>
+	"ManagerListados.h"
 
