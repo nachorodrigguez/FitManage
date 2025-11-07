@@ -14,7 +14,7 @@ class Instructor: public Persona{
         const char* getEspecialidad();
 
         void setidInstructor(int);
-        void setEspecialidad(const char *);
+        void setEspecialidad();
 
         void Cargar();
         void Mostrar();
