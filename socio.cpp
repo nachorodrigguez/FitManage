@@ -47,8 +47,6 @@ void Socio::Cargar() {
     cout << "Ingrese estado (1 = activo, 0 = inactivo): ";
     cin >> estado;
 
-    cout << "COBRRANZAS" << endl;
-    cobranza.Cargar();
 }
 
 void Socio::Mostrar() {
