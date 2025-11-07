@@ -68,5 +68,9 @@ void App::ejecutarOpcion(int opcion){
         managercob.run();
         break;
         }
+        case 6:{
+        managerlis.run();
+        break;
+        }
     }
 }

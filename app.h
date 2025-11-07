@@ -3,6 +3,7 @@
 #include "managersocios.h"
 #include "managerPlanes.h"
 #include "managerCobranzas.h"
+#include "ManagerListados.h"
 
 class App{
     public:
@@ -18,6 +19,7 @@ class App{
     ManagerSocios managersocios;
     ManagerPlanes managerplanes;
     ManagerCobranzas managercob;
+    ManagerListados managerlis;
     private:
     int _cantidadOpcines;
 
