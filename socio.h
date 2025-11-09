@@ -19,7 +19,7 @@ public:
     void setInscripcion(Fecha);
     void setEstado(bool);
 
-    void Cargar();
+    void Cargar(int idExistente = 0);
     void Mostrar();
     void Modificar();
 };

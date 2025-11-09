@@ -71,12 +71,12 @@
 	<cstring>
 	"persona.h"
 
-1762646952 source:c:\users\carre\documents\github\fitmanage\socio.cpp
+1762650821 source:c:\users\carre\documents\github\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
 
-1762646692 c:\users\carre\documents\github\fitmanage\socio.h
+1762649914 c:\users\carre\documents\github\fitmanage\socio.h
 	"fecha.h"
 	"persona.h"
 
@@ -121,7 +121,7 @@
 	"socio.h"
 	"archivoSocios.h"
 
-1762648212 source:c:\users\carre\documents\github\fitmanage\managersocios.cpp
+1762650846 source:c:\users\carre\documents\github\fitmanage\managersocios.cpp
 	<iostream>
 	"ManagerSocios.h"
 

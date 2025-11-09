@@ -33,10 +33,16 @@ bool Socio::getEstado() {
     return estado;
 }
 
-void Socio::Cargar() {
-    cout << "=== ALTA DE SOCIO ===" << endl;
-    cout << "Ingrese ID del socio ( DNI ): ";
-    cin >> idSocio;
+void Socio::Cargar(int idExistente) {
+
+    if (idExistente == 0) {
+        cout << "=== ALTA DE SOCIO ===" << endl;
+        cout << "Ingrese ID del socio (DNI): ";
+        cin >> idSocio;
+    } else {
+        idSocio = idExistente;
+    }
+
 
     Persona::Cargar();
     cout << endl;

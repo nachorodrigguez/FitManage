@@ -45,16 +45,38 @@ int ManagerSocios::seleccionOpcion(){
 
 void ManagerSocios::ejecutarOpcion(int opcion){
     switch(opcion){
-        case 1:{
-            socio.Cargar();
-            if (archivoSocios.Guardar(socio)){
+        case 1: {
+            cout << "=== ALTA DE SOCIO ===" << endl;
+            cout << endl;
+
+            int idNuevo;
+            bool idValido = false;
+
+            // Validacion por ID duplicado
+            do {
+                cout << "Ingrese ID del socio (DNI): ";
+                cin >> idNuevo;
+
+                int posicionExistente = archivoSocios.Buscar(idNuevo);
+                if (posicionExistente >= 0) {
+                    cout << "Error: ya existe un socio con ese ID. Intente con otro." << endl;
+                } else {
+                    idValido = true;
+                }
+            } while (!idValido);
+
+            socio.Cargar(idNuevo);
+
+            // Guardar
+            if (archivoSocios.Guardar(socio)) {
                 cout << "Socio guardado exitosamente!" << endl;
-            }else{
+            } else {
                 cout << "Error al guardar el socio." << endl;
             }
+
             system("pause");
             break;
-            }
+        }
         case 2 :{
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a modificar: ";
@@ -85,23 +107,86 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
             }
-        //Listar socios
+        // Listar socios activos
         case 3: {
             int cantidad = archivoSocios.CantidadRegistros();
-            if (cantidad == 0){
+            if (cantidad == 0) {
                 cout << "No hay socios cargados." << endl;
-            }else{
-                Socio *vecAux = new Socio[cantidad];
-                archivoSocios.Leer(cantidad, vecAux);
-                for (int i=0; i < cantidad; i++){
-                    vecAux[i].Mostrar();
-                    cout << "------------------" << endl;
-                }
-                delete[] vecAux;
+                system("pause");
+                break;
             }
-            system("pause");
+
+            int opcionListado;
+
+            do {
+                system("cls");
+                cout << "1 - SOCIOS ACTIVOS" << endl;
+                cout << "2 - SOCIOS INACTIVOS" << endl;
+                cout << "3 - TODOS LOS SOCIOS" << endl;
+                cout << "0 - VOLVER AL MENU PRINCIPAL" << endl;
+                cout << "===============================" << endl;
+                cout << "OPCION: ";
+                cin >> opcionListado;
+
+                if (opcionListado == 0) break;
+
+                while (opcionListado < 0 || opcionListado > 3) {
+                    cout << "OPCION INCORRECTA. INGRESE NUEVAMENTE: ";
+                    cin >> opcionListado;
+                }
+
+                system("cls");
+
+                Socio* vectorSocios = new Socio[cantidad];
+                archivoSocios.Leer(cantidad, vectorSocios);
+                bool hayResultados = false;
+
+                switch (opcionListado) {
+                    case 1: {
+                        cout << "=== SOCIOS ACTIVOS ===" << endl;
+                        for (int i = 0; i < cantidad; i++) {
+                            if (vectorSocios[i].getEstado() == true) {
+                                vectorSocios[i].Mostrar();
+                                cout << "------------------" << endl;
+                                hayResultados = true;
+                            }
+                        }
+                        if (!hayResultados) cout << "NO HAY SOCIOS ACTIVOS." << endl;
+                        break;
+                    }
+                    case 2: {
+                        cout << "=== SOCIOS INACTIVOS ===" << endl;
+                        for (int i = 0; i < cantidad; i++) {
+                            if (vectorSocios[i].getEstado() == false) {
+                                vectorSocios[i].Mostrar();
+                                cout << "------------------" << endl;
+                                hayResultados = true;
+                            }
+                        }
+                        if (!hayResultados) cout << "NO HAY SOCIOS INACTIVOS." << endl;
+                        break;
+                    }
+                    case 3: {
+                        cout << "=== TODOS LOS SOCIOS ===" << endl;
+                        for (int i = 0; i < cantidad; i++) {
+                            vectorSocios[i].Mostrar();
+                            cout << "------------------" << endl;
+                            hayResultados = true;
+                        }
+                        if (!hayResultados) cout << "NO HAY SOCIOS CARGADOS." << endl;
+                        break;
+                    }
+                }
+
+                delete[] vectorSocios;
+                cout << endl;
+                system("pause");
+
+            } while (opcionListado != 0);
+
             break;
         }
+
         case 5: {
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a eliminar: ";
@@ -118,7 +203,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             cout << "\n--- Datos del socio a eliminar ---\n";
             socioActual.Mostrar();
 
-            cout << "\n¿Confirma que desea eliminar este socio? (s/n): ";
+            cout << "\n Confirma que desea eliminar este socio? (s/n): ";
             char confirmacion;
             cin >> confirmacion;
 
