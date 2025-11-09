@@ -4,7 +4,7 @@
 using namespace std;
 
 ManagerSocios::ManagerSocios(std::string nombreArchivo): archivoSocios(nombreArchivo){
-    _cantidadOpcines = 3 ;
+    _cantidadOpcines = 5 ;
 }
 
 void ManagerSocios::run(){
@@ -22,7 +22,8 @@ void ManagerSocios::mostrarOpciones(){
         cout << "====================="<< endl;
         cout << "1 - CARGAR SOCIO"<< endl;
         cout << "2 - MODIFICAR SOCIO" << endl;
-        cout << "3 - LISTAR SOCIOS" << endl;
+        cout << "3 - LISTADO DE SOCIOS" << endl;
+        cout << "5 - ELIMINAR SOCIO" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -98,6 +99,39 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 }
                 delete[] vecAux;
             }
+            system("pause");
+            break;
+        }
+        case 5: {
+            int idBuscado;
+            cout << "Ingrese el ID (DNI) del socio a eliminar: ";
+            cin >> idBuscado;
+
+            int posicion = archivoSocios.Buscar(idBuscado);
+            if (posicion < 0) {
+                cout << "No existe un socio con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            Socio socioActual = archivoSocios.Leer(posicion);
+            cout << "\n--- Datos del socio a eliminar ---\n";
+            socioActual.Mostrar();
+
+            cout << "\n¿Confirma que desea eliminar este socio? (s/n): ";
+            char confirmacion;
+            cin >> confirmacion;
+
+            if (confirmacion == 's' || confirmacion == 'S') {
+                if (archivoSocios.EliminarPorId(idBuscado)) {
+                    cout << "Socio eliminado (marcado como inactivo)." << endl;
+                } else {
+                    cout << "Error al eliminar el socio." << endl;
+                }
+            } else {
+                cout << "Operacion cancelada." << endl;
+            }
+
             system("pause");
             break;
         }

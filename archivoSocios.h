@@ -15,4 +15,5 @@ class ArchivoSocios{
         int CantidadRegistros();
         void Leer(int cantidadRegistros, Socio *vector);
         bool ModificarPorId(int idSocioBuscado, const Socio& socioNuevo);
+        bool EliminarPorId(int idSocioBuscado);
 };

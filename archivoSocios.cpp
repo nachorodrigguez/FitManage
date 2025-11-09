@@ -117,3 +117,17 @@ bool ArchivoSocios::ModificarPorId(int idSocioBuscado, const Socio& socioNuevo)
 
     return Guardar(socioNuevo, posicion);
 }
+
+bool ArchivoSocios::EliminarPorId(int idSocioBuscado)
+{
+    int posicion = Buscar(idSocioBuscado);
+    if (posicion < 0)
+    {
+        return false;
+    }
+
+    Socio socio = Leer(posicion);
+    socio.setEstado(false); // baja logica
+
+    return Guardar(socio, posicion);
+}
