@@ -102,6 +102,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
                     case 1: {
                         cout << "=== PLANES ACTIVOS ===" << endl;
                         for (int i = 0; i < cantidad; i++) {
+
                             if (vectorPlanes[i].getEstado() == true) {
                                 vectorPlanes[i].Mostrar();
                                 cout << "-------------------------" << endl;
@@ -140,6 +141,39 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
 
             } while (opcionListado != 0);
 
+            break;
+        }
+        case 4: {
+            int idPlanBuscado;
+            cout << "Ingrese el ID del plan a eliminar: ";
+            cin >> idPlanBuscado;
+
+            int posicion = archivoPlanes.Buscar(idPlanBuscado);
+            if (posicion < 0) {
+                cout << "No existe un plan con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            Plan planActual = archivoPlanes.Leer(posicion);
+            cout << "\n--- Plan seleccionado ---\n";
+            planActual.Mostrar();
+
+            cout << "Confirma que desea eliminar este plan? (s/n): ";
+            char confirmacion;
+            cin >> confirmacion;
+
+            if (confirmacion == 's' || confirmacion == 'S') {
+                if (archivoPlanes.EliminarPorId(idPlanBuscado)) {
+                    cout << "Plan eliminado correctamente." << endl;
+                } else {
+                    cout << "Error al eliminar el plan." << endl;
+                }
+            } else {
+                cout << "Operacion cancelada." << endl;
+            }
+
+            system("pause");
             break;
         }
         case 0:{

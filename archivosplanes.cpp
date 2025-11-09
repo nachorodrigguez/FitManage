@@ -117,3 +117,15 @@ int ArchivoPlanes::CantidadRegistros() {
 
     return cantidadRegistros;
 }
+
+bool ArchivoPlanes::EliminarPorId(int idPlanBuscado) {
+    int posicion = Buscar(idPlanBuscado);
+    if (posicion < 0) {
+        return false;
+    }
+
+    Plan plan = Leer(posicion);
+    plan.setEstado(false);  // baja lógica: marcar como inactivo
+
+    return Guardar(plan, posicion);
+}
