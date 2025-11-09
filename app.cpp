@@ -3,9 +3,14 @@
 
 using namespace std;
 
-App::App(): managersocios("socios.dat"){
-    _cantidadOpcines = 9 ;
-}
+App::App():
+    managersocios("socios.dat"),
+    managerplanes("planes.dat")
+        {
+            _cantidadOpciones = 9 ;
+        }
+
+
 
 void App::run(){
     int opcion;
@@ -39,7 +44,7 @@ int App::seleccionOpcion(){
     cout << "Opcion: ";
     cin >> opcion;
 
-    while (opcion < 0 || opcion > _cantidadOpcines){
+    while (opcion < 0 || opcion > _cantidadOpciones){
         cout << "Opcion incorrecta..." << endl;
         cout << "Opcion: ";
         cin  >> opcion;

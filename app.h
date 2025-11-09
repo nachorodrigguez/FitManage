@@ -1,9 +1,9 @@
 #pragma once
 #include "ManagerInstructores.h"
-#include "managerSocios.h"
-#include "managerPlanes.h"
-#include "managerCobranzas.h"
-#include "ManagerListados.h"
+#include "managersocios.h"
+#include "managerplanes.h"
+#include "managercobranzas.h"
+#include "Managerlistados.h"
 
 class App{
     public:
@@ -21,6 +21,6 @@ class App{
     ManagerCobranzas managercob;
     ManagerListados managerlis;
     private:
-    int _cantidadOpcines;
+    int _cantidadOpciones;
 
 };

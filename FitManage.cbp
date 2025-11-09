@@ -5,7 +5,7 @@
 		<Option title="FitManage" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managerCobranzas/;archivoSocios/;managerListados/" />
+		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managerCobranzas/;archivoSocios/;managerListados/;archivoplanes/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/FitManage" prefix_auto="1" extension_auto="1" />
@@ -52,6 +52,12 @@
 		</Unit>
 		<Unit filename="archivoSocios.h">
 			<Option virtualFolder="archivoSocios/" />
+		</Unit>
+		<Unit filename="archivoplanes.h">
+			<Option virtualFolder="archivoplanes/" />
+		</Unit>
+		<Unit filename="archivosPlanes.cpp">
+			<Option virtualFolder="archivoplanes/" />
 		</Unit>
 		<Unit filename="clase.cpp">
 			<Option virtualFolder="clase/" />
@@ -131,7 +137,6 @@
 		</Unit>
 		<Unit filename="socio.h">
 			<Option virtualFolder="socio/" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions />
 	</Project>

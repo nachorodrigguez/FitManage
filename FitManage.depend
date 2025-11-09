@@ -56,12 +56,12 @@
 	<iostream>
 	"app.h"
 
-1762641990 c:\users\carre\documents\github\fitmanage\app.h
+1762703034 c:\users\carre\documents\github\fitmanage\app.h
 	"ManagerInstructores.h"
-	"managerSocios.h"
-	"managerPlanes.h"
-	"managerCobranzas.h"
-	"ManagerListados.h"
+	"managersocios.h"
+	"managerplanes.h"
+	"managercobranzas.h"
+	"Managerlistados.h"
 
 1762135530 c:\users\carre\documents\github\fitmanage\managerinstructores.h
 	"instructor.h"
@@ -71,7 +71,7 @@
 	<cstring>
 	"persona.h"
 
-1762650821 source:c:\users\carre\documents\github\fitmanage\socio.cpp
+1762651132 source:c:\users\carre\documents\github\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
@@ -86,10 +86,10 @@
 	<string>
 	"Plan.h"
 
-1762301869 c:\users\carre\documents\github\fitmanage\plan.h
+1762703801 c:\users\carre\documents\github\fitmanage\plan.h
 	<string>
 
-1762641990 source:c:\users\carre\documents\github\fitmanage\app.cpp
+1762702941 source:c:\users\carre\documents\github\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 
@@ -121,18 +121,19 @@
 	"socio.h"
 	"archivoSocios.h"
 
-1762650846 source:c:\users\carre\documents\github\fitmanage\managersocios.cpp
+1762652585 source:c:\users\carre\documents\github\fitmanage\managersocios.cpp
 	<iostream>
 	"ManagerSocios.h"
 
-1762460067 c:\users\carre\documents\github\fitmanage\managerplanes.h
+1762702809 c:\users\carre\documents\github\fitmanage\managerplanes.h
 	"plan.h"
+	"archivoplanes.h"
 
-1762300851 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
+1762703053 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
 	<iostream>
-	"managerPlanes.h"
+	"managerplanes.h"
 
-1762648042 source:c:\users\carre\documents\github\fitmanage\archivosocios.cpp
+1762700681 source:c:\users\carre\documents\github\fitmanage\archivosocios.cpp
 	"Fecha.h"
 	"ArchivoSocios.h"
 
@@ -283,4 +284,12 @@
 1762641990 source:c:\users\carre\documents\github\fitmanage\managerlistados.cpp
 	<iostream>
 	"ManagerListados.h"
+
+1762702408 c:\users\carre\documents\github\fitmanage\archivoplanes.h
+	<string>
+	"Plan.h"
+
+1762702321 source:c:\users\carre\documents\github\fitmanage\archivosplanes.cpp
+	<cstdio>
+	"archivoplanes.h"
 

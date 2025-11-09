@@ -23,6 +23,7 @@ void ManagerSocios::mostrarOpciones(){
         cout << "1 - CARGAR SOCIO"<< endl;
         cout << "2 - MODIFICAR SOCIO" << endl;
         cout << "3 - LISTADO DE SOCIOS" << endl;
+        cout << "4 - ASIGNAR PLAN/CLASE" << endl;
         cout << "5 - ELIMINAR SOCIO" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;

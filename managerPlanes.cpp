@@ -1,10 +1,11 @@
 #include <iostream>
-#include "managerPlanes.h"
+#include "managerplanes.h"
 
 using namespace std;
 
-ManagerPlanes::ManagerPlanes(){
-    _cantidadOpcines = 3 ;
+ManagerPlanes::ManagerPlanes(std::string nombreArchivoPlanes)
+    : archivoPlanes(nombreArchivoPlanes) {
+    _cantidadOpciones = 4; // (CARGAR, MODIFICAR, LISTADO, ELIMINAR)
 }
 
 void ManagerPlanes::run(){
@@ -20,9 +21,10 @@ void ManagerPlanes::run(){
 void ManagerPlanes::mostrarOpciones(){
         cout << "MENU PRINCIPAL"<<endl;
         cout << "====================="<< endl;
-        cout << "1 - CARGAR PLANES "<< endl;
-        cout << "2 - MOSTRAR PLANES "<< endl;
-        cout << "3 - MODIFICAR PLAN EXISTENTE" << endl;
+        cout << "1 - CARGAR PLAN"<< endl;
+        cout << "2 - MODIFICAR PLAN" << endl;
+        cout << "3 - LISTADO DE PLANES" << endl;
+        cout << "4 - ELIMINAR PLAN" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -33,7 +35,7 @@ int ManagerPlanes::seleccionOpcion(){
     cout << "Opcion: ";
     cin >> opcion;
 
-    while (opcion < 0 || opcion > _cantidadOpcines){
+    while (opcion < 0 || opcion > _cantidadOpciones){
         cout << "Opcion incorrecta..." << endl;
         cout << "Opcion: ";
         cin  >> opcion;
@@ -45,13 +47,18 @@ int ManagerPlanes::seleccionOpcion(){
 void ManagerPlanes::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1:{
-        plan.Cargar();
-        system("pause");
-        break;
-        }
+            plan.Cargar();
+            if (archivoPlanes.Guardar(plan)) {
+            cout << "Plan guardado exitosamente!" << endl;
+            } else {
+                cout << "Error al guardar el plan." << endl;
+            }
+            system("pause");
+            break;
+            }
         case 2 :{
-        plan.Mostrar();
-        system("pause");
+            plan.Mostrar();
+            system("pause");
         break;
         }
         case 0:{

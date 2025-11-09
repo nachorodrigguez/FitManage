@@ -29,8 +29,8 @@ bool ArchivoSocios::Guardar(const Socio& socio, int posicion)
     }
 
     // Verificar que la posicion sea valida
-    int cantidadRegistros = CantidadRegistros();
-    if (posicion < 0 || posicion >= cantidadRegistros)
+    int cantidad = CantidadRegistros();
+    if (posicion < 0 || posicion >= cantidad)
     {
         fclose(pArchivo);
         return false;
@@ -46,7 +46,7 @@ bool ArchivoSocios::Guardar(const Socio& socio, int posicion)
 
 int ArchivoSocios::Buscar(int idSocio)
 {
-    FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
+    FILE* pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL)
     {
         return -1;
