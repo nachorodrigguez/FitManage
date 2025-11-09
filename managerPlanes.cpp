@@ -59,8 +59,70 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
             system("pause");
             break;
             }
-        case 2 :{
-            plan.Mostrar();
+        case 2: {
+            int idBuscado;
+            cout << "Ingrese el ID del plan a modificar: ";
+            cin >> idBuscado;
+
+            int posicion = archivoPlanes.Buscar(idBuscado);
+            if (posicion < 0) {
+                cout << "No existe un plan con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            Plan planActual = archivoPlanes.Leer(posicion);
+            cout << "\n--- Plan encontrado ---\n";
+            planActual.Mostrar();
+            cout << "-------------------------" << endl;
+
+            cout << "\n¿Desea modificar este plan? (s/n): ";
+            char confirmar;
+            cin >> confirmar;
+            if (confirmar != 's' && confirmar != 'S') {
+                cout << "Operacion cancelada." << endl;
+                system("pause");
+                break;
+            }
+
+            // Creamos un nuevo objeto Plan con los datos modificados
+            Plan planModificado = planActual;
+
+            cin.ignore();
+
+            string nuevoTipo;
+            cout << "Nuevo nombre del plan (actual: " << planActual.getTipo() << "): ";
+            getline(cin, nuevoTipo);
+            if (!nuevoTipo.empty()) planModificado.setTipoPlan(nuevoTipo.c_str());
+
+            string nuevaDescripcion;
+            cout << "Nueva descripcion (actual: " << planActual.getDescripcion() << "): ";
+            getline(cin, nuevaDescripcion);
+            if (!nuevaDescripcion.empty()) planModificado.setDescripcion(nuevaDescripcion.c_str());
+
+            int opcionPeriodo;
+            cout << "Seleccione nuevo periodo (1 = Mensual, 2 = Anual, 0 = mantener actual): ";
+            cin >> opcionPeriodo;
+            if (opcionPeriodo == 1) planModificado.setPeriodo("Mensual");
+            else if (opcionPeriodo == 2) planModificado.setPeriodo("Anual");
+
+            float nuevoPrecio;
+            cout << "Nuevo precio (actual $" << planActual.getPrecio() << ", 0 para mantener): ";
+            cin >> nuevoPrecio;
+            if (nuevoPrecio > 0) planModificado.setPrecio(nuevoPrecio);
+
+            int nuevaDuracion;
+            cout << "Nueva duracion en meses (actual " << planActual.getDuracion() << ", 0 para mantener): ";
+            cin >> nuevaDuracion;
+            if (nuevaDuracion > 0) planModificado.setDuracion(nuevaDuracion);
+
+            // Guardamos cambios (ID y estado se mantienen)
+            if (archivoPlanes.ModificarPorId(idBuscado, planModificado)) {
+                cout << "\nPlan modificado correctamente." << endl;
+            } else {
+                cout << "\nError al modificar el plan." << endl;
+            }
+
             system("pause");
             break;
         }

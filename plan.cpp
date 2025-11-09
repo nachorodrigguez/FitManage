@@ -21,6 +21,10 @@ Plan::Plan(int id, const char* tip, const char* per, float pre, int dur){
 //SETTERS
 void Plan::setIdPlan(int id) { idPlan = id; }
 void Plan::setTipoPlan (const char* tip) {strcpy(tipoPlan, tip);}
+void Plan::setDescripcion(const char* desc) {
+        strncpy(descripcion, desc, sizeof(descripcion) - 1);
+        descripcion[sizeof(descripcion) - 1] = '\0';
+    }
 void Plan::setPeriodo(const char* per) { strcpy(periodo, per); }
 void Plan::setPrecio(float pre) { precio = pre; }
 void Plan::setDuracion(int dur) { duracionMeses = dur; }
