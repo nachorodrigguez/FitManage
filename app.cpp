@@ -5,7 +5,8 @@ using namespace std;
 
 App::App():
     managersocios("socios.dat"),
-    managerplanes("planes.dat")
+    managerplanes("planes.dat"),
+    managerinstructores("instructores.dat")
         {
             _cantidadOpciones = 9 ;
         }
@@ -60,7 +61,7 @@ void App::ejecutarOpcion(int opcion){
         system("pause");
         }
         case 2:{
-        managerIns.run();
+        managerinstructores.run();
         break;
         system("pause");
         }

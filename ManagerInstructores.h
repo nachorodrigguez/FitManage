@@ -1,18 +1,20 @@
 #pragma once
 #include "instructor.h"
+#include "archivoInstructores.h"
 
 class ManagerInstructores{
     public:
-    ManagerInstructores();
-    void run();
+        ManagerInstructores(std::string nombreArchivoInstructores);
+        void run();
 
     protected:
-    void mostrarOpciones();
-    int seleccionOpcion();
-    void ejecutarOpcion(int opcion);
+        void mostrarOpciones();
+        int seleccionOpcion();
+        void ejecutarOpcion(int opcion);
 
     private:
-    int _cantidadOpcines;
-    Instructor ins;
+        int _cantidadOpciones;
+        Instructor ins;
+        ArchivoInstructores archivoInstructores;
 
 };

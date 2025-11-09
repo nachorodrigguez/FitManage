@@ -56,15 +56,16 @@
 	<iostream>
 	"app.h"
 
-1762703034 c:\users\carre\documents\github\fitmanage\app.h
+1762712434 c:\users\carre\documents\github\fitmanage\app.h
 	"ManagerInstructores.h"
 	"managersocios.h"
 	"managerplanes.h"
 	"managercobranzas.h"
 	"Managerlistados.h"
 
-1762135530 c:\users\carre\documents\github\fitmanage\managerinstructores.h
+1762712462 c:\users\carre\documents\github\fitmanage\managerinstructores.h
 	"instructor.h"
+	"archivoInstructores.h"
 
 1762644044 source:c:\users\carre\documents\github\fitmanage\persona.cpp
 	<iostream>
@@ -89,7 +90,7 @@
 1762708881 c:\users\carre\documents\github\fitmanage\plan.h
 	<string>
 
-1762702941 source:c:\users\carre\documents\github\fitmanage\app.cpp
+1762712432 source:c:\users\carre\documents\github\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 
@@ -292,4 +293,12 @@
 1762709678 source:c:\users\carre\documents\github\fitmanage\archivosplanes.cpp
 	<cstdio>
 	"archivoplanes.h"
+
+1762711524 source:c:\users\carre\documents\github\fitmanage\archivoinstructores.cpp
+	"archivoInstructores.h"
+	<cstdio>
+
+1762711947 c:\users\carre\documents\github\fitmanage\archivoinstructores.h
+	<string>
+	"instructor.h"
 

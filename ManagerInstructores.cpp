@@ -3,8 +3,9 @@
 
 using namespace std;
 
-ManagerInstructores::ManagerInstructores(){
-    _cantidadOpcines = 3 ;
+ManagerInstructores::ManagerInstructores(std::string nombreArchivoInstructores)
+    : archivoInstructores(nombreArchivoInstructores) {
+    _cantidadOpciones = 4; // (CARGAR, MODIFICAR, LISTADO, ELIMINAR)
 }
 
 void ManagerInstructores::run(){
@@ -32,7 +33,7 @@ int ManagerInstructores::seleccionOpcion(){
     cout << "Opcion: ";
     cin >> opcion;
 
-    while (opcion < 0 || opcion > _cantidadOpcines){
+    while (opcion < 0 || opcion > _cantidadOpciones){
         cout << "Opcion incorrecta..." << endl;
         cout << "Opcion: ";
         cin  >> opcion;

@@ -15,9 +15,10 @@ class App{
     int seleccionOpcion();
     void ejecutarOpcion(int opcion);
 
-    ManagerInstructores managerIns;
     ManagerSocios managersocios;
     ManagerPlanes managerplanes;
+    ManagerInstructores managerinstructores;
+
     ManagerCobranzas managercob;
     ManagerListados managerlis;
     private:

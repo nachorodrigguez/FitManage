@@ -5,7 +5,7 @@
 		<Option title="FitManage" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managerCobranzas/;archivoSocios/;managerListados/;archivoplanes/" />
+		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managercobranzas/;archivosocios/;managerlistados/;archivoplanes/;archivoinstructores/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/FitManage" prefix_auto="1" extension_auto="1" />
@@ -48,15 +48,21 @@
 			<Option virtualFolder="app/" />
 		</Unit>
 		<Unit filename="archivoSocios.cpp">
-			<Option virtualFolder="archivoSocios/" />
+			<Option virtualFolder="archivosocios/" />
 		</Unit>
 		<Unit filename="archivoSocios.h">
-			<Option virtualFolder="archivoSocios/" />
+			<Option virtualFolder="archivosocios/" />
+		</Unit>
+		<Unit filename="archivoinstructores.cpp">
+			<Option virtualFolder="archivoinstructores/" />
+		</Unit>
+		<Unit filename="archivoinstructores.h">
+			<Option virtualFolder="archivoinstructores/" />
 		</Unit>
 		<Unit filename="archivoplanes.h">
 			<Option virtualFolder="archivoplanes/" />
 		</Unit>
-		<Unit filename="archivosPlanes.cpp">
+		<Unit filename="archivosplanes.cpp">
 			<Option virtualFolder="archivoplanes/" />
 		</Unit>
 		<Unit filename="clase.cpp">
@@ -95,16 +101,16 @@
 		</Unit>
 		<Unit filename="main.cpp" />
 		<Unit filename="managerCobranzas.cpp">
-			<Option virtualFolder="managerCobranzas/" />
+			<Option virtualFolder="managercobranzas/" />
 		</Unit>
 		<Unit filename="managerCobranzas.h">
-			<Option virtualFolder="managerCobranzas/" />
+			<Option virtualFolder="managercobranzas/" />
 		</Unit>
 		<Unit filename="managerListados.cpp">
-			<Option virtualFolder="managerListados/" />
+			<Option virtualFolder="managerlistados/" />
 		</Unit>
 		<Unit filename="managerListados.h">
-			<Option virtualFolder="managerListados/" />
+			<Option virtualFolder="managerlistados/" />
 		</Unit>
 		<Unit filename="managerPlanes.cpp">
 			<Option virtualFolder="managerplanes/" />
