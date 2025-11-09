@@ -8,22 +8,14 @@ using namespace std;
 //CONSTRUCTOR
 int Plan::ultimoID = 0;
 Plan::Plan(int id, const char* tip, const char* per, float pre, int dur){
-  idPlan = ++ultimoID;
+  idPlan = 0;
   strcpy(tipoPlan, "Indefinido");
   strcpy(descripcion, "Indefinido");
   strcpy(periodo, "Indefinido");
   precio = pre;
   duracionMeses = dur;
+  estado = true;
 
-}
-
-void Plan::Mostrar() const {
-  cout << "ID Plan: " << idPlan << endl;
-  cout << "Tipo: " << tipoPlan << endl;
-  cout << "Descripcion: " << descripcion << endl;
-  cout << "Periodo: " << periodo << endl;
-  cout << "Precio: $" << precio << endl;
-  cout << "Duracion: " << duracionMeses << " meses" << endl;
 }
 
 //SETTERS
@@ -32,6 +24,7 @@ void Plan::setTipoPlan (const char* tip) {strcpy(tipoPlan, tip);}
 void Plan::setPeriodo(const char* per) { strcpy(periodo, per); }
 void Plan::setPrecio(float pre) { precio = pre; }
 void Plan::setDuracion(int dur) { duracionMeses = dur; }
+void Plan::setEstado(bool valor) { estado = valor; }
 
 //GETTERS
 int Plan::getIdPlan() const { return idPlan; }
@@ -40,8 +33,14 @@ const char* Plan::getDescripcion() const { return descripcion; }
 const char* Plan::getPeriodo() const { return periodo; }
 float Plan::getPrecio() const { return precio; }
 int Plan::getDuracion() const { return duracionMeses; }
+bool Plan::getEstado() const { return estado; }
+
+//FUNCIONES GENERALES
+void Plan::EstablecerUltimoId(int valor) { ultimoID = valor; }
+int  Plan::ObtenerUltimoId() { return ultimoID; }
 
 void Plan::Cargar() {
+    idPlan = ++ultimoID;
     cout << "Cargando Plan #" << idPlan << endl;
 
     cin.ignore();
@@ -77,4 +76,16 @@ void Plan::Cargar() {
 
     cout << "Ingrese la duracion del plan (en meses): ";
     cin >> duracionMeses;
+
+    estado = true;
+}
+
+void Plan::Mostrar() const {
+    cout << "ID Plan: " << idPlan << endl;
+    cout << "Tipo: " << tipoPlan << endl;
+    cout << "Descripcion: " << descripcion << endl;
+    cout << "Periodo: " << periodo << endl;
+    cout << "Precio: $" << precio << endl;
+    cout << "Duracion: " << duracionMeses << " meses" << endl;
+    cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
 }

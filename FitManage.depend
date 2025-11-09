@@ -80,13 +80,13 @@
 	"fecha.h"
 	"persona.h"
 
-1762377245 source:c:\users\carre\documents\github\fitmanage\plan.cpp
+1762709279 source:c:\users\carre\documents\github\fitmanage\plan.cpp
 	<iostream>
 	<cstring>
 	<string>
 	"Plan.h"
 
-1762703801 c:\users\carre\documents\github\fitmanage\plan.h
+1762708881 c:\users\carre\documents\github\fitmanage\plan.h
 	<string>
 
 1762702941 source:c:\users\carre\documents\github\fitmanage\app.cpp
@@ -129,7 +129,7 @@
 	"plan.h"
 	"archivoplanes.h"
 
-1762703053 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
+1762709125 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
 	<iostream>
 	"managerplanes.h"
 
