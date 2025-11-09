@@ -21,5 +21,6 @@ public:
 
     void Cargar();
     void Mostrar();
+    void Modificar();
 };
 

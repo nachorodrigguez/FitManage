@@ -3,7 +3,7 @@
 
 using namespace std;
 
-ManagerSocios::ManagerSocios(std::string nombreArchivo): archivosocios(nombreArchivo){
+ManagerSocios::ManagerSocios(std::string nombreArchivo): archivoSocios(nombreArchivo){
     _cantidadOpcines = 3 ;
 }
 
@@ -21,8 +21,8 @@ void ManagerSocios::mostrarOpciones(){
         cout << "MENU PRINCIPAL"<<endl;
         cout << "====================="<< endl;
         cout << "1 - CARGAR SOCIO"<< endl;
-        cout << "2 - MOSTRAR SOCIO" << endl;
-        cout << "3 - LISTAR SOCIO" << endl;
+        cout << "2 - MODIFICAR SOCIO" << endl;
+        cout << "3 - LISTAR SOCIOS" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -45,27 +45,53 @@ int ManagerSocios::seleccionOpcion(){
 void ManagerSocios::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1:{
-        socio.Cargar();
-        if (archivosocios.Guardar(socio)){
-            cout << "Socio guardado exitosamente!" << endl;
-        }else{
-            cout << "Error al guardar el socio." << endl;
-        }
-        system("pause");
-        break;
-        }
+            socio.Cargar();
+            if (archivoSocios.Guardar(socio)){
+                cout << "Socio guardado exitosamente!" << endl;
+            }else{
+                cout << "Error al guardar el socio." << endl;
+            }
+            system("pause");
+            break;
+            }
         case 2 :{
-        socio.Mostrar();
-        system("pause");
-        break;
-        }
+            int idBuscado;
+            cout << "Ingrese el ID (DNI) del socio a modificar: ";
+            cin >> idBuscado;
+
+            int posicion = archivoSocios.Buscar(idBuscado);
+            if (posicion < 0) {
+                cout << "No existe un socio con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            // (Opcional) mostrar datos actuales
+            Socio socioActual = archivoSocios.Leer(posicion);
+            cout << "\n--- Datos actuales ---\n";
+            socioActual.Mostrar();
+
+            cout << "\n=== Reingrese los datos del socio (se guardaran como nuevos datos) ===\n";
+            Socio socioNuevo;
+            socioNuevo.setId(idBuscado);
+            socioNuevo.Modificar();
+
+            if (archivoSocios.ModificarPorId(idBuscado, socioNuevo)) {
+                cout << "Socio modificado correctamente." << endl;
+            } else {
+                cout << "Error al modificar el socio." << endl;
+            }
+            system("pause");
+            break;
+            }
+        //Listar socios
         case 3: {
-            int cantidad = archivosocios.CantidadRegistros();
+            int cantidad = archivoSocios.CantidadRegistros();
             if (cantidad == 0){
                 cout << "No hay socios cargados." << endl;
             }else{
                 Socio *vecAux = new Socio[cantidad];
-                archivosocios.Leer(cantidad, vecAux);
+                archivoSocios.Leer(cantidad, vecAux);
                 for (int i=0; i < cantidad; i++){
                     vecAux[i].Mostrar();
                     cout << "------------------" << endl;

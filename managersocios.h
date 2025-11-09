@@ -15,6 +15,6 @@ class ManagerSocios{
     private:
     int _cantidadOpcines;
     Socio socio;
-    ArchivoSocios archivosocios;
+    ArchivoSocios archivoSocios;
 
 };

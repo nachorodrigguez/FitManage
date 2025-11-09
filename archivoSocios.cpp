@@ -6,6 +6,7 @@ ArchivoSocios::ArchivoSocios(std::string nombreArchivo)
     _nombreArchivo = nombreArchivo;
 }
 
+//Agregar nuevo socio al final del archivo
 bool ArchivoSocios::Guardar(Socio socio)
 {
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "ab");
@@ -18,17 +19,29 @@ bool ArchivoSocios::Guardar(Socio socio)
     return ok;
 }
 
-bool ArchivoSocios::Guardar(Socio socio, int posicion)
+//Modificar socio existente
+bool ArchivoSocios::Guardar(const Socio& socio, int posicion)
 {
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
     if(pArchivo == NULL)
     {
         return false;
     }
+
+    // Verificar que la posicion sea valida
+    int cantidadRegistros = CantidadRegistros();
+    if (posicion < 0 || posicion >= cantidadRegistros)
+    {
+        fclose(pArchivo);
+        return false;
+    }
+
     fseek(pArchivo, sizeof(Socio) * posicion, SEEK_SET);
-    bool ok = fwrite(&socio, sizeof(Socio), 1, pArchivo);
+    //size_t porque fwrite devuelve cantidad y no booleano
+    size_t registrosEscritos = fwrite(&socio, sizeof(Socio), 1, pArchivo);
     fclose(pArchivo);
-    return ok;
+
+    return (registrosEscritos == 1);
 }
 
 int ArchivoSocios::Buscar(int idSocio)
@@ -92,4 +105,15 @@ void ArchivoSocios::Leer(int cantidadRegistros, Socio *vector)
         fread(&vector[i], sizeof(Socio), 1, pArchivo);
     }
     fclose(pArchivo);
+}
+
+bool ArchivoSocios::ModificarPorId(int idSocioBuscado, const Socio& socioNuevo)
+{
+    int posicion = Buscar(idSocioBuscado);
+    if (posicion < 0)
+    {
+        return false; // No se encontro el socio
+    }
+
+    return Guardar(socioNuevo, posicion);
 }

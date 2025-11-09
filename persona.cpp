@@ -74,6 +74,6 @@ void Persona::Mostrar(){
     cout << "Apellido: " << apellido << endl;
     cout << "Domicilio: " << domicilio << endl;
     cout << "Telefono: " << telefono << endl;
-    cout << "Fecha de nacimiento: " << endl;
+    cout << "Fecha de nacimiento: ";
     fechaNacimiento.Mostrar();
 }

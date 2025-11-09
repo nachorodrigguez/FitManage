@@ -54,10 +54,24 @@ void Socio::Mostrar() {
     cout << "ID del socio: " << idSocio << endl;
 
     Persona::Mostrar();
+    cout << endl;
 
     cout << "Fecha de inscripcion: ";
     inscripcion.Mostrar();
     cout << endl;
     cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
+}
+
+void Socio::Modificar() {
+    cout << "=== MODIFICAR SOCIO ===" << endl;
+
+    Persona::Cargar();
+    cout << endl;
+
+    cout << "Ingrese fecha de inscripcion: " << endl;
+    inscripcion.Cargar();
+
+    cout << "Ingrese estado (1 = activo, 0 = inactivo): ";
+    cin >> estado;
 }
 
