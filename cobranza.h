@@ -5,6 +5,7 @@
 
 class Cobranza{
     private:
+    int _dniSocio;
     int _numTransaccion;
     Fecha _fechaTransaccion;
     float _descuentos;
@@ -14,12 +15,14 @@ class Cobranza{
     public:
     Cobranza();
 
+    int getDniSocio();
     int getNumTransaccion();
     Fecha getFechaTransaccion();
     float getDescuentos();
     float getMontoTotal();
     const char* getMetodoPago();
 
+    void setDniSocio(int);
     void setNumTransaccion(int);
     void setFechaTransaccion(Fecha);
     void setDescuentos(float);

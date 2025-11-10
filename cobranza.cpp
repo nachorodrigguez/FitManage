@@ -5,12 +5,16 @@
 using namespace std;
 
 Cobranza::Cobranza(){
+    _dniSocio = 0;
     _numTransaccion = 0;
     _descuentos = 0;
     _montoTotal = 0;
     strcpy(_metodoPago, "Indefinido");
 }
 
+int Cobranza::getDniSocio(){
+    return _dniSocio;
+}
 int Cobranza::getNumTransaccion(){
     return _numTransaccion;
 }
@@ -25,6 +29,10 @@ float Cobranza::getMontoTotal(){
 }
 const char* Cobranza::getMetodoPago(){
     return _metodoPago;
+}
+
+void Cobranza::setDniSocio(int dni){
+    _dniSocio = dni;
 }
 
 void Cobranza::setNumTransaccion(int numTransaccion){
@@ -99,9 +107,11 @@ void Cobranza::Mostrar(){
     cout << "=======================" << endl;
     cout << "FACTURA"<< endl;
     cout << "=======================" << endl;
+    cout << "CLIENTE: " << _dniSocio << endl;
     cout << "Transaccion N°: " << _numTransaccion << endl;
     cout << "Fecha: ";
     _fechaTransaccion.Mostrar();
+    cout << endl;
     cout << "Descuento: " << _descuentos << "%" << endl;
     cout << "Monto total: $" << _montoTotal << endl;
     cout << "Metodo de pago: " << _metodoPago << endl;
