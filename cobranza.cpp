@@ -79,7 +79,6 @@ void Cobranza::setMetodoPago(){
 void Cobranza::Cargar(){
         _numTransaccion++;
         float descuentos;
-        cout << "Ingrese DNI: " ;
         cout << "Numero de transaccion: " << _numTransaccion << endl;
         cout << "Fecha de transaccion: ";
         _fechaTransaccion.Mostrar();
@@ -97,10 +96,12 @@ void Cobranza::Cargar(){
 }
 
 void Cobranza::Mostrar(){
+    cout << "=======================" << endl;
+    cout << "FACTURA"<< endl;
+    cout << "=======================" << endl;
     cout << "Transaccion N°: " << _numTransaccion << endl;
     cout << "Fecha: ";
     _fechaTransaccion.Mostrar();
-
     cout << "Descuento: " << _descuentos << "%" << endl;
     cout << "Monto total: $" << _montoTotal << endl;
     cout << "Metodo de pago: " << _metodoPago << endl;
