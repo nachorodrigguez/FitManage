@@ -3,7 +3,7 @@
 
 using namespace std;
 
-ManagerCobranzas::ManagerCobranzas(){
+ManagerCobranzas::ManagerCobranzas(std::string nombreArchivo): archivocobranzas(nombreArchivo), archivosocios("socios.dat"){
     _cantidadOpcines = 3 ;
 }
 
@@ -44,10 +44,33 @@ int ManagerCobranzas::seleccionOpcion(){
 void ManagerCobranzas::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1:{
-        cobranza.Cargar();
+            int dni;
+            bool idValido = false;
+
+            //Verifica si el socio existe dentro de ArchivoSocios
+            do{
+            cout << "Ingrese ID del socio (DNI): ";
+            cin >> dni;
+            int posicionExiste = archivosocios.Buscar(dni);
+
+            if(posicionExiste == -1){
+                cout << "Socio no ingresado en el sistema." << endl;
+                }else{
+                    idValido = true;
+                }
+            }while(!idValido);
+
+            cobranza.Cargar();
+
+            if(archivocobranzas.Guardar(cobranza)){
+            cout << "Pago registrado existosamente!" << endl;
+            } else {
+            cout << "Error al guardar el pago." << endl;
+            }
         system("pause");
         break;
         }
+
         case 2 : {
         cobranza.Mostrar();
         system("pause");

@@ -5,7 +5,7 @@
 		<Option title="FitManage" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managercobranzas/;archivosocios/;managerlistados/;archivoplanes/;archivoinstructores/" />
+		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managercobranzas/;archivosocios/;managerlistados/;archivoplanes/;archivoinstructores/;archivocobranzas/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/FitManage" prefix_auto="1" extension_auto="1" />
@@ -35,12 +35,24 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename=".gitignore" />
+		<Unit filename="ArchivoCobranzas.cpp">
+			<Option virtualFolder="archivocobranzas/" />
+		</Unit>
+		<Unit filename="ArchivoCobranzas.h">
+			<Option virtualFolder="archivocobranzas/" />
+		</Unit>
+		<Unit filename="FitManage.cbp" />
+		<Unit filename="FitManage.cscope_file_list" />
+		<Unit filename="FitManage.depend" />
+		<Unit filename="FitManage.layout" />
 		<Unit filename="ManagerInstructores.cpp">
 			<Option virtualFolder="managerinstructores/" />
 		</Unit>
 		<Unit filename="ManagerInstructores.h">
 			<Option virtualFolder="managerinstructores/" />
 		</Unit>
+		<Unit filename="README.md" />
 		<Unit filename="app.cpp">
 			<Option virtualFolder="app/" />
 		</Unit>
@@ -70,21 +82,18 @@
 		</Unit>
 		<Unit filename="clase.h">
 			<Option virtualFolder="clase/" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="clasexsocio.cpp">
 			<Option virtualFolder="clasexsocio/" />
 		</Unit>
 		<Unit filename="clasexsocio.h">
 			<Option virtualFolder="clasexsocio/" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="cobranza.cpp">
 			<Option virtualFolder="cobranza/" />
 		</Unit>
 		<Unit filename="cobranza.h">
 			<Option virtualFolder="cobranza/" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="fecha.cpp">
 			<Option virtualFolder="fecha/" />
@@ -97,8 +106,8 @@
 		</Unit>
 		<Unit filename="instructor.h">
 			<Option virtualFolder="instructor/" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="instructores.dat" />
 		<Unit filename="main.cpp" />
 		<Unit filename="managerCobranzas.cpp">
 			<Option virtualFolder="managercobranzas/" />
@@ -129,21 +138,21 @@
 		</Unit>
 		<Unit filename="persona.h">
 			<Option virtualFolder="persona/" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="plan.cpp">
 			<Option virtualFolder="plan/" />
 		</Unit>
 		<Unit filename="plan.h">
 			<Option virtualFolder="plan/" />
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="planes.dat" />
 		<Unit filename="socio.cpp">
 			<Option virtualFolder="socio/" />
 		</Unit>
 		<Unit filename="socio.h">
 			<Option virtualFolder="socio/" />
 		</Unit>
+		<Unit filename="socios.dat" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

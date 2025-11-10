@@ -1,9 +1,11 @@
 #pragma once
 #include "cobranza.h"
+#include "archivoSocios.h"
+#include "ArchivoCobranzas.h"
 
 class ManagerCobranzas{
     public:
-    ManagerCobranzas();
+    ManagerCobranzas(std::string nombreArchivo);
     void run();
 
     protected:
@@ -14,4 +16,6 @@ class ManagerCobranzas{
     private:
     int _cantidadOpcines;
     Cobranza cobranza;
+    ArchivoCobranzas archivocobranzas;
+    ArchivoSocios archivosocios;
 };
