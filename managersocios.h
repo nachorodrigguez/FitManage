@@ -1,6 +1,7 @@
 #pragma once
 #include "socio.h"
 #include "archivoSocios.h"
+#include "archivoplanes.h"
 
 class ManagerSocios{
     public:

@@ -1,12 +1,14 @@
 #include <iostream>
 #include <cstdio>
 #include "socio.h"
+#include <cstring>
 
 using namespace std;
 
 Socio::Socio() {
     idSocio = 0;
     estado = true;
+    strcpy(tipoPlan, "Sin asignar");
 }
 
 void Socio::setId(int valor) {
@@ -21,6 +23,12 @@ void Socio::setEstado(bool valor) {
     estado = valor;
 }
 
+void Socio::setTipoPlan(const char* tp) {
+    if(tp == nullptr) { strcpy(tipoPlan, "Sin asignar"); return; }
+    strncpy(tipoPlan, tp, sizeof(tipoPlan)-1);
+    tipoPlan[sizeof(tipoPlan)-1] = '\0';
+}
+
 int Socio::getId() {
     return idSocio;
 }
@@ -32,6 +40,8 @@ Fecha Socio::getInscripcion() {
 bool Socio::getEstado() {
     return estado;
 }
+
+const char* Socio::getTipoPlan() const { return tipoPlan; }
 
 void Socio::Cargar(int idExistente) {
 
@@ -66,6 +76,7 @@ void Socio::Mostrar() {
     inscripcion.Mostrar();
     cout << endl;
     cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
+    cout << "Tipo de plan: " << tipoPlan << endl;
 }
 
 void Socio::Modificar() {

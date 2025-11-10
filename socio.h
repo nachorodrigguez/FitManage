@@ -7,17 +7,20 @@ private:
     int idSocio;
     Fecha inscripcion;
     bool estado;
+    char tipoPlan[50];
 
 public:
     Socio();
 
-    int getId();
-    Fecha getInscripcion();
-    bool getEstado();
-
     void setId(int);
     void setInscripcion(Fecha);
     void setEstado(bool);
+    void setTipoPlan(const char*);
+
+    int getId();
+    Fecha getInscripcion();
+    bool getEstado();
+    const char* getTipoPlan() const;
 
     void Cargar(int idExistente = 0);
     void Mostrar();
