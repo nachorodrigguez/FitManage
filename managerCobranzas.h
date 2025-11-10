@@ -1,4 +1,5 @@
 #pragma once
+#include "socio.h"
 #include "cobranza.h"
 #include "archivoSocios.h"
 #include "ArchivoCobranzas.h"
@@ -15,6 +16,7 @@ class ManagerCobranzas{
 
     private:
     int _cantidadOpcines;
+    Socio socio;
     Cobranza cobranza;
     ArchivoCobranzas archivocobranzas;
     ArchivoSocios archivosocios;

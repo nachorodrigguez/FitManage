@@ -22,6 +22,7 @@ void ManagerCobranzas::mostrarOpciones(){
         cout << "====================="<< endl;
         cout << "1 - GENERAR PAGO"<< endl;
         cout << "2 - FACTURA" << endl;
+        cout << "3 - LISTADO DE PAGOS" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -47,38 +48,69 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             int dni;
             bool idValido = false;
 
-            //Verifica si el socio existe dentro de ArchivoSocios
+            //verifica si el socio existe dentro de ArchivoSocios
             do{
-            cout << "Ingrese ID del socio (DNI): ";
-            cin >> dni;
-            int posicionExiste = archivosocios.Buscar(dni);
+                cout << "Ingrese ID del socio (DNI): ";
+                cin >> dni;
 
-            if(posicionExiste == -1){
-                cout << "Socio no ingresado en el sistema." << endl;
+                int posicionExiste = archivosocios.Buscar(dni);
+
+                if (posicionExiste == -1){
+                    cout << "Socio no ingresado en el sistema." << endl;
+                    system("pause");
+                    break;
                 }else{
                     idValido = true;
+                    socio = archivosocios.Leer(posicionExiste);
                 }
             }while(!idValido);
 
-            cobranza.Cargar();
-
-            if(archivocobranzas.Guardar(cobranza)){
-            cout << "Pago registrado existosamente!" << endl;
-            } else {
-            cout << "Error al guardar el pago." << endl;
+            if (socio.getEstado() == true){
+                cobranza.setDniSocio(dni);
+                cobranza.Cargar();
+                if (archivocobranzas.Guardar(cobranza)){
+                    cout << "Pago registrado exitosamente!" << endl;
+                }else{
+                    cout << "Error al guardar el pago." << endl;
+                }
+            }else {
+                cout << "Socio inactivo. No se puede registrar el pago." << endl;
             }
-        system("pause");
-        break;
-        }
-
+            system("pause");
+            break;
+            }
         case 2 : {
-        cobranza.Mostrar();
-        system("pause");
+            cobranza.Mostrar();
+            system("pause");
         break;
         }
+        case 3 : {
+            int cantidad = archivocobranzas.CantidadRegistros();
+            if(cantidad == 0){
+                cout << "No se registraron pagos." << endl;
+                system("pause");
+                break;
+            }
+
+            Cobranza* vectorCob = new Cobranza[cantidad];
+            archivocobranzas.Leer(cantidad, vectorCob);
+            bool hayResultados = false;
+
+            cout << "LISTADO DE PAGOS" << endl;
+            for (int i=0; i<cantidad; i++){
+            vectorCob[i].Mostrar();
+            cout << "------------------" << endl;
+            hayResultados = true;
+                }
+            delete [] vectorCob;
+            cout << endl;
+            system("pause");
+            break;
+            }
         case 0:{
-        break;
+            break;
         }
     }
 }
+
 
