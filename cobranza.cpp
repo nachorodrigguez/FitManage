@@ -85,7 +85,6 @@ void Cobranza::setMetodoPago(){
 }
 
 void Cobranza::Cargar(){
-        _numTransaccion++;
         float descuentos;
         cout << "Numero de transaccion: " << _numTransaccion << endl;
         cout << "Fecha de transaccion: ";
