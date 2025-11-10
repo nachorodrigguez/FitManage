@@ -35,24 +35,18 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename=".gitignore" />
 		<Unit filename="ArchivoCobranzas.cpp">
 			<Option virtualFolder="archivocobranzas/" />
 		</Unit>
 		<Unit filename="ArchivoCobranzas.h">
 			<Option virtualFolder="archivocobranzas/" />
 		</Unit>
-		<Unit filename="FitManage.cbp" />
-		<Unit filename="FitManage.cscope_file_list" />
-		<Unit filename="FitManage.depend" />
-		<Unit filename="FitManage.layout" />
 		<Unit filename="ManagerInstructores.cpp">
 			<Option virtualFolder="managerinstructores/" />
 		</Unit>
 		<Unit filename="ManagerInstructores.h">
 			<Option virtualFolder="managerinstructores/" />
 		</Unit>
-		<Unit filename="README.md" />
 		<Unit filename="app.cpp">
 			<Option virtualFolder="app/" />
 		</Unit>
@@ -107,7 +101,6 @@
 		<Unit filename="instructor.h">
 			<Option virtualFolder="instructor/" />
 		</Unit>
-		<Unit filename="instructores.dat" />
 		<Unit filename="main.cpp" />
 		<Unit filename="managerCobranzas.cpp">
 			<Option virtualFolder="managercobranzas/" />
@@ -145,14 +138,12 @@
 		<Unit filename="plan.h">
 			<Option virtualFolder="plan/" />
 		</Unit>
-		<Unit filename="planes.dat" />
 		<Unit filename="socio.cpp">
 			<Option virtualFolder="socio/" />
 		</Unit>
 		<Unit filename="socio.h">
 			<Option virtualFolder="socio/" />
 		</Unit>
-		<Unit filename="socios.dat" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

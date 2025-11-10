@@ -171,7 +171,7 @@
 	<string>
 	"fecha.h"
 
-1762466971 source:c:\users\nacho\documents\github4\fitmanage\clase.cpp
+1762797753 source:c:\users\nacho\documents\github4\fitmanage\clase.cpp
 	"clase.h"
 	<iostream>
 	<cstring>
@@ -185,17 +185,15 @@
 	<string>
 	"Persona.h"
 
-1762466971 source:c:\users\nacho\documents\github4\fitmanage\clasexsocio.cpp
-	<cstring>
+1762797753 source:c:\users\nacho\documents\github4\fitmanage\clasexsocio.cpp
 	"clasexsocio.h"
+	<iostream>
+	<limits>
 
-1762466971 c:\users\nacho\documents\github4\fitmanage\clasexsocio.h
-	<string>
-	"Fecha.h"
-	"clase.h"
-	"socio.h"
+1762797753 c:\users\nacho\documents\github4\fitmanage\clasexsocio.h
+	"fecha.h"
 
-1762796134 source:c:\users\nacho\documents\github4\fitmanage\cobranza.cpp
+1762799377 source:c:\users\nacho\documents\github4\fitmanage\cobranza.cpp
 	<iostream>
 	<cstring>
 	"cobranza.h"
@@ -243,7 +241,7 @@
 	"archivoSocios.h"
 	"ArchivoCobranzas.h"
 
-1762796041 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
+1762797642 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
 	<iostream>
 	"ManagerCobranzas.h"
 

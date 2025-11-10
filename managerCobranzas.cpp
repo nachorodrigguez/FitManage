@@ -66,6 +66,15 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             }while(!idValido);
 
             if (socio.getEstado() == true){
+                int cantidad = archivocobranzas.CantidadRegistros();
+                int nuevoNumero = 1;
+
+                if(cantidad > 0){
+                    Cobranza ultimoReg = archivocobranzas.Leer(cantidad - 1);
+                    nuevoNumero = ultimoReg.getNumTransaccion() + 1;
+                }
+
+                cobranza.setNumTransaccion(nuevoNumero);
                 cobranza.setDniSocio(dni);
                 cobranza.Cargar();
                 if (archivocobranzas.Guardar(cobranza)){
