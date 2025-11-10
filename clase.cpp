@@ -1,45 +1,103 @@
 #include "clase.h"
 #include <iostream>
-#include <cstring>
-#include <limits>
+#include <cstring>   // strcpy
+#include <limits>    // numeric_limits
 
 using namespace std;
 
-void Clase::Cargar(){
+Clase::Clase() {
+    _IDClase = 0;
+    strcpy(nombreClase, "SIN CLASE");
+    strcpy(descripcion, "SIN DESCRIPCION");
+    tiempoDuracion = 0;
+    capacidadMax = 0;
+}
+
+// Getters
+int Clase::getIDClase(){
+    return _IDClase;
+}
+
+const char* Clase::getNombreClase() {
+    return nombreClase;
+}
+
+const char* Clase::getDescripcion() {
+    return descripcion;
+}
+
+int Clase::getTiempoDuracion() {
+    return tiempoDuracion;
+}
+
+int Clase::getCapacidadMax() {
+    return capacidadMax;
+}
+
+// Setters
+void Clase::setIDClase(int IDClase){
+    _IDClase = IDClase;
+}
+
+void Clase::setNombreclase(const char *n) {
+    if (n != nullptr) {
+        strcpy(nombreClase, n);
+    }
+}
+
+void Clase::setDescripcion(const char *d) {
+    if (d != nullptr) {
+        strcpy(descripcion, d);
+    }
+}
+
+void Clase::setTiempoDuracion(int tDur) {
+    if (tDur < 0) tDur = 0;   // validación mínima
+    tiempoDuracion = tDur;
+}
+
+void Clase::setCapacidadMax(int cMax) {
+    if (cMax < 0) cMax = 0;   // validación mínima
+    capacidadMax = cMax;
+}
+
+// Cargar: las 6 clases del informe + opcion 7) Otra
+void Clase::Cargar() {
     int opcion;
+    bool ok = false;
 
-    cout << "=== Carga de Clase ===" << endl;
-    cout << "Seleccione la clase:" << endl;
-    cout << "1) Spinning" << endl;
-    cout << "2) Boxeo" << endl;
-    cout << "3) Yoga" << endl;
-    cout << "4) Crossfit" << endl;
-    cout << "5) Pilates" << endl;
-    cout << "6) Funcional" << endl;
-    cout << "7) Otra" << endl;
+    cout << "\n=== Carga de Clase ===\n";
+    cout << "Seleccione la clase:\n";
+    cout << "1) Spinning\n";
+    cout << "2) Boxeo\n";
+    cout << "3) Yoga\n";
+    cout << "4) Crossfit\n";
+    cout << "5) Pilates\n";
+    cout << "6) Funcional\n";
+    cout << "7) Otra\n";
 
-    // leer y validar opcion (1-7)
-    do{
+    // leer y validar opción (1-7)
+    do {
         cout << "Opcion (1-7): ";
-        if (!(cin >> opcion)){
+        if (!(cin >> opcion)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Entrada invalida. Intente nuevamente." << endl;
-            opcion = -1;
+            cout << "Entrada invalida. Intente nuevamente.\n";
             continue;
         }
-
-        if (opcion < 1 || opcion > 7){
-            cout << "Opcion fuera de rango. Intente nuevamente." << endl;
+        if (opcion < 1 || opcion > 7) {
+            cout << "Opcion fuera de rango. Intente nuevamente.\n";
+            continue;
         }
+        ok = true;
+    } while (!ok);
 
-    }while(opcion < 1 || opcion > 7);
-
-    // limpiar salto de linea antes de usar getline
+    // limpiar el '\n' que queda después de leer la opción
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    // asignar nombre segun opcion
-    switch(opcion){
+    _IDClase = opcion;
+
+    switch (opcion) {
         case 1: setNombreclase("Spinning");   break;
         case 2: setNombreclase("Boxeo");      break;
         case 3: setNombreclase("Yoga");       break;
@@ -48,48 +106,60 @@ void Clase::Cargar(){
         case 6: setNombreclase("Funcional");  break;
         case 7:
             cout << "Ingrese el nombre de la nueva clase: ";
-            cin.getline(nombreClase, 50);     // o usar tu funcion cargarCadena
+            cin.getline(nombreClase, 50);     // o usar cargarCadena
             break;
     }
 
-    // descripcion
-    cout << "Descripcion: ";
+    cout << "Clase seleccionada: " << nombreClase
+         << " (ID: " << _IDClase << ")\n\n";
+
+    // Descripcion
+    cout << "Descripcion de la clase: ";
     cin.getline(descripcion, 100);
 
-    // duracion (en minutos)
+    // Tiempo de duracion (minutos)
     int tDur;
-    do{
-        cout << "Duracion (en minutos): ";
-        if (!(cin >> tDur)){
+    do {
+        cout << "Tiempo de duracion (en minutos): ";
+        if (!(cin >> tDur)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Entrada invalida. Ingrese un numero entero." << endl;
+            cout << "Entrada invalida. Intente nuevamente.\n";
             tDur = -1;
-            continue;
         }
-        if (tDur <= 0){
-            cout << "La duracion debe ser mayor a 0." << endl;
+        else if (tDur <= 0) {
+            cout << "Debe ser mayor que 0.\n";
         }
-    }while(tDur <= 0);
+    } while (tDur <= 0);
+
     setTiempoDuracion(tDur);
 
-    // capacidad maxima
+    // Capacidad maxima de alumnos
     int cMax;
-    do{
-        cout << "Capacidad maxima (cantidad de alumnos): ";
-        if (!(cin >> cMax)){
+    do {
+        cout << "Capacidad maxima de alumnos: ";
+        if (!(cin >> cMax)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Entrada invalida. Ingrese un numero entero." << endl;
+            cout << "Entrada invalida. Intente nuevamente.\n";
             cMax = -1;
-            continue;
         }
-        if (cMax <= 0){
-            cout << "La capacidad debe ser mayor a 0." << endl;
+        else if (cMax <= 0) {
+            cout << "Debe ser mayor que 0.\n";
         }
-    }while(cMax <= 0);
+    } while (cMax <= 0);
+
     setCapacidadMax(cMax);
 
-    // limpiar buffer para futuras lecturas con getline
+    // Limpiar el resto de la linea
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+// Mostrar: muestra todos los datos de la clase
+void Clase::Mostrar() {
+    cout << "ID Clase: " << _IDClase << endl;
+    cout << "Clase: " << nombreClase << endl;
+    cout << "Descripcion: " << descripcion << endl;
+    cout << "Duracion: " << tiempoDuracion << " minutos" << endl;
+    cout << "Capacidad maxima: " << capacidadMax << " alumnos" << endl;
 }
