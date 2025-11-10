@@ -1,7 +1,7 @@
 #include "clase.h"
 #include <iostream>
 #include <cstring>   // strcpy
-#include <limits>
+#include <limits>    // numeric_limits
 
 using namespace std;
 
@@ -13,6 +13,7 @@ Clase::Clase() {
     capacidadMax = 0;
 }
 
+// Getters
 int Clase::getIDClase(){
     return _IDClase;
 }
@@ -33,8 +34,9 @@ int Clase::getCapacidadMax() {
     return capacidadMax;
 }
 
+// Setters
 void Clase::setIDClase(int IDClase){
-        _IDClase = IDClase;
+    _IDClase = IDClase;
 }
 
 void Clase::setNombreclase(const char *n) {
@@ -59,7 +61,7 @@ void Clase::setCapacidadMax(int cMax) {
     capacidadMax = cMax;
 }
 
-// solo las 6 clases del informe
+// Cargar: las 6 clases del informe + opcion 7) Otra
 void Clase::Cargar() {
     int opcion;
     bool ok = false;
@@ -72,38 +74,46 @@ void Clase::Cargar() {
     cout << "4) Crossfit\n";
     cout << "5) Pilates\n";
     cout << "6) Funcional\n";
+    cout << "7) Otra\n";
 
+    // leer y validar opción (1-7)
     do {
-        cout << "Opcion (1-6): ";
+        cout << "Opcion (1-7): ";
         if (!(cin >> opcion)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Intente nuevamente.\n";
             continue;
         }
-
-        if (opcion < 1 || opcion > 6) {
+        if (opcion < 1 || opcion > 7) {
             cout << "Opcion fuera de rango. Intente nuevamente.\n";
             continue;
         }
-
         ok = true;
     } while (!ok);
 
-    // Limpiar el '\n' que queda después de leer la opción
+    // limpiar el '\n' que queda después de leer la opción
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     _IDClase = opcion;
 
     switch (opcion) {
-        case 1: setNombreclase("Spinning");  break;
-        case 2: setNombreclase("Boxeo");     break;
-        case 3: setNombreclase("Yoga");      break;
-        case 4: setNombreclase("Crossfit");  break;
-        case 5: setNombreclase("Pilates");   break;
-        case 6: setNombreclase("Funcional"); break;
+        case 1: setNombreclase("Spinning");   break;
+        case 2: setNombreclase("Boxeo");      break;
+        case 3: setNombreclase("Yoga");       break;
+        case 4: setNombreclase("Crossfit");   break;
+        case 5: setNombreclase("Pilates");    break;
+        case 6: setNombreclase("Funcional");  break;
+        case 7:
+            cout << "Ingrese el nombre de la nueva clase: ";
+            cin.getline(nombreClase, 50);     // o usar cargarCadena
+            break;
     }
-    cout << "Clase seleccionada: " << nombreClase << "(ID: " << _IDClase << ")\n\n";
+
+    cout << "Clase seleccionada: " << nombreClase
+         << " (ID: " << _IDClase << ")\n\n";
+
+    // Descripcion
     cout << "Descripcion de la clase: ";
     cin.getline(descripcion, 100);
 
@@ -147,7 +157,7 @@ void Clase::Cargar() {
 
 // Mostrar: muestra todos los datos de la clase
 void Clase::Mostrar() {
-    cout << "ID Clase: " << _IDClase;
+    cout << "ID Clase: " << _IDClase << endl;
     cout << "Clase: " << nombreClase << endl;
     cout << "Descripcion: " << descripcion << endl;
     cout << "Duracion: " << tiempoDuracion << " minutos" << endl;
