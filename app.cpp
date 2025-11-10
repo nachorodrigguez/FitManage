@@ -6,7 +6,8 @@ using namespace std;
 App::App():
     managersocios("socios.dat"),
     managerplanes("planes.dat"),
-    managerinstructores("instructores.dat")
+    managerinstructores("instructores.dat"),
+    managercob("cobranzas.dat")
         {
             _cantidadOpciones = 9 ;
         }
