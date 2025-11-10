@@ -37,12 +37,12 @@
 	<cstring>
 	"cobranza.h"
 
-1762641990 source:c:\users\carre\documents\github\fitmanage\instructor.cpp
+1762736466 source:c:\users\carre\documents\github\fitmanage\instructor.cpp
 	<iostream>
 	<cstring>
 	"instructor.h"
 
-1762641990 c:\users\carre\documents\github\fitmanage\instructor.h
+1762733878 c:\users\carre\documents\github\fitmanage\instructor.h
 	<string>
 	"Persona.h"
 
@@ -56,7 +56,7 @@
 	<iostream>
 	"app.h"
 
-1762712434 c:\users\carre\documents\github\fitmanage\app.h
+1762712484 c:\users\carre\documents\github\fitmanage\app.h
 	"ManagerInstructores.h"
 	"managersocios.h"
 	"managerplanes.h"
@@ -72,7 +72,7 @@
 	<cstring>
 	"persona.h"
 
-1762651132 source:c:\users\carre\documents\github\fitmanage\socio.cpp
+1762733712 source:c:\users\carre\documents\github\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
@@ -100,7 +100,7 @@
 	<iomanip>
 	<limits>
 
-1762135564 source:c:\users\carre\documents\github\fitmanage\managerinstructores.cpp
+1762735585 source:c:\users\carre\documents\github\fitmanage\managerinstructores.cpp
 	<iostream>
 	"ManagerInstructores.h"
 
@@ -118,7 +118,7 @@
 	"clase.h"
 	"socio.h"
 
-1762643127 c:\users\carre\documents\github\fitmanage\managersocios.h
+1762727347 c:\users\carre\documents\github\fitmanage\managersocios.h
 	"socio.h"
 	"archivoSocios.h"
 
@@ -130,7 +130,7 @@
 	"plan.h"
 	"archivoplanes.h"
 
-1762710631 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
+1762735417 source:c:\users\carre\documents\github\fitmanage\managerplanes.cpp
 	<iostream>
 	"managerplanes.h"
 

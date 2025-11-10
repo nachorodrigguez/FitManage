@@ -6,12 +6,17 @@ using namespace std;
 
 Instructor::Instructor(){
     _idInstructor = 0;
+    estado = true;
     strcpy(_especialidad, "Sin especialidad");
 }
 
 int Instructor::getidInstructor(){
     return _idInstructor;
 }
+
+void Instructor::setEstado(bool valor){
+    estado = valor; }
+
 
 const char* Instructor::getEspecialidad(){
     return _especialidad;
@@ -20,8 +25,11 @@ const char* Instructor::getEspecialidad(){
 void Instructor::setidInstructor(int ID){
     _idInstructor = ID;
 }
+bool Instructor::getEstado() const {
+    return estado; }
 
 void Instructor::setEspecialidad(){
+
     int opcion;
     cout << endl;
     cout << "ESPECIALIDAD" << endl;
@@ -75,17 +83,37 @@ void Instructor::setEspecialidad(){
     }
 }
 
-void Instructor::Cargar(){
-    Persona::Cargar();
-    cout << "Ingrese id del instructor: ";
-    cin >> _idInstructor;
-    cin.ignore();
+void Instructor::Cargar(int idExistente) {
 
-    setEspecialidad();
+    if (idExistente == 0) {
+        cout << "=== ALTA DE INSTRUCTOR ===" << endl;
+        cout << "Ingrese ID del INSTRUCTOR (DNI): ";
+        cin >>_idInstructor ;
+    } else {
+        _idInstructor = idExistente;
+    }
+
+    Persona::Cargar();
+    estado = 1;
+
 }
+
 void Instructor::Mostrar(){
+    cout << "ID Instructor (DNI): " << _idInstructor << endl;
+    cout << "Especialidad: " << _especialidad << endl;
     Persona::Mostrar();
     cout << endl;
-    cout << "Id Instructor: " << _idInstructor << endl;
-    cout << "Especialidad: " << _especialidad << endl;
+    cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
+
 }
+
+void Instructor::Modificar() {
+    cout << "=== MODIFICAR INSTRUCTOR ===" << endl;
+
+    Persona::Cargar();
+    cout << endl;
+
+    cout << "Ingrese estado (1 = activo, 0 = inactivo): ";
+    cin >> estado;
+}
+

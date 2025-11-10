@@ -52,7 +52,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
         case 1:{
             plan.Cargar();
             if (archivoPlanes.Guardar(plan)) {
-            cout << "Plan guardado exitosamente!" << endl;
+            cout << "PLAN GUARDADO EXITOSAMENTE!" << endl;
             } else {
                 cout << "Error al guardar el plan." << endl;
             }
@@ -72,11 +72,11 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
             }
 
             Plan planActual = archivoPlanes.Leer(posicion);
-            cout << "\n--- Plan encontrado ---\n";
+            cout << "\n--- PLAN ENCONTRADO ---\n";
             planActual.Mostrar();
             cout << "-------------------------" << endl;
 
-            cout << "\n¿Desea modificar este plan? (s/n): ";
+            cout << "\nDesea modificar este plan? (s/n): ";
             char confirmar;
             cin >> confirmar;
             if (confirmar != 's' && confirmar != 'S') {
@@ -118,7 +118,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
 
             // Guardamos cambios (ID y estado se mantienen)
             if (archivoPlanes.ModificarPorId(idBuscado, planModificado)) {
-                cout << "\nPlan modificado correctamente." << endl;
+                cout << "\nPLAN MODIFICADO CORRECTAMENTE." << endl;
             } else {
                 cout << "\nError al modificar el plan." << endl;
             }

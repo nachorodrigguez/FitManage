@@ -4,17 +4,17 @@
 
 class ManagerSocios{
     public:
-    ManagerSocios(std::string nombreArchivo);
-    void run();
+        ManagerSocios(std::string nombreArchivo);
+        void run();
 
     protected:
-    void mostrarOpciones();
-    int seleccionOpcion();
-    void ejecutarOpcion(int opcion);
+        void mostrarOpciones();
+        int seleccionOpcion();
+        void ejecutarOpcion(int opcion);
 
     private:
-    int _cantidadOpcines;
-    Socio socio;
-    ArchivoSocios archivoSocios;
+        int _cantidadOpcines;
+        Socio socio;
+        ArchivoSocios archivoSocios;
 
 };
