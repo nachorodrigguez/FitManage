@@ -89,7 +89,15 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             break;
             }
         case 2 : {
-            cobranza.Mostrar();
+            int cantidad = archivocobranzas.CantidadRegistros();
+
+            if(cantidad > 0){
+                Cobranza ultimo = archivocobranzas.Leer(cantidad -1);
+                ultimo.Mostrar();
+            }
+            else {
+                cout << "No hay pagos registrados." << endl;
+            }
             system("pause");
         break;
         }
@@ -108,7 +116,7 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             cout << "LISTADO DE PAGOS" << endl;
             for (int i=0; i<cantidad; i++){
             vectorCob[i].Mostrar();
-            cout << "------------------" << endl;
+            cout << endl;
             hayResultados = true;
                 }
             delete [] vectorCob;
