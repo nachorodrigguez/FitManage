@@ -161,7 +161,7 @@
 	<string>
 	"socio.h"
 
-1762781180 c:\users\nacho\documents\github4\fitmanage\socio.h
+1762873387 c:\users\nacho\documents\github4\fitmanage\socio.h
 	"fecha.h"
 	"persona.h"
 
@@ -169,7 +169,7 @@
 	<cstring>
 	"fecha.h"
 
-1762796041 c:\users\nacho\documents\github4\fitmanage\cobranza.h
+1762882375 c:\users\nacho\documents\github4\fitmanage\cobranza.h
 	<string>
 	"fecha.h"
 
@@ -195,7 +195,7 @@
 1762797753 c:\users\nacho\documents\github4\fitmanage\clasexsocio.h
 	"fecha.h"
 
-1762799377 source:c:\users\nacho\documents\github4\fitmanage\cobranza.cpp
+1762883260 source:c:\users\nacho\documents\github4\fitmanage\cobranza.cpp
 	<iostream>
 	<cstring>
 	"cobranza.h"
@@ -226,9 +226,10 @@
 	"instructor.h"
 	"archivoInstructores.h"
 
-1762781180 c:\users\nacho\documents\github4\fitmanage\managersocios.h
+1762873387 c:\users\nacho\documents\github4\fitmanage\managersocios.h
 	"socio.h"
 	"archivoSocios.h"
+	"archivoplanes.h"
 
 1762781180 c:\users\nacho\documents\github4\fitmanage\managerplanes.h
 	"plan.h"
@@ -243,7 +244,7 @@
 	"archivoSocios.h"
 	"ArchivoCobranzas.h"
 
-1762797642 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
+1762883193 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
 	<iostream>
 	"ManagerCobranzas.h"
 
@@ -255,7 +256,7 @@
 	<iostream>
 	"managerplanes.h"
 
-1762781180 source:c:\users\nacho\documents\github4\fitmanage\managersocios.cpp
+1762873387 source:c:\users\nacho\documents\github4\fitmanage\managersocios.cpp
 	<iostream>
 	"ManagerSocios.h"
 
@@ -270,10 +271,11 @@
 	<string>
 	"Plan.h"
 
-1762781180 source:c:\users\nacho\documents\github4\fitmanage\socio.cpp
+1762873387 source:c:\users\nacho\documents\github4\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
+	<cstring>
 
 1762788254 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
 	<iostream>
