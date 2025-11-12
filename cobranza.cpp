@@ -1,12 +1,14 @@
 #include <iostream>
 #include <cstring>
 #include "cobranza.h"
+#include "archivoplanes.h"
 
 using namespace std;
 
 Cobranza::Cobranza(){
     _dniSocio = 0;
     _numTransaccion = 0;
+    _idPlan = 0;
     strcpy(_plan, "Indefinido");
     _descuentos = 0;
     _montoTotal = 0;
@@ -18,6 +20,9 @@ int Cobranza::getDniSocio(){
 }
 int Cobranza::getNumTransaccion(){
     return _numTransaccion;
+}
+int Cobranza::getIdPlan(){
+    return _idPlan;
 }
 const char* Cobranza::getPlan(){
     return _plan;
@@ -42,6 +47,9 @@ void Cobranza::setDniSocio(int dni){
 void Cobranza::setNumTransaccion(int numTransaccion){
     _numTransaccion = numTransaccion;
 }
+void Cobranza::setIdPlan(int id){
+    _idPlan = id;
+}
 void Cobranza::setFechaTransaccion(Fecha fechaTransaccion){
     _fechaTransaccion = fechaTransaccion;
 }
@@ -50,28 +58,18 @@ void Cobranza::setDescuentos(float descuentos){
 
     _montoTotal = _montoTotal - (_montoTotal *(_descuentos / 100));
 }
-void Cobranza::setMontoTotal(){
-    if(strcmp(_plan, "FLEX MENSUAL") == 0){
-        _montoTotal = 44000;
-    }
-    else if (strcmp(_plan, "FLEX ANUAL") == 0){
-        _montoTotal = 528000;
-    }
-    else if (strcmp(_plan, "PLUS MENSUAL") == 0){
-        _montoTotal = 68000;
-    }
-    else if (strcmp(_plan, "PLUS ANUAL") == 0){
-        _montoTotal = 816000;
-    }
-    else if (strcmp(_plan, "TOTAL MENSUAL") == 0){
-        _montoTotal = 80000;
-    }
-    else if (strcmp(_plan, "TOTAL ANUAL") == 0){
-        _montoTotal = 960000;
-    }
-    else{
+void Cobranza::setMontoTotal(int id){
+    ArchivoPlanes archPlanes("planes.dat");
+    int posicion = archPlanes.Buscar(id);
+
+    if (posicion == -1){
+        cout << "Error: Plan no encontrado en el archivo." << endl;
         _montoTotal = 0;
+        return;
     }
+    Plan plan = archPlanes.Leer(posicion);
+
+    _montoTotal = plan.getPrecio();
 }
 
 void Cobranza::setPlan(){
@@ -107,10 +105,14 @@ void Cobranza::setPlan(){
                 }
             switch(opcion){
                 case 1:{
+                    int id = 1;
+                    setMontoTotal(id);
                     strcpy(_plan,"FLEX MENSUAL");
                     break;
                 }
                 case 2:{
+                    int id = 2;
+                    setMontoTotal(id);
                     strcpy(_plan, "FLEX ANUAL");
                     break;
                 }
@@ -132,10 +134,14 @@ void Cobranza::setPlan(){
                 }
             switch(opcion){
                 case 1:{
+                    int id = 3;
+                    setMontoTotal(id);
                     strcpy(_plan,"PLUS MENSUAL");
                     break;
                 }
                 case 2:{
+                    int id = 4;
+                    setMontoTotal(id);
                     strcpy(_plan, "PLUS ANUAL");
                     break;
                 }
@@ -157,10 +163,14 @@ void Cobranza::setPlan(){
                 }
             switch(opcion){
                 case 1:{
+                    int id = 5;
+                    setMontoTotal(id);
                     strcpy(_plan,"TOTAL MENSUAL");
                     break;
                 }
                 case 2:{
+                    int id = 6;
+                    setMontoTotal(id);
                     strcpy(_plan, "TOTAL ANUAL");
                     break;
                 }
@@ -217,7 +227,6 @@ void Cobranza::Cargar(){
 
         setMetodoPago();
 
-        setMontoTotal();
         cout << "¿Desea aplicar un descuento? (S/N): ";
         char respuesta;
         cin >> respuesta;
@@ -227,8 +236,6 @@ void Cobranza::Cargar(){
             cout << "Ingrese descuento: ";
             cin >> descuentos;
             setDescuentos(descuentos);
-
-            getMontoTotal();
         }
         Mostrar();
 }
