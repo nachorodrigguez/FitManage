@@ -10,7 +10,7 @@ App::App():
     managercob("cobranzas.dat"),
     managerclases("clases.dat")
         {
-            _cantidadOpciones = 9 ;
+            _cantidadOpciones = 8 ;
         }
 
 
@@ -33,10 +33,9 @@ void App::mostrarOpciones(){
         cout << "3 - PLANES"<< endl;
         cout << "4 - CLASES"<< endl;
         cout << "5 - PAGOS"<< endl;
-        cout << "6 - LISTADOS"<< endl;
-        cout << "7 - CONSULTAS"<< endl;
-        cout << "8 - INFORMES"<< endl;
-        cout << "9 - CONFIGURACIONES"<< endl;
+        cout << "6 - CONSULTAS"<< endl;
+        cout << "7 - INFORMES"<< endl;
+        cout << "8 - CONFIGURACIONES"<< endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
