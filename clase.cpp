@@ -14,23 +14,23 @@ Clase::Clase() {
 }
 
 // Getters
-int Clase::getIDClase(){
+int Clase::getIDClase() const {
     return _IDClase;
 }
 
-const char* Clase::getNombreClase() {
+const char* Clase::getNombreClase() const {
     return nombreClase;
 }
 
-const char* Clase::getDescripcion() {
+const char* Clase::getDescripcion() const {
     return descripcion;
 }
 
-int Clase::getTiempoDuracion() {
+int Clase::getTiempoDuracion() const {
     return tiempoDuracion;
 }
 
-int Clase::getCapacidadMax() {
+int Clase::getCapacidadMax() const {
     return capacidadMax;
 }
 
@@ -157,6 +157,7 @@ void Clase::Cargar() {
 
 // Mostrar: muestra todos los datos de la clase
 void Clase::Mostrar() {
+    cout << "--- INFORMACION DE CLASE ---" << endl;
     cout << "ID Clase: " << _IDClase << endl;
     cout << "Clase: " << nombreClase << endl;
     cout << "Descripcion: " << descripcion << endl;

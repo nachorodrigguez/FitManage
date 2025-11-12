@@ -7,7 +7,8 @@ App::App():
     managersocios("socios.dat"),
     managerplanes("planes.dat"),
     managerinstructores("instructores.dat"),
-    managercob("cobranzas.dat")
+    managercob("cobranzas.dat"),
+    managerclases("clases.dat")
         {
             _cantidadOpciones = 9 ;
         }
@@ -68,6 +69,11 @@ void App::ejecutarOpcion(int opcion){
         }
         case 3:{
         managerplanes.run();
+        break;
+        system("pause");
+        }
+        case 4:{
+        managerclases.run();
         break;
         system("pause");
         }

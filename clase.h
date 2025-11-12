@@ -3,21 +3,21 @@
 #include "instructor.h"
 
 class Clase{
-    private:
+private:
     int _IDClase;
     char nombreClase[50];
     char descripcion[100];
     int tiempoDuracion; // en minutos
     int capacidadMax; // cantidad de alumnos permitida
 
-    public:
+public:
     Clase();
 
-    int getIDClase();
-    const char* getNombreClase();
-    const char* getDescripcion();
-    int getTiempoDuracion();
-    int getCapacidadMax();
+    int getIDClase() const;
+    const char* getNombreClase() const;
+    const char* getDescripcion() const;
+    int getTiempoDuracion() const;
+    int getCapacidadMax() const;
 
     void setidInstructor(Instructor);
     void setIDClase(int IDClase);
