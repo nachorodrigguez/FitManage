@@ -169,17 +169,18 @@
 	<cstring>
 	"fecha.h"
 
-1762882375 c:\users\nacho\documents\github4\fitmanage\cobranza.h
+1762963685 c:\users\nacho\documents\github4\fitmanage\cobranza.h
 	<string>
 	"fecha.h"
+	"archivoplanes.h"
 
-1762797753 source:c:\users\nacho\documents\github4\fitmanage\clase.cpp
+1762958338 source:c:\users\nacho\documents\github4\fitmanage\clase.cpp
 	"clase.h"
 	<iostream>
 	<cstring>
 	<limits>
 
-1762466971 c:\users\nacho\documents\github4\fitmanage\clase.h
+1762958338 c:\users\nacho\documents\github4\fitmanage\clase.h
 	<string>
 	"instructor.h"
 
@@ -195,10 +196,11 @@
 1762797753 c:\users\nacho\documents\github4\fitmanage\clasexsocio.h
 	"fecha.h"
 
-1762883260 source:c:\users\nacho\documents\github4\fitmanage\cobranza.cpp
+1762964984 source:c:\users\nacho\documents\github4\fitmanage\cobranza.cpp
 	<iostream>
 	<cstring>
 	"cobranza.h"
+	"archivoplanes.h"
 
 1762466971 source:c:\users\nacho\documents\github4\fitmanage\fecha.cpp
 	"fecha.h"
@@ -215,10 +217,11 @@
 	<iostream>
 	"app.h"
 
-1762788201 c:\users\nacho\documents\github4\fitmanage\app.h
+1762958338 c:\users\nacho\documents\github4\fitmanage\app.h
 	"ManagerInstructores.h"
 	"managersocios.h"
 	"managerplanes.h"
+	"managerClases.h"
 	"managerCobranzas.h"
 	"Managerlistados.h"
 
@@ -244,7 +247,7 @@
 	"archivoSocios.h"
 	"ArchivoCobranzas.h"
 
-1762883193 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
+1762885087 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
 	<iostream>
 	"ManagerCobranzas.h"
 
@@ -277,7 +280,7 @@
 	"socio.h"
 	<cstring>
 
-1762788254 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
+1762961753 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 
@@ -340,4 +343,20 @@
 1762809112 source:c:\users\carre\documents\github\fitmanage\archivocobranzas.cpp
 	"Fecha.h"
 	"ArchivoCobranzas.h"
+
+1762958338 c:\users\nacho\documents\github4\fitmanage\managerclases.h
+	"clase.h"
+	"archivoClases.h"
+
+1762958338 c:\users\nacho\documents\github4\fitmanage\archivoclases.h
+	<string>
+	"clase.h"
+
+1762958338 source:c:\users\nacho\documents\github4\fitmanage\managerclases.cpp
+	<iostream>
+	"managerClases.h"
+
+1762958338 source:c:\users\nacho\documents\github4\fitmanage\archivoclases.cpp
+	"archivoClases.h"
+	<iostream>
 

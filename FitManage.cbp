@@ -5,7 +5,7 @@
 		<Option title="FitManage" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managercobranzas/;archivosocios/;managerlistados/;archivoplanes/;archivoinstructores/;archivocobranzas/" />
+		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managercobranzas/;archivosocios/;managerlistados/;archivoplanes/;archivoinstructores/;archivocobranzas/;managerclases/;archivoclases/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/FitManage" prefix_auto="1" extension_auto="1" />
@@ -52,6 +52,12 @@
 		</Unit>
 		<Unit filename="app.h">
 			<Option virtualFolder="app/" />
+		</Unit>
+		<Unit filename="archivoClases.cpp">
+			<Option virtualFolder="archivoclases/" />
+		</Unit>
+		<Unit filename="archivoClases.h">
+			<Option virtualFolder="archivoclases/" />
 		</Unit>
 		<Unit filename="archivoSocios.cpp">
 			<Option virtualFolder="archivosocios/" />
@@ -102,6 +108,12 @@
 			<Option virtualFolder="instructor/" />
 		</Unit>
 		<Unit filename="main.cpp" />
+		<Unit filename="managerClases.cpp">
+			<Option virtualFolder="managerclases/" />
+		</Unit>
+		<Unit filename="managerClases.h">
+			<Option virtualFolder="managerclases/" />
+		</Unit>
 		<Unit filename="managerCobranzas.cpp">
 			<Option virtualFolder="managercobranzas/" />
 		</Unit>
