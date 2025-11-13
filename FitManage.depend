@@ -368,3 +368,190 @@
 	<iostream>
 	"ManagerReportes.h"
 
+1762915351 source:c:\users\sante\documents\github\fitmanage\archivoclases.cpp
+	"archivoClases.h"
+	<iostream>
+
+1762914493 c:\users\sante\documents\github\fitmanage\archivoclases.h
+	<string>
+	"clase.h"
+
+1762914934 c:\users\sante\documents\github\fitmanage\clase.h
+	<string>
+	"instructor.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\instructor.h
+	<string>
+	"Persona.h"
+
+1762464377 c:\users\sante\documents\github\fitmanage\persona.h
+	<cstring>
+	"fecha.h"
+
+1762464377 c:\users\sante\documents\github\fitmanage\fecha.h
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\archivocobranzas.cpp
+	"Fecha.h"
+	"ArchivoCobranzas.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\archivocobranzas.h
+	<string>
+	"cobranza.h"
+
+1763068596 c:\users\sante\documents\github\fitmanage\cobranza.h
+	<string>
+	"fecha.h"
+	"archivoplanes.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\archivoplanes.h
+	<string>
+	"Plan.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\plan.h
+	<string>
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\archivoinstructores.cpp
+	"archivoInstructores.h"
+	<cstdio>
+
+1762827123 c:\users\sante\documents\github\fitmanage\archivoinstructores.h
+	<string>
+	"instructor.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\archivosocios.cpp
+	"Fecha.h"
+	"ArchivoSocios.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\archivosocios.h
+	<string>
+	"socio.h"
+
+1763074315 c:\users\sante\documents\github\fitmanage\socio.h
+	"fecha.h"
+	"persona.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\archivosplanes.cpp
+	<cstdio>
+	"archivoplanes.h"
+
+1762915216 source:c:\users\sante\documents\github\fitmanage\clase.cpp
+	"clase.h"
+	<iostream>
+	<cstring>
+	<limits>
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\clasexsocio.cpp
+	"clasexsocio.h"
+	<iostream>
+	<limits>
+
+1762827123 c:\users\sante\documents\github\fitmanage\clasexsocio.h
+	"fecha.h"
+
+1762464377 source:c:\users\sante\documents\github\fitmanage\fecha.cpp
+	"fecha.h"
+	<iostream>
+	<iomanip>
+	<limits>
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\instructor.cpp
+	<iostream>
+	<cstring>
+	"instructor.h"
+
+1762464377 source:c:\users\sante\documents\github\fitmanage\main.cpp
+	<iostream>
+	"app.h"
+
+1763068596 c:\users\sante\documents\github\fitmanage\app.h
+	"ManagerInstructores.h"
+	"managersocios.h"
+	"managerplanes.h"
+	"managerClases.h"
+	"managerCobranzas.h"
+	"Managerlistados.h"
+	"ManagerReportes.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\managerinstructores.h
+	"instructor.h"
+	"archivoInstructores.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\managersocios.h
+	"socio.h"
+	"archivoSocios.h"
+	"archivoplanes.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\managerplanes.h
+	"plan.h"
+	"archivoplanes.h"
+
+1762914209 c:\users\sante\documents\github\fitmanage\managerclases.h
+	"clase.h"
+	"archivoClases.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\managercobranzas.h
+	"socio.h"
+	"cobranza.h"
+	"archivoSocios.h"
+	"ArchivoCobranzas.h"
+
+1762827123 c:\users\sante\documents\github\fitmanage\managerlistados.h
+
+1763068596 c:\users\sante\documents\github\fitmanage\managerreportes.h
+	"ArchivoCobranzas.h"
+
+1762914526 source:c:\users\sante\documents\github\fitmanage\managerclases.cpp
+	<iostream>
+	"managerClases.h"
+
+1762902983 source:c:\users\sante\documents\github\fitmanage\managercobranzas.cpp
+	<iostream>
+	"ManagerCobranzas.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\managerinstructores.cpp
+	<iostream>
+	"ManagerInstructores.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\managerlistados.cpp
+	<iostream>
+	"ManagerListados.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\managerplanes.cpp
+	<iostream>
+	"managerplanes.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\managersocios.cpp
+	<iostream>
+	"ManagerSocios.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\persona.cpp
+	<iostream>
+	<cstring>
+	"persona.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\plan.cpp
+	<iostream>
+	<cstring>
+	<string>
+	"Plan.h"
+
+1762827123 source:c:\users\sante\documents\github\fitmanage\socio.cpp
+	<iostream>
+	<cstdio>
+	"socio.h"
+	<cstring>
+
+1763068596 source:c:\users\sante\documents\github\fitmanage\app.cpp
+	<iostream>
+	"app.h"
+
+1763068596 source:c:\users\sante\documents\github\fitmanage\cobranza.cpp
+	<iostream>
+	<cstring>
+	"cobranza.h"
+	"archivoplanes.h"
+
+1763068596 source:c:\users\sante\documents\github\fitmanage\managerreportes.cpp
+	<iostream>
+	"ManagerReportes.h"
+

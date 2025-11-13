@@ -189,23 +189,33 @@ void ManagerSocios::ejecutarOpcion(int opcion){
         }
         case 4: {
             // 1) Pedir ID del socio
-            int idBuscado;
-            cout << "Ingrese el ID (DNI) del socio: ";
-            cin >> idBuscado;
+           int idBuscado;
+    cout << "Ingrese el ID (DNI) del socio: ";
+    cin >> idBuscado;
 
-            int posSocio = archivoSocios.Buscar(idBuscado);
-            if (posSocio < 0) {
-                cout << "No existe un socio con ese ID.\n";
-                system("pause");
-                break;
-            }
+    int posSocio = archivoSocios.Buscar(idBuscado);
+    if (posSocio < 0) {
+        cout << "No existe un socio con ese ID." << endl;
+        system("pause");
+        break;
+    }
 
-            Socio s = archivoSocios.Leer(posSocio);
-            if (!s.getEstado()) {
-                cout << "El socio está inactivo. No se puede asignar un plan.\n";
-                system("pause");
-                break;
-            }
+    Socio s = archivoSocios.Leer(posSocio);
+
+    if (!s.getEstado()) {
+        cout << "El socio está inactivo. No se puede asignar un plan." << endl;
+        system("pause");
+        break;
+    }
+
+    if (s.tienePlan()) {
+        cout << "El socio ya tiene un plan activo asignado: "
+             << s.getTipoPlan() << endl;
+        cout << "No se puede asignar otro plan." << endl;
+        system("pause");
+        break;
+    }
+
 
             // 2) Cargar planes y listar sólo activos
             ArchivoPlanes repoPlanes("planes.dat");

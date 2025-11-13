@@ -25,5 +25,9 @@ public:
     void Cargar(int idExistente = 0);
     void Mostrar();
     void Modificar();
+
+    bool tienePlan() const {
+        return strcmp(tipoPlan, "Sin asignar") != 0;
+        }
 };
 
