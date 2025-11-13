@@ -5,6 +5,7 @@
 #include "managerClases.h"
 #include "managerCobranzas.h"
 #include "Managerlistados.h"
+#include "ManagerReportes.h"
 
 class App{
     public:
@@ -22,6 +23,7 @@ class App{
     ManagerClases managerclases;
     ManagerCobranzas managercob;
     ManagerListados managerlis;
+    ManagerReportes managerrep;
 
     private:
     int _cantidadOpciones;
