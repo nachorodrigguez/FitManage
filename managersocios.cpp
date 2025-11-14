@@ -1,5 +1,9 @@
 #include <iostream>
-#include <limits>              // limpiar el buffer
+#include <limits>
+#include <cstring>
+#include "archivoClasexSocio.h"
+#include "clasexsocio.h"
+#include "fecha.h"
 #include "ManagerSocios.h"
 
 using namespace std;
@@ -19,15 +23,15 @@ void ManagerSocios::run(){
 }
 
 void ManagerSocios::mostrarOpciones(){
-        cout << "MENU PRINCIPAL"<<endl;
-        cout << "====================="<< endl;
-        cout << "1 - CARGAR SOCIO"<< endl;
-        cout << "2 - MODIFICAR SOCIO" << endl;
-        cout << "3 - LISTADO DE SOCIOS" << endl;
-        cout << "4 - ASIGNAR PLAN A SOCIO" << endl;
-        cout << "5 - ELIMINAR SOCIO" << endl;
-        cout << "0 - SALIR"<< endl;
-        cout << "======================"<< endl;
+    cout << "MENU PRINCIPAL"<<endl;
+    cout << "====================="<< endl;
+    cout << "1 - CARGAR SOCIO"<< endl;
+    cout << "2 - MODIFICAR SOCIO" << endl;
+    cout << "3 - LISTADO DE SOCIOS" << endl;
+    cout << "4 - ASIGNAR PLAN A SOCIO" << endl;
+    cout << "5 - ELIMINAR SOCIO" << endl;
+    cout << "0 - SALIR"<< endl;
+    cout << "======================"<< endl;
 }
 
 int ManagerSocios::seleccionOpcion(){
@@ -42,7 +46,45 @@ int ManagerSocios::seleccionOpcion(){
         cin  >> opcion;
     }
     return opcion;
+}
 
+/* Helpers para inscripciones Socio y Clase (Plan 2 y 3) */
+static int pedirIdClase(){
+    int id;
+    cout << "Ingrese ID de clase (1-7): ";
+    while(!(cin >> id) || id < 1 || id > 7){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Valor invalido. Ingrese 1..7: ";
+    }
+    return id;
+}
+
+static bool existeInscripcionActiva(ArchivoClasexSocio& arc, int idSocio, int idClase){
+    return arc.BuscarPorSocioYClase(idSocio, idClase) >= 0;
+}
+
+static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
+    // Crea y persiste una inscripción socio→clase con fecha y estado activo
+    ClasexSocio reg;
+    int nuevoID = arc.BuscarUltimoID() + 1;
+    reg.setIDClasexSocio(nuevoID);
+    reg.setIdSocio(idSocio);
+    reg.setIDClase(idClase);
+
+    Fecha f;
+    cout << "\nFecha de inscripcion:\n";
+    f.Cargar();
+    reg.setFechaInscripcion(f);
+    reg.setEstado(true);
+
+    if(arc.Guardar(reg)){
+        cout << "Inscripcion creada (ID " << nuevoID << ").\n";
+        return true;
+    } else {
+        cout << "Error al guardar la inscripcion.\n";
+        return false;
+    }
 }
 
 void ManagerSocios::ejecutarOpcion(int opcion){
@@ -54,7 +96,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             int idNuevo;
             bool idValido = false;
 
-            // Validacion por ID duplicado
+            // Validación de ID duplicado
             do {
                 cout << "Ingrese ID del socio (DNI): ";
                 cin >> idNuevo;
@@ -69,7 +111,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             socio.Cargar(idNuevo);
 
-            // Guardar
+            // Persistencia
             if (archivoSocios.Guardar(socio)) {
                 cout << "Socio guardado exitosamente!" << endl;
             } else {
@@ -79,6 +121,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
         }
+        
         case 2 :{
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a modificar: ";
@@ -91,7 +134,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // (Opcional) mostrar datos actuales
+            // Mostrar datos actuales
             Socio socioActual = archivoSocios.Leer(posicion);
             cout << "\n--- Datos actuales ---\n";
             socioActual.Mostrar();
@@ -108,8 +151,8 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             }
             system("pause");
             break;
-            }
-        // Listar socios activos / inactivos / todos
+        }
+        
         case 3: {
             int cantidad = archivoSocios.CantidadRegistros();
             if (cantidad == 0) {
@@ -156,6 +199,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                         if (!hayResultados) cout << "NO HAY SOCIOS ACTIVOS." << endl;
                         break;
                     }
+                    
                     case 2: {
                         cout << "=== SOCIOS INACTIVOS ===" << endl;
                         for (int i = 0; i < cantidad; i++) {
@@ -168,6 +212,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                         if (!hayResultados) cout << "NO HAY SOCIOS INACTIVOS." << endl;
                         break;
                     }
+                    
                     case 3: {
                         cout << "=== TODOS LOS SOCIOS ===" << endl;
                         for (int i = 0; i < cantidad; i++) {
@@ -189,9 +234,8 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             break;
         }
 
-        // ===== ASIGNAR PLAN A SOCIO =====
         case 4: {
-            // 1) Pedir ID del socio
+            // Asignar plan a socio (valida existencia, estado e IDs de plan)
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio: ";
             cin >> idBuscado;
@@ -211,25 +255,25 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // [PROBAR? FUNCIONA?] Si ya tiene plan, pedir confirmacion para reemplazar
+            // Confirmación de si ya tiene plan
             if (s.tienePlan()) {
                 cout << "El socio ya tiene un plan activo asignado: "
                      << s.getTipoPlan() << endl;
-                cout << "Desea reemplazarlo? (1=Si / 0=No): ";      
-                int conf;                                            
-                while(!(cin >> conf) || (conf != 0 && conf != 1)){   
-                    cin.clear();                                     
+                cout << "Desea reemplazarlo? (1=Si / 0=No): ";
+                int conf;
+                while(!(cin >> conf) || (conf != 0 && conf != 1)){
+                    cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Ingrese 1 o 0: ";                       
+                    cout << "Ingrese 1 o 0: ";
                 }
-                if (conf == 0) {                                     
-                    cout << "Operacion cancelada." << endl;         
-                    system("pause");                                 
-                    break;                                           
+                if (conf == 0) {
+                    cout << "Operacion cancelada." << endl;
+                    system("pause");
+                    break;
                 }
             }
 
-            // 2) Cargar planes y listar solo activos
+            // Listado de planes activos
             ArchivoPlanes repoPlanes("planes.dat");
             int cant = repoPlanes.CantidadRegistros();
             if (cant <= 0) {
@@ -261,7 +305,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // 3) Elegir ID de plan (validado contra archivo)
+            // Elección de plan por ID (validación contra archivo)
             int idPlanSel;
             cout << "\nIngrese el ID del plan a asignar: ";
             cin >> idPlanSel;
@@ -282,13 +326,10 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // 4) Asignar al socio el tipoPlan EXACTO del plan elegido
+            // Asignar plan (se guarda el tipoPlan tal como está en el plan elegido)
             s.setTipoPlan(elegido.getTipo());
-
-            // [A REVISAR] si la clase Socio tiene idPlan, conviene guardarlo tambien????
-            // EJEMPLO: s.setIdPlan(elegido.getIdPlan());
-
-            // 5) Persistir el socio modificado en su misma posicion
+            
+            // Persistir el socio modificado en su misma posición
             if (archivoSocios.Guardar(s, posSocio)) {
                 cout << "Plan asignado correctamente al socio " << s.getId()
                      << " (tipoPlan = " << s.getTipoPlan() << ").\n";
@@ -299,10 +340,33 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            //[FALTA VER]Aca hay que inscribir clases segun el plan:
-            //   - Si el plan es "Solo una clase" => pedir clase y crear 1 registro ClasexSocio
-            //   - Si el plan es "Gym + clases"  => permitir varias inscripciones ClasexSocio (bucle)
-            
+            // Inscribir clases según el plan (2 = una clase, 3 = múltiples)
+            {
+                ArchivoClasexSocio arcIns;
+
+                if(idPlanSel == 2){
+                    int idClase = pedirIdClase();
+                    if(existeInscripcionActiva(arcIns, s.getId(), idClase)){
+                        cout << "El socio ya tiene esa clase activa.\n";
+                    } else {
+                        crearInscripcion(arcIns, s.getId(), idClase);
+                    }
+                }
+                else if(idPlanSel == 3){
+                    char mas = 's';
+                    do{
+                        int idClase = pedirIdClase();
+                        if(existeInscripcionActiva(arcIns, s.getId(), idClase)){
+                            cout << "El socio ya tiene esa clase activa.\n";
+                        } else {
+                            crearInscripcion(arcIns, s.getId(), idClase);
+                        }
+                        cout << "Desea inscribir otra clase? (s/n): ";
+                        cin >> mas;
+                    } while(mas=='s' || mas=='S');
+                }
+                // idPlanSel == 1 -> Solo gimnasio (no inscribe clases)
+            }
 
             delete[] vec;
             system("pause");
@@ -310,6 +374,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
         }
 
         case 5: {
+            // Baja lógica del socio (marca inactivo)
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a eliminar: ";
             cin >> idBuscado;
@@ -325,7 +390,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             cout << "\n--- Datos del socio a eliminar ---\n";
             socioActual.Mostrar();
 
-            cout << "\n Confirma que desea eliminar este socio? (s/n): ";
+            cout << "\nConfirma que desea eliminar este socio? (s/n): ";
             char confirmacion;
             cin >> confirmacion;
 
