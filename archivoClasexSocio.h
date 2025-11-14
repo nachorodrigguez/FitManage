@@ -15,7 +15,6 @@ public:
     bool Leer(int pos, ClasexSocio& reg) const;   // true si leyó
     ClasexSocio Leer(int pos) const;              // conveniencia
     bool Leer(int cant, ClasexSocio* vec) const;  // bloque
-
     int  CantidadRegistros() const;
     int  BuscarUltimoID() const;                  // máx _IDClasexSocio (0 si vacío)
     int  BuscarPorSocioYClase(int idSocio, int idClase) const; // pos o -1 (solo activas)
