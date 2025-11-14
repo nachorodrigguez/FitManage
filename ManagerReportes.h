@@ -1,5 +1,4 @@
 #pragma once
-#include "ArchivoCobranzas.h"
 
 class ManagerReportes{
     public:

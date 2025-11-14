@@ -1,5 +1,7 @@
 #include <iostream>
 #include "ManagerReportes.h"
+#include "ArchivoCobranzas.h"
+#include "cobranza.h"
 
 using namespace std;
 
@@ -47,6 +49,28 @@ int ManagerReportes::seleccionOpcion(){
 void ManagerReportes::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1: {
+            ArchivoCobranzas archivocob("cobranzas.dat");
+            Cobranza cob;
+
+            int cantidad = archivocob.CantidadRegistros();
+            float recMensual[12] = {};
+            float recAnual = 0;
+            for(int i=0; i<cantidad; i++){
+                cob = archivocob.Leer(i);
+
+                int mes = cob.getFechaTransaccion().getMes();
+                float monto = cob.getMontoTotal();
+
+                recMensual[mes-1] += monto;
+                recAnual += monto;
+                }
+            cout << "=== RECAUDACION MENSUAL ===" << endl;
+            for (int i=0; i <12; i++){
+                cout << "Mes " << (i+1) << ": $" << recMensual[i] << endl;
+            }
+            cout << "=== RECAUDACION ANUAL ===" << endl;
+            cout << "Total: $" << recAnual << endl;
+            system("pause");
             break;
             }
         case 2: {
