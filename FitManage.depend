@@ -224,13 +224,14 @@
 	<iostream>
 	"app.h"
 
-1763142640 c:\users\nacho\documents\github4\fitmanage\app.h
+1763153645 c:\users\nacho\documents\github4\fitmanage\app.h
 	"ManagerInstructores.h"
 	"managersocios.h"
 	"managerplanes.h"
 	"managerClases.h"
 	"managerCobranzas.h"
 	"ManagerReportes.h"
+	"rlutil.h"
 
 1762781180 c:\users\nacho\documents\github4\fitmanage\managerinstructores.h
 	"instructor.h"
@@ -254,24 +255,27 @@
 	"archivoSocios.h"
 	"ArchivoCobranzas.h"
 
-1763136823 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
+1763153645 source:c:\users\nacho\documents\github4\fitmanage\managercobranzas.cpp
 	<iostream>
 	"ManagerCobranzas.h"
+	"rlutil.h"
 
-1763127270 source:c:\users\nacho\documents\github4\fitmanage\managerinstructores.cpp
+1763153645 source:c:\users\nacho\documents\github4\fitmanage\managerinstructores.cpp
 	<iostream>
 	"ManagerInstructores.h"
 	"Instructor.h"
 	"ArchivoInstructores.h"
 	"Clase.h"
 	"ArchivoClases.h"
+	"rlutil.h"
 
-1763127270 source:c:\users\nacho\documents\github4\fitmanage\managerplanes.cpp
+1763153645 source:c:\users\nacho\documents\github4\fitmanage\managerplanes.cpp
 	<iostream>
 	"managerplanes.h"
 	<cstring>
+	"rlutil.h"
 
-1763149053 source:c:\users\nacho\documents\github4\fitmanage\managersocios.cpp
+1763153645 source:c:\users\nacho\documents\github4\fitmanage\managersocios.cpp
 	<iostream>
 	<limits>
 	<cstring>
@@ -279,6 +283,7 @@
 	"clasexsocio.h"
 	"fecha.h"
 	"ManagerSocios.h"
+	"rlutil.h"
 
 1762781180 source:c:\users\nacho\documents\github4\fitmanage\persona.cpp
 	<iostream>
@@ -297,9 +302,10 @@
 	"socio.h"
 	<cstring>
 
-1763149053 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
+1763153848 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
 	<iostream>
 	"app.h"
+	"rlutil.h"
 
 1762539323 c:\users\nacho\documents\github4\fitmanage\managerlistados.h
 
@@ -373,9 +379,10 @@
 	<string>
 	"clase.h"
 
-1763153104 source:c:\users\nacho\documents\github4\fitmanage\managerclases.cpp
+1763153645 source:c:\users\nacho\documents\github4\fitmanage\managerclases.cpp
 	<iostream>
 	"managerClases.h"
+	"rlutil.h"
 
 1762958338 source:c:\users\nacho\documents\github4\fitmanage\archivoclases.cpp
 	"archivoClases.h"
@@ -383,12 +390,13 @@
 
 1763139144 c:\users\nacho\documents\github4\fitmanage\managerreportes.h
 
-1763142640 source:c:\users\nacho\documents\github4\fitmanage\managerreportes.cpp
+1763153645 source:c:\users\nacho\documents\github4\fitmanage\managerreportes.cpp
 	<iostream>
 	<iomanip>
 	"ManagerReportes.h"
 	"ArchivoCobranzas.h"
 	"cobranza.h"
+	"rlutil.h"
 
 1762915351 source:c:\users\sante\documents\github\fitmanage\archivoclases.cpp
 	"archivoClases.h"
@@ -398,7 +406,7 @@
 	<string>
 	"clase.h"
 
-1762914934 c:\users\sante\documents\github\fitmanage\clase.h
+1763153972 c:\users\sante\documents\github\fitmanage\clase.h
 	<string>
 	"instructor.h"
 
@@ -410,7 +418,7 @@
 	<cstring>
 	"fecha.h"
 
-1762464377 c:\users\sante\documents\github\fitmanage\fecha.h
+1763145795 c:\users\sante\documents\github\fitmanage\fecha.h
 
 1762827123 source:c:\users\sante\documents\github\fitmanage\archivocobranzas.cpp
 	"Fecha.h"
@@ -470,11 +478,12 @@
 1762827123 c:\users\sante\documents\github\fitmanage\clasexsocio.h
 	"fecha.h"
 
-1762464377 source:c:\users\sante\documents\github\fitmanage\fecha.cpp
+1763145795 source:c:\users\sante\documents\github\fitmanage\fecha.cpp
 	"fecha.h"
 	<iostream>
 	<iomanip>
 	<limits>
+	<ctime>
 
 1763082944 source:c:\users\sante\documents\github\fitmanage\instructor.cpp
 	<iostream>
@@ -485,25 +494,25 @@
 	<iostream>
 	"app.h"
 
-1763068596 c:\users\sante\documents\github\fitmanage\app.h
+1763153472 c:\users\sante\documents\github\fitmanage\app.h
 	"ManagerInstructores.h"
 	"managersocios.h"
 	"managerplanes.h"
 	"managerClases.h"
 	"managerCobranzas.h"
-	"Managerlistados.h"
 	"ManagerReportes.h"
+	"rlutil.h"
 
 1762827123 c:\users\sante\documents\github\fitmanage\managerinstructores.h
 	"instructor.h"
 	"archivoInstructores.h"
 
-1762827123 c:\users\sante\documents\github\fitmanage\managersocios.h
+1763145795 c:\users\sante\documents\github\fitmanage\managersocios.h
 	"socio.h"
 	"archivoSocios.h"
 	"archivoplanes.h"
 
-1762827123 c:\users\sante\documents\github\fitmanage\managerplanes.h
+1763083302 c:\users\sante\documents\github\fitmanage\managerplanes.h
 	"plan.h"
 	"archivoplanes.h"
 
@@ -519,43 +528,53 @@
 
 1762827123 c:\users\sante\documents\github\fitmanage\managerlistados.h
 
-1763068596 c:\users\sante\documents\github\fitmanage\managerreportes.h
-	"ArchivoCobranzas.h"
+1763145795 c:\users\sante\documents\github\fitmanage\managerreportes.h
 
-1762914526 source:c:\users\sante\documents\github\fitmanage\managerclases.cpp
+1763152685 source:c:\users\sante\documents\github\fitmanage\managerclases.cpp
 	<iostream>
 	"managerClases.h"
+	"rlutil.h"
 
-1762902983 source:c:\users\sante\documents\github\fitmanage\managercobranzas.cpp
+1763152871 source:c:\users\sante\documents\github\fitmanage\managercobranzas.cpp
 	<iostream>
 	"ManagerCobranzas.h"
+	"rlutil.h"
 
-1763083157 source:c:\users\sante\documents\github\fitmanage\managerinstructores.cpp
+1763152923 source:c:\users\sante\documents\github\fitmanage\managerinstructores.cpp
 	<iostream>
 	"ManagerInstructores.h"
 	"Instructor.h"
 	"ArchivoInstructores.h"
 	"Clase.h"
 	"ArchivoClases.h"
+	"rlutil.h"
 
 1762827123 source:c:\users\sante\documents\github\fitmanage\managerlistados.cpp
 	<iostream>
 	"ManagerListados.h"
 
-1762827123 source:c:\users\sante\documents\github\fitmanage\managerplanes.cpp
+1763152970 source:c:\users\sante\documents\github\fitmanage\managerplanes.cpp
 	<iostream>
 	"managerplanes.h"
+	<cstring>
+	"rlutil.h"
 
-1763074625 source:c:\users\sante\documents\github\fitmanage\managersocios.cpp
+1763153057 source:c:\users\sante\documents\github\fitmanage\managersocios.cpp
 	<iostream>
+	<limits>
+	<cstring>
+	"archivoClasexSocio.h"
+	"clasexsocio.h"
+	"fecha.h"
 	"ManagerSocios.h"
+	"rlutil.h"
 
 1762827123 source:c:\users\sante\documents\github\fitmanage\persona.cpp
 	<iostream>
 	<cstring>
 	"persona.h"
 
-1762827123 source:c:\users\sante\documents\github\fitmanage\plan.cpp
+1763083302 source:c:\users\sante\documents\github\fitmanage\plan.cpp
 	<iostream>
 	<cstring>
 	<string>
@@ -567,19 +586,24 @@
 	"socio.h"
 	<cstring>
 
-1763068596 source:c:\users\sante\documents\github\fitmanage\app.cpp
+1763153537 source:c:\users\sante\documents\github\fitmanage\app.cpp
 	<iostream>
 	"app.h"
+	"rlutil.h"
 
-1763068596 source:c:\users\sante\documents\github\fitmanage\cobranza.cpp
+1763145795 source:c:\users\sante\documents\github\fitmanage\cobranza.cpp
 	<iostream>
 	<cstring>
 	"cobranza.h"
 	"archivoplanes.h"
 
-1763068596 source:c:\users\sante\documents\github\fitmanage\managerreportes.cpp
+1763153008 source:c:\users\sante\documents\github\fitmanage\managerreportes.cpp
 	<iostream>
+	<iomanip>
 	"ManagerReportes.h"
+	"ArchivoCobranzas.h"
+	"cobranza.h"
+	"rlutil.h"
 
 1762975709 c:\users\carre\documents\github\fitmanage\managerclases.h
 	"clase.h"
@@ -604,11 +628,48 @@
 	<iostream>
 	"ManagerReportes.h"
 
+1763145795 D
+
 1763142644 source:c:\users\nacho\documents\github4\fitmanage\archivoclasexsocio.cpp
 	"archivoClasexSocio.h"
 
 1763148614 c:\users\nacho\documents\github4\fitmanage\archivoclasexsocio.h
+
+1763145795 c:\users\sante\documents\github\fitmanage\archivoclasexsocio.h
+
+1750371798 9a6d70fe781177419b5e0dc680c9055191c97
 	"clasexsocio.h"
 	<cstdio>
 	<cstring>
+
+1763145795 source:c:\users\sante\documents\github\fitmanage\archivoclasexsocio.cpp
+	"archivoClasexSocio.h"
+
+1750371798 c:\users\sante\documents\github\fitmanage\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1763153645 c:\users\nacho\documents\github4\fitmanage\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
 
