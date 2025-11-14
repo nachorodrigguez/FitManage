@@ -10,6 +10,7 @@ Cobranza::Cobranza(){
     _numTransaccion = 0;
     _idPlan = 0;
     strcpy(_plan, "Indefinido");
+    _fechaTransaccion = Fecha::FechaActual();
     _descuentos = 0;
     _montoTotal = 0;
     strcpy(_metodoPago, "Indefinido");
