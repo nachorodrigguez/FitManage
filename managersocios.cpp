@@ -121,7 +121,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
         }
-        
+
         case 2 :{
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a modificar: ";
@@ -152,7 +152,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
         }
-        
+
         case 3: {
             int cantidad = archivoSocios.CantidadRegistros();
             if (cantidad == 0) {
@@ -199,7 +199,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                         if (!hayResultados) cout << "NO HAY SOCIOS ACTIVOS." << endl;
                         break;
                     }
-                    
+
                     case 2: {
                         cout << "=== SOCIOS INACTIVOS ===" << endl;
                         for (int i = 0; i < cantidad; i++) {
@@ -212,7 +212,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                         if (!hayResultados) cout << "NO HAY SOCIOS INACTIVOS." << endl;
                         break;
                     }
-                    
+
                     case 3: {
                         cout << "=== TODOS LOS SOCIOS ===" << endl;
                         for (int i = 0; i < cantidad; i++) {
@@ -328,7 +328,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             // Asignar plan (se guarda el tipoPlan tal como está en el plan elegido)
             s.setTipoPlan(elegido.getTipo());
-            
+
             // Persistir el socio modificado en su misma posición
             if (archivoSocios.Guardar(s, posSocio)) {
                 cout << "Plan asignado correctamente al socio " << s.getId()
