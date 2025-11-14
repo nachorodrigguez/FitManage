@@ -406,7 +406,7 @@
 	<string>
 	"clase.h"
 
-1763153972 c:\users\sante\documents\github\fitmanage\clase.h
+1763154761 c:\users\sante\documents\github\fitmanage\clase.h
 	<string>
 	"instructor.h"
 
@@ -470,7 +470,7 @@
 	<cstring>
 	<limits>
 
-1762827123 source:c:\users\sante\documents\github\fitmanage\clasexsocio.cpp
+1763154685 source:c:\users\sante\documents\github\fitmanage\clasexsocio.cpp
 	"clasexsocio.h"
 	<iostream>
 	<limits>
@@ -516,9 +516,13 @@
 	"plan.h"
 	"archivoplanes.h"
 
-1762914209 c:\users\sante\documents\github\fitmanage\managerclases.h
+1763154685 c:\users\sante\documents\github\fitmanage\managerclases.h
 	"clase.h"
 	"archivoClases.h"
+	"archivoClasexSocio.h"
+	"socio.h"
+	"archivoSocios.h"
+	"clasexsocio.h"
 
 1762827123 c:\users\sante\documents\github\fitmanage\managercobranzas.h
 	"socio.h"
@@ -530,7 +534,7 @@
 
 1763145795 c:\users\sante\documents\github\fitmanage\managerreportes.h
 
-1763152685 source:c:\users\sante\documents\github\fitmanage\managerclases.cpp
+1763154685 source:c:\users\sante\documents\github\fitmanage\managerclases.cpp
 	<iostream>
 	"managerClases.h"
 	"rlutil.h"
@@ -559,7 +563,7 @@
 	<cstring>
 	"rlutil.h"
 
-1763153057 source:c:\users\sante\documents\github\fitmanage\managersocios.cpp
+1763157219 source:c:\users\sante\documents\github\fitmanage\managersocios.cpp
 	<iostream>
 	<limits>
 	<cstring>
@@ -580,11 +584,12 @@
 	<string>
 	"Plan.h"
 
-1762827123 source:c:\users\sante\documents\github\fitmanage\socio.cpp
+1763155706 source:c:\users\sante\documents\github\fitmanage\socio.cpp
 	<iostream>
 	<cstdio>
 	"socio.h"
 	<cstring>
+	"rlutil.h"
 
 1763153537 source:c:\users\sante\documents\github\fitmanage\app.cpp
 	<iostream>
@@ -635,7 +640,10 @@
 
 1763148614 c:\users\nacho\documents\github4\fitmanage\archivoclasexsocio.h
 
-1763145795 c:\users\sante\documents\github\fitmanage\archivoclasexsocio.h
+1763154685 c:\users\sante\documents\github\fitmanage\archivoclasexsocio.h
+	"clasexsocio.h"
+	<cstdio>
+	<cstring>
 
 1750371798 9a6d70fe781177419b5e0dc680c9055191c97
 	"clasexsocio.h"
