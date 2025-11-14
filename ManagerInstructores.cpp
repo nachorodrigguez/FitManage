@@ -1,5 +1,9 @@
 #include <iostream>
 #include "ManagerInstructores.h"
+#include "Instructor.h"
+#include "ArchivoInstructores.h"
+#include "Clase.h"
+#include "ArchivoClases.h"
 
 using namespace std;
 
@@ -24,7 +28,7 @@ void ManagerInstructores::mostrarOpciones(){
         cout << "1 - CARGAR INSTRUCTOR"<< endl;
         cout << "2 - MODIFICAR INSTRUCTOR" << endl;
         cout << "3 - LISTADO DE INSTRUCTORES" << endl;
-        cout << "4 - ASIGNAR CLASE" << endl;
+        cout << "4 - ASIGNAR CLASE A INSTRUCTOR" << endl;
         cout << "5 - ELIMINAR INSTRUCTOR" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
@@ -191,6 +195,67 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
 
             break;
         }
+        case 4: {
+            cout << "=== ASIGNAR CLASE A INSTRUCTOR ===" << endl;
+
+            int idInstructor;
+            cout << "Ingrese el ID del instructor: ";
+            cin >> idInstructor;
+
+            int posInstructor = archivoInstructores.Buscar(idInstructor);
+            if (posInstructor < 0) {
+                cout << "No existe un instructor con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            Instructor inst = archivoInstructores.Leer(posInstructor);
+            cout << "\nInstructor encontrado:\n";
+            inst.Mostrar();
+            cout << endl;
+
+            // Mostrar clases disponibles
+            ArchivoClases archivoClases("clases.dat");
+            int cantClases = archivoClases.CantidadRegistros();
+
+            if (cantClases == 0) {
+                cout << "No hay clases cargadas." << endl;
+                system("pause");
+                break;
+            }
+
+            cout << "=== LISTA DE CLASES ===" << endl;
+
+            for (int i = 0; i < cantClases; i++) {
+                Clase c = archivoClases.Leer(i);
+                cout << "ID: " << c.getIDClase()
+                     << " - " << c.getNombreClase() << endl;
+            }
+
+            cout << "\nIngrese el ID de la clase a asignar: ";
+            int idClase;
+            cin >> idClase;
+
+            Clase claseSeleccionada;
+            if (!archivoClases.LeerPorID(idClase, claseSeleccionada)) {
+                cout << "No existe una clase con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            // Asignación real
+            inst.setIdClaseAsignada(idClase);
+
+            if (archivoInstructores.ModificarPorId(idInstructor, inst)) {
+                cout << "\nClase asignada correctamente!" << endl;
+            } else {
+                cout << "Error al asignar la clase." << endl;
+            }
+
+            system("pause");
+            break;
+        }
+
         case 5: {
             int idBuscado;
             cout << "Ingrese el ID del instructor a eliminar: ";

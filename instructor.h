@@ -7,6 +7,7 @@ class Instructor: public Persona{
         int _idInstructor;
         char _especialidad[50];
         bool estado;
+        int idClaseAsignada;
 
     public:
         //CONSTRUCTORES
@@ -16,12 +17,14 @@ class Instructor: public Persona{
         int getidInstructor();
         const char* getEspecialidad();
         bool getEstado() const;
+        int getIdClaseAsignada() const;
 
         //SETTERS
         void setId(int);
         void setidInstructor(int);
         void setEspecialidad();
         void setEstado(bool valor);
+        void setIdClaseAsignada(int idClase);
 
         //FUNCIONES GENERALES
         void Cargar(int idInstructor);

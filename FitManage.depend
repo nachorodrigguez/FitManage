@@ -380,7 +380,7 @@
 	<string>
 	"instructor.h"
 
-1762827123 c:\users\sante\documents\github\fitmanage\instructor.h
+1763082905 c:\users\sante\documents\github\fitmanage\instructor.h
 	<string>
 	"Persona.h"
 
@@ -454,7 +454,7 @@
 	<iomanip>
 	<limits>
 
-1762827123 source:c:\users\sante\documents\github\fitmanage\instructor.cpp
+1763082944 source:c:\users\sante\documents\github\fitmanage\instructor.cpp
 	<iostream>
 	<cstring>
 	"instructor.h"
@@ -508,9 +508,13 @@
 	<iostream>
 	"ManagerCobranzas.h"
 
-1762827123 source:c:\users\sante\documents\github\fitmanage\managerinstructores.cpp
+1763083157 source:c:\users\sante\documents\github\fitmanage\managerinstructores.cpp
 	<iostream>
 	"ManagerInstructores.h"
+	"Instructor.h"
+	"ArchivoInstructores.h"
+	"Clase.h"
+	"ArchivoClases.h"
 
 1762827123 source:c:\users\sante\documents\github\fitmanage\managerlistados.cpp
 	<iostream>
@@ -520,7 +524,7 @@
 	<iostream>
 	"managerplanes.h"
 
-1762827123 source:c:\users\sante\documents\github\fitmanage\managersocios.cpp
+1763074625 source:c:\users\sante\documents\github\fitmanage\managersocios.cpp
 	<iostream>
 	"ManagerSocios.h"
 

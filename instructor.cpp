@@ -8,6 +8,7 @@ Instructor::Instructor(){
     _idInstructor = 0;
     estado = true;
     strcpy(_especialidad, "Sin especialidad");
+    idClaseAsignada = 0;
 }
 
 int Instructor::getidInstructor(){
@@ -27,6 +28,14 @@ void Instructor::setidInstructor(int ID){
 }
 bool Instructor::getEstado() const {
     return estado; }
+
+int Instructor::getIdClaseAsignada() const {
+    return idClaseAsignada;
+}
+
+void Instructor::setIdClaseAsignada(int idClase) {
+    idClaseAsignada = idClase;
+}
 
 void Instructor::setEspecialidad(){
 
@@ -103,6 +112,9 @@ void Instructor::Mostrar(){
     cout << "Especialidad: " << _especialidad << endl;
     Persona::Mostrar();
     cout << endl;
+    cout << "ID de Clase asignada: ";
+    if (idClaseAsignada == 0) cout << "Ninguna" << endl;
+    else cout << idClaseAsignada << endl;
     cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
 
 }
