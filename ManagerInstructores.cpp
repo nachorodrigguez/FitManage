@@ -4,6 +4,7 @@
 #include "ArchivoInstructores.h"
 #include "Clase.h"
 #include "ArchivoClases.h"
+#include "rlutil.h"
 
 using namespace std;
 
@@ -15,9 +16,9 @@ ManagerInstructores::ManagerInstructores(std::string nombreArchivoInstructores)
 void ManagerInstructores::run(){
     int opcion;
     do{
-        system("cls");
+        rlutil::cls();
         opcion = seleccionOpcion();
-        system("cls");
+        rlutil::cls();
         ejecutarOpcion(opcion);
     }while(opcion!=0);
 }
@@ -80,7 +81,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             }  else {
                  cout << "Error al guardar el instructor." << endl;
             }
-            system("pause");
+            rlutil::anykey();
             break;
             }
         case 2: {
@@ -91,7 +92,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             int posicion = archivoInstructores.Buscar(idBuscado);
             if (posicion < 0) {
                 cout << "No existe un instructor con ese ID." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -110,7 +111,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             } else {
                 cout << "Error al modificar el instructor." << endl;
             }
-            system("pause");
+            rlutil::anykey();
             break;
             }
             // Listar socios activos
@@ -118,14 +119,14 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             int cantidad = archivoInstructores.CantidadRegistros();
             if (cantidad == 0) {
                 cout << "No hay Instructores cargados." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
             int opcionListado;
 
             do {
-                system("cls");
+                rlutil::cls();
                 cout << "1 - INSTRUCTORES ACTIVOS" << endl;
                 cout << "2 - INSTRUCTORES INACTIVOS" << endl;
                 cout << "3 - TODOS LOS INSTRUCTORES" << endl;
@@ -141,7 +142,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
                     cin >> opcionListado;
                 }
 
-                system("cls");
+                rlutil::cls();
 
                 Instructor* vectorInstructor= new Instructor[cantidad];
                 archivoInstructores.Leer(cantidad, vectorInstructor);
@@ -189,7 +190,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
 
                 delete[] vectorInstructor;
                 cout << endl;
-                system("pause");
+                rlutil::anykey();
 
             } while (opcionListado != 0);
 
@@ -205,7 +206,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             int posInstructor = archivoInstructores.Buscar(idInstructor);
             if (posInstructor < 0) {
                 cout << "No existe un instructor con ese ID." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -220,7 +221,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
 
             if (cantClases == 0) {
                 cout << "No hay clases cargadas." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -239,7 +240,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             Clase claseSeleccionada;
             if (!archivoClases.LeerPorID(idClase, claseSeleccionada)) {
                 cout << "No existe una clase con ese ID." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -252,7 +253,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
                 cout << "Error al asignar la clase." << endl;
             }
 
-            system("pause");
+            rlutil::anykey();
             break;
         }
 
@@ -264,7 +265,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             int posicion = archivoInstructores.Buscar(idBuscado);
             if (posicion < 0) {
                 cout << "No existe un instructor con ese ID." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -287,7 +288,7 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
                 cout << "Operación cancelada." << endl;
             }
 
-            system("pause");
+            rlutil::anykey();
             break;
         }
         break;

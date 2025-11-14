@@ -1,5 +1,6 @@
 #include <iostream>
 #include "managerClases.h"
+#include "rlutil.h"
 using namespace std;
 
 ManagerClases::ManagerClases(string nombreArchivo) : archivoClases("clases.dat"), archivoclasesxsocio("clasexsocio.dat"),archivosocios("socios.dat")
@@ -10,9 +11,9 @@ ManagerClases::ManagerClases(string nombreArchivo) : archivoClases("clases.dat")
 void ManagerClases::run() {
     int opcion;
     do {
-        system("cls");
+        rlutil::cls();
         opcion = seleccionOpcion();
-        system("cls");
+        rlutil::cls();
         ejecutarOpcion(opcion);
     } while (opcion != 0);
 }
@@ -50,13 +51,13 @@ void ManagerClases::ejecutarOpcion(int opcion) {
             clase.Cargar();
             archivoClases.Guardar(clase);
             cout << "Clase agregada correctamente." << endl;
-            system("pause");
+            rlutil::anykey();
             break;
         }
         case 2: {
             cout << "=== LISTADO DE CLASES ===" << endl;
             archivoClases.Listar();
-            system("pause");
+            rlutil::anykey();
             break;
         }
         case 3: {
@@ -70,7 +71,7 @@ void ManagerClases::ejecutarOpcion(int opcion) {
             } else {
                 cout << "No se encontró una clase con ese ID." << endl;
             }
-            system("pause");
+            rlutil::anykey();
             break;
         }
         case 4:{
