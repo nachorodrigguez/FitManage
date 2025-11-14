@@ -1,7 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include "ManagerReportes.h"
 #include "ArchivoCobranzas.h"
 #include "cobranza.h"
+
 
 using namespace std;
 
@@ -64,6 +66,7 @@ void ManagerReportes::ejecutarOpcion(int opcion){
                 recMensual[mes-1] += monto;
                 recAnual += monto;
                 }
+            cout << fixed << setprecision(0);
             cout << "=== RECAUDACION MENSUAL ===" << endl;
             for (int i=0; i <12; i++){
                 cout << "Mes " << (i+1) << ": $" << recMensual[i] << endl;
