@@ -3,6 +3,7 @@
 #include "ManagerReportes.h"
 #include "ArchivoCobranzas.h"
 #include "cobranza.h"
+#include "rlutil.h"
 
 
 using namespace std;
@@ -14,9 +15,9 @@ ManagerReportes::ManagerReportes(std::string nombreArchivoCobranzas){
 void ManagerReportes::run(){
     int opcion;
     do{
-        system("cls");
+        rlutil::cls();
         opcion = seleccionOpcion();
-        system("cls");
+        rlutil::cls();
         ejecutarOpcion(opcion);
     }while(opcion!=0);
 }
@@ -95,7 +96,7 @@ void ManagerReportes::ejecutarOpcion(int opcion){
             }
             cout << "=== RECAUDACION ANUAL ===" << endl;
             cout << "Total: $" << recAnual << endl;
-            system("pause");
+            rlutil::anykey();
             break;
             }
         case 2: {

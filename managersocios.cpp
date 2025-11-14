@@ -5,6 +5,7 @@
 #include "clasexsocio.h"
 #include "fecha.h"
 #include "ManagerSocios.h"
+#include "rlutil.h"
 
 using namespace std;
 
@@ -15,9 +16,9 @@ ManagerSocios::ManagerSocios(std::string nombreArchivo): archivoSocios(nombreArc
 void ManagerSocios::run(){
     int opcion;
     do{
-        system("cls");
+        rlutil::cls();
         opcion = seleccionOpcion();
-        system("cls");
+        rlutil::cls();
         ejecutarOpcion(opcion);
     }while(opcion!=0);
 }
@@ -118,10 +119,10 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 cout << "Error al guardar el socio." << endl;
             }
 
-            system("pause");
+            rlutil::anykey();
             break;
         }
-        
+
         case 2 :{
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a modificar: ";
@@ -130,7 +131,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             int posicion = archivoSocios.Buscar(idBuscado);
             if (posicion < 0) {
                 cout << "No existe un socio con ese ID." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -149,22 +150,22 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             } else {
                 cout << "Error al modificar el socio." << endl;
             }
-            system("pause");
+            rlutil::anykey();
             break;
         }
-        
+
         case 3: {
             int cantidad = archivoSocios.CantidadRegistros();
             if (cantidad == 0) {
                 cout << "No hay socios cargados." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
             int opcionListado;
 
             do {
-                system("cls");
+                rlutil::cls();
                 cout << "1 - SOCIOS ACTIVOS" << endl;
                 cout << "2 - SOCIOS INACTIVOS" << endl;
                 cout << "3 - TODOS LOS SOCIOS" << endl;
@@ -180,7 +181,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                     cin >> opcionListado;
                 }
 
-                system("cls");
+                rlutil::cls();
 
                 Socio* vectorSocios = new Socio[cantidad];
                 archivoSocios.Leer(cantidad, vectorSocios);
@@ -199,7 +200,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                         if (!hayResultados) cout << "NO HAY SOCIOS ACTIVOS." << endl;
                         break;
                     }
-                    
+
                     case 2: {
                         cout << "=== SOCIOS INACTIVOS ===" << endl;
                         for (int i = 0; i < cantidad; i++) {
@@ -212,7 +213,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                         if (!hayResultados) cout << "NO HAY SOCIOS INACTIVOS." << endl;
                         break;
                     }
-                    
+
                     case 3: {
                         cout << "=== TODOS LOS SOCIOS ===" << endl;
                         for (int i = 0; i < cantidad; i++) {
@@ -227,7 +228,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
                 delete[] vectorSocios;
                 cout << endl;
-                system("pause");
+                rlutil::anykey();
 
             } while (opcionListado != 0);
 
@@ -243,7 +244,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             int posSocio = archivoSocios.Buscar(idBuscado);
             if (posSocio < 0) {
                 cout << "No existe un socio con ese ID." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -251,7 +252,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             if (!s.getEstado()) {
                 cout << "El socio esta inactivo. No se puede asignar un plan." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -268,7 +269,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 }
                 if (conf == 0) {
                     cout << "Operacion cancelada." << endl;
-                    system("pause");
+                    rlutil::anykey();
                     break;
                 }
             }
@@ -278,7 +279,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             int cant = repoPlanes.CantidadRegistros();
             if (cant <= 0) {
                 cout << "No hay planes cargados.\n";
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -301,7 +302,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             if (!hayActivos) {
                 cout << "No hay planes activos.\n";
                 delete[] vec;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -314,7 +315,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             if (posPlan < 0) {
                 cout << "ID de plan inexistente.\n";
                 delete[] vec;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -322,13 +323,13 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             if (!elegido.getEstado()) {
                 cout << "El plan esta inactivo.\n";
                 delete[] vec;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
             // Asignar plan (se guarda el tipoPlan tal como está en el plan elegido)
             s.setTipoPlan(elegido.getTipo());
-            
+
             // Persistir el socio modificado en su misma posición
             if (archivoSocios.Guardar(s, posSocio)) {
                 cout << "Plan asignado correctamente al socio " << s.getId()
@@ -336,7 +337,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             } else {
                 cout << "Error al guardar el socio con el nuevo tipo de plan.\n";
                 delete[] vec;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -369,7 +370,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             }
 
             delete[] vec;
-            system("pause");
+            rlutil::anykey();
             break;
         }
 
@@ -382,7 +383,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             int posicion = archivoSocios.Buscar(idBuscado);
             if (posicion < 0) {
                 cout << "No existe un socio con ese ID." << endl;
-                system("pause");
+                rlutil::anykey();
                 break;
             }
 
@@ -404,7 +405,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 cout << "Operacion cancelada." << endl;
             }
 
-            system("pause");
+            rlutil::anykey();
             break;
         }
 
