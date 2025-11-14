@@ -126,12 +126,6 @@
 		<Unit filename="managerCobranzas.h">
 			<Option virtualFolder="managercobranzas/" />
 		</Unit>
-		<Unit filename="managerListados.cpp">
-			<Option virtualFolder="managerlistados/" />
-		</Unit>
-		<Unit filename="managerListados.h">
-			<Option virtualFolder="managerlistados/" />
-		</Unit>
 		<Unit filename="managerPlanes.cpp">
 			<Option virtualFolder="managerplanes/" />
 		</Unit>
