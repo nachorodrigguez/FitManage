@@ -24,26 +24,30 @@ void ManagerSocios::run(){
 }
 
 void ManagerSocios::mostrarOpciones(){
-    cout << "MENU PRINCIPAL"<<endl;
-    cout << "====================="<< endl;
-    cout << "1 - CARGAR SOCIO"<< endl;
-    cout << "2 - MODIFICAR SOCIO" << endl;
-    cout << "3 - LISTADO DE SOCIOS" << endl;
-    cout << "4 - ASIGNAR PLAN A SOCIO" << endl;
-    cout << "5 - ELIMINAR SOCIO" << endl;
-    cout << "0 - SALIR"<< endl;
-    cout << "======================"<< endl;
+    rlutil::setColor(rlutil::LIGHTGREEN);
+    rlutil::locate(60, 10);
+    rlutil::locate(60, 11); cout << "MENU PRINCIPAL";
+    rlutil::locate(60, 12); cout << "=====================";
+    rlutil::locate(60, 13); cout << "1 - CARGAR SOCIO";
+    rlutil::locate(60, 14); cout << "2 - MODIFICAR SOCIO";
+    rlutil::locate(60, 15); cout << "3 - LISTADO DE SOCIOS"  ;
+    rlutil::locate(60, 16); cout << "4 - ASIGNAR PLAN A SOCIO";
+    rlutil::locate(60, 17); cout << "5 - ELIMINAR SOCIO";
+    rlutil::locate(60, 18); cout << "0 - SALIR";
+    rlutil::locate(60, 19); cout << "======================";
 }
 
 int ManagerSocios::seleccionOpcion(){
     int opcion;
     mostrarOpciones();
-    cout << "Opcion: ";
+    rlutil::locate(60, 21); cout << "Opcion: ";
     cin >> opcion;
 
     while (opcion < 0 || opcion > _cantidadOpcines){
-        cout << "Opcion incorrecta..." << endl;
-        cout << "Opcion: ";
+        rlutil::setColor(rlutil::RED);
+        rlutil::locate(60, 23); cout << "Opcion incorrecta..." << endl;
+        rlutil::setColor(rlutil::LIGHTGREEN);
+        rlutil::locate(60, 24); cout << "Opcion: ";
         cin  >> opcion;
     }
     return opcion;
@@ -52,14 +56,19 @@ int ManagerSocios::seleccionOpcion(){
 /* Helpers para inscripciones Socio y Clase (Plan 2 y 3) */
 static int pedirIdClase(){
     int id;
-    cout << "Ingrese ID de clase (1-7): ";
+    rlutil::locate(60, 10); cout << "Ingrese ID de clase (1-7): ";
     while(!(cin >> id) || id < 1 || id > 7){
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Valor invalido. Ingrese 1..7: ";
+        rlutil::setColor(rlutil::RED);
+        rlutil::locate(60, 11); cout << "Valor invalido.";
+
+        rlutil::setColor(rlutil::LIGHTGREEN);
+        rlutil::locate(60, 12); cout << "Ingrese 1..7: ";
     }
     return id;
 }
+
 
 static bool existeInscripcionActiva(ArchivoClasexSocio& arc, int idSocio, int idClase){
     return arc.BuscarPorSocioYClase(idSocio, idClase) >= 0;
@@ -74,16 +83,17 @@ static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
     reg.setIDClase(idClase);
 
     Fecha f;
+    rlutil::locate(60, 13);
     cout << "\nFecha de inscripcion:\n";
     f.Cargar();
     reg.setFechaInscripcion(f);
     reg.setEstado(true);
 
     if(arc.Guardar(reg)){
-        cout << "Inscripcion creada (ID " << nuevoID << ").\n";
+        rlutil::locate(60, 15); cout << "Inscripcion creada (ID " << nuevoID << ").\n";
         return true;
     } else {
-        cout << "Error al guardar la inscripcion.\n";
+        rlutil::locate(60, 15); cout << "Error al guardar la inscripcion.\n";
         return false;
     }
 }
@@ -91,20 +101,22 @@ static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
 void ManagerSocios::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1: {
-            cout << "=== ALTA DE SOCIO ===" << endl;
-            cout << endl;
+            rlutil::setColor(rlutil::LIGHTGREEN);
+            rlutil::locate(60, 10); cout << "=== ALTA DE SOCIO ===";
 
             int idNuevo;
             bool idValido = false;
 
             // Validación de ID duplicado
             do {
-                cout << "Ingrese ID del socio (DNI): ";
+                rlutil::locate(60, 12); cout << "Ingrese ID del socio (DNI): ";
                 cin >> idNuevo;
 
                 int posicionExistente = archivoSocios.Buscar(idNuevo);
                 if (posicionExistente >= 0) {
-                    cout << "Error: ya existe un socio con ese ID. Intente con otro." << endl;
+                    rlutil::setColor(rlutil::RED);
+                    rlutil::locate(60, 13); cout << "Error: ya existe un socio con ese ID. Intente con otro.";
+                    rlutil::setColor(rlutil::LIGHTGREEN);
                 } else {
                     idValido = true;
                 }
@@ -114,9 +126,9 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             // Persistencia
             if (archivoSocios.Guardar(socio)) {
-                cout << "Socio guardado exitosamente!" << endl;
+                rlutil::locate(60, 15); cout << "Socio guardado exitosamente!" ;
             } else {
-                cout << "Error al guardar el socio." << endl;
+                rlutil::locate(60, 15); cout << "Error al guardar el socio." ;
             }
 
             rlutil::anykey();
@@ -125,30 +137,30 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
         case 2 :{
             int idBuscado;
-            cout << "Ingrese el ID (DNI) del socio a modificar: ";
+            rlutil::locate(60, 10); cout << "Ingrese el ID (DNI) del socio a modificar: ";
             cin >> idBuscado;
 
             int posicion = archivoSocios.Buscar(idBuscado);
             if (posicion < 0) {
-                cout << "No existe un socio con ese ID." << endl;
+                rlutil::locate(60, 12); cout << "No existe un socio con ese ID." << endl;
                 rlutil::anykey();
                 break;
             }
 
             // Mostrar datos actuales
             Socio socioActual = archivoSocios.Leer(posicion);
-            cout << "\n--- Datos actuales ---\n";
+            rlutil::locate(60, 13); cout << "\n--- Datos actuales ---\n";
             socioActual.Mostrar();
 
-            cout << "\n=== Reingrese los datos del socio (se guardaran como nuevos datos) ===\n";
+            rlutil::locate(60, 14); cout << "\n=== Reingrese los datos del socio (se guardaran como nuevos datos) ===\n";
             Socio socioNuevo;
             socioNuevo.setId(idBuscado);
             socioNuevo.Modificar();
 
             if (archivoSocios.ModificarPorId(idBuscado, socioNuevo)) {
-                cout << "Socio modificado correctamente." << endl;
+                rlutil::locate(60, 15); cout << "Socio modificado correctamente.";
             } else {
-                cout << "Error al modificar el socio." << endl;
+                rlutil::locate(60, 15); cout << "Error al modificar el socio.";
             }
             rlutil::anykey();
             break;
@@ -157,7 +169,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
         case 3: {
             int cantidad = archivoSocios.CantidadRegistros();
             if (cantidad == 0) {
-                cout << "No hay socios cargados." << endl;
+                rlutil::locate(60, 10); cout << "No hay socios cargados.";
                 rlutil::anykey();
                 break;
             }
@@ -166,18 +178,22 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             do {
                 rlutil::cls();
-                cout << "1 - SOCIOS ACTIVOS" << endl;
-                cout << "2 - SOCIOS INACTIVOS" << endl;
-                cout << "3 - TODOS LOS SOCIOS" << endl;
-                cout << "0 - VOLVER AL MENU PRINCIPAL" << endl;
-                cout << "===============================" << endl;
-                cout << "OPCION: ";
+                rlutil::locate(60, 10); cout << "1 - SOCIOS ACTIVOS";
+                rlutil::locate(60, 11); cout << "2 - SOCIOS INACTIVOS";
+                rlutil::locate(60, 12); cout << "3 - TODOS LOS SOCIOS";
+                rlutil::locate(60, 13); cout << "0 - VOLVER AL MENU PRINCIPAL";
+                rlutil::locate(60, 14); cout << "===============================";
+                rlutil::locate(60, 15); cout << "OPCION: ";
                 cin >> opcionListado;
 
                 if (opcionListado == 0) break;
 
                 while (opcionListado < 0 || opcionListado > 3) {
-                    cout << "OPCION INCORRECTA. INGRESE NUEVAMENTE: ";
+                    rlutil::setColor(rlutil::RED);
+                    rlutil::locate(60, 15); cout << "Opcion incorrecta.";
+
+                    rlutil::setColor(rlutil::LIGHTGREEN);
+                    rlutil::locate(60, 16); cout << "Opcion: ";
                     cin >> opcionListado;
                 }
 
@@ -189,39 +205,42 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
                 switch (opcionListado) {
                     case 1: {
-                        cout << "=== SOCIOS ACTIVOS ===" << endl;
+                        rlutil::locate(60, 10); cout << "=== SOCIOS ACTIVOS ===";
                         for (int i = 0; i < cantidad; i++) {
                             if (vectorSocios[i].getEstado() == true) {
                                 vectorSocios[i].Mostrar();
-                                cout << "------------------" << endl;
+                                rlutil::locate(60, 11); cout << "------------------" << endl;
                                 hayResultados = true;
                             }
                         }
-                        if (!hayResultados) cout << "NO HAY SOCIOS ACTIVOS." << endl;
+                        if (!hayResultados)
+                        rlutil::locate(60, 12); cout << "NO HAY SOCIOS ACTIVOS.";
                         break;
                     }
 
                     case 2: {
-                        cout << "=== SOCIOS INACTIVOS ===" << endl;
+                        rlutil::locate(60, 10); cout << "=== SOCIOS INACTIVOS ===";
                         for (int i = 0; i < cantidad; i++) {
                             if (vectorSocios[i].getEstado() == false) {
                                 vectorSocios[i].Mostrar();
-                                cout << "------------------" << endl;
+                                rlutil::locate(60, 11);cout << "------------------";
                                 hayResultados = true;
                             }
                         }
-                        if (!hayResultados) cout << "NO HAY SOCIOS INACTIVOS." << endl;
+                        if (!hayResultados)
+                            rlutil::locate(60, 12); cout << "NO HAY SOCIOS INACTIVOS.";
                         break;
                     }
 
                     case 3: {
-                        cout << "=== TODOS LOS SOCIOS ===" << endl;
+                        rlutil::locate(60, 10); cout << "=== TODOS LOS SOCIOS ===";
                         for (int i = 0; i < cantidad; i++) {
                             vectorSocios[i].Mostrar();
-                            cout << "------------------" << endl;
+                            rlutil::locate(60, 11); cout << "------------------";
                             hayResultados = true;
                         }
-                        if (!hayResultados) cout << "NO HAY SOCIOS CARGADOS." << endl;
+                        if (!hayResultados)
+                            rlutil::locate(60, 15); cout << "NO HAY SOCIOS CARGADOS.";
                         break;
                     }
                 }
@@ -238,12 +257,12 @@ void ManagerSocios::ejecutarOpcion(int opcion){
         case 4: {
             // Asignar plan a socio (valida existencia, estado e IDs de plan)
             int idBuscado;
-            cout << "Ingrese el ID (DNI) del socio: ";
+            rlutil::locate(60, 10); cout << "Ingrese el ID (DNI) del socio: ";
             cin >> idBuscado;
 
             int posSocio = archivoSocios.Buscar(idBuscado);
             if (posSocio < 0) {
-                cout << "No existe un socio con ese ID." << endl;
+                rlutil::locate(60, 11); cout << "No existe un socio con ese ID." << endl;
                 rlutil::anykey();
                 break;
             }
@@ -251,7 +270,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             Socio s = archivoSocios.Leer(posSocio);
 
             if (!s.getEstado()) {
-                cout << "El socio esta inactivo. No se puede asignar un plan." << endl;
+                rlutil::locate(60, 12); cout << "El socio esta inactivo. No se puede asignar un plan." << endl;
                 rlutil::anykey();
                 break;
             }
