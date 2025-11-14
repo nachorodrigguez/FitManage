@@ -36,15 +36,7 @@ bool Fecha::esValida(int d, int m, int a) {
 }
 
 //Constructores
-Fecha::Fecha(){
-    time_t t;
-    t= time(NULL);
-    struct tm *fecha;
-    fecha =localtime(&t);
-    dia = fecha ->tm_mday;
-    mes = fecha ->tm_mon+1;
-    anio = fecha ->tm_year+1900;
-}
+Fecha::Fecha() : dia(1), mes(1), anio(2000) {}
 
 Fecha::Fecha(int d, int m, int a) {
     if (esValida(d, m, a)) { dia = d; mes = m; anio = a; }
@@ -57,6 +49,16 @@ int Fecha::getMes()  const { return mes;  }
 int Fecha::getAnio() const { return anio; }
 
 //Setters
+Fecha Fecha::FechaActual(){
+    Fecha f;
+    time_t t = time(NULL);
+    struct tm *fecha = localtime(&t);
+    f.dia = fecha->tm_mday;
+    f.mes = fecha->tm_mon + 1;
+    f.anio = fecha->tm_year + 1900;
+    return f;
+}
+
 void Fecha::setDia(int d) {
     if (esValida(d, mes, anio)) {
         dia = d;

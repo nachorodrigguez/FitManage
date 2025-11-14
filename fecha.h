@@ -18,7 +18,8 @@ static bool esValida(int d, int m, int a);
         int getDia() const;
         int getMes() const;
         int getAnio() const;
-            
+
+        static Fecha FechaActual();
         void setDia(int d);
         void setMes(int m);
         void setAnio(int a);
@@ -27,5 +28,5 @@ static bool esValida(int d, int m, int a);
         void Mostrar() const;
 };
 
- 
+
 
