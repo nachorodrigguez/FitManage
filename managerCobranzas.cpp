@@ -58,7 +58,7 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
                 if (posicionExiste == -1){
                     cout << "Socio no ingresado en el sistema." << endl;
                     system("pause");
-                    break;
+                    return;
                 }else{
                     idValido = true;
                     socio = archivosocios.Leer(posicionExiste);
