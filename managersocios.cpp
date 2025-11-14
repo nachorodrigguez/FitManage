@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>              // limpiar el buffer
 #include "ManagerSocios.h"
 
 using namespace std;
@@ -108,7 +109,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
             }
-        // Listar socios activos
+        // Listar socios activos / inactivos / todos
         case 3: {
             int cantidad = archivoSocios.CantidadRegistros();
             if (cantidad == 0) {
@@ -187,37 +188,48 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             break;
         }
+
+        // ===== ASIGNAR PLAN A SOCIO =====
         case 4: {
             // 1) Pedir ID del socio
-           int idBuscado;
-    cout << "Ingrese el ID (DNI) del socio: ";
-    cin >> idBuscado;
+            int idBuscado;
+            cout << "Ingrese el ID (DNI) del socio: ";
+            cin >> idBuscado;
 
-    int posSocio = archivoSocios.Buscar(idBuscado);
-    if (posSocio < 0) {
-        cout << "No existe un socio con ese ID." << endl;
-        system("pause");
-        break;
-    }
+            int posSocio = archivoSocios.Buscar(idBuscado);
+            if (posSocio < 0) {
+                cout << "No existe un socio con ese ID." << endl;
+                system("pause");
+                break;
+            }
 
-    Socio s = archivoSocios.Leer(posSocio);
+            Socio s = archivoSocios.Leer(posSocio);
 
-    if (!s.getEstado()) {
-        cout << "El socio está inactivo. No se puede asignar un plan." << endl;
-        system("pause");
-        break;
-    }
+            if (!s.getEstado()) {
+                cout << "El socio esta inactivo. No se puede asignar un plan." << endl;
+                system("pause");
+                break;
+            }
 
-    if (s.tienePlan()) {
-        cout << "El socio ya tiene un plan activo asignado: "
-             << s.getTipoPlan() << endl;
-        cout << "No se puede asignar otro plan." << endl;
-        system("pause");
-        break;
-    }
+            // [PROBAR? FUNCIONA?] Si ya tiene plan, pedir confirmacion para reemplazar
+            if (s.tienePlan()) {
+                cout << "El socio ya tiene un plan activo asignado: "
+                     << s.getTipoPlan() << endl;
+                cout << "Desea reemplazarlo? (1=Si / 0=No): ";      
+                int conf;                                            
+                while(!(cin >> conf) || (conf != 0 && conf != 1)){   
+                    cin.clear();                                     
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Ingrese 1 o 0: ";                       
+                }
+                if (conf == 0) {                                     
+                    cout << "Operacion cancelada." << endl;         
+                    system("pause");                                 
+                    break;                                           
+                }
+            }
 
-
-            // 2) Cargar planes y listar sólo activos
+            // 2) Cargar planes y listar solo activos
             ArchivoPlanes repoPlanes("planes.dat");
             int cant = repoPlanes.CantidadRegistros();
             if (cant <= 0) {
@@ -264,7 +276,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             Plan elegido = repoPlanes.Leer(posPlan);
             if (!elegido.getEstado()) {
-                cout << "El plan está inactivo.\n";
+                cout << "El plan esta inactivo.\n";
                 delete[] vec;
                 system("pause");
                 break;
@@ -273,18 +285,30 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             // 4) Asignar al socio el tipoPlan EXACTO del plan elegido
             s.setTipoPlan(elegido.getTipo());
 
-            // 5) Persistir el socio modificado en su misma posición
+            // [A REVISAR] si la clase Socio tiene idPlan, conviene guardarlo tambien????
+            // EJEMPLO: s.setIdPlan(elegido.getIdPlan());
+
+            // 5) Persistir el socio modificado en su misma posicion
             if (archivoSocios.Guardar(s, posSocio)) {
                 cout << "Plan asignado correctamente al socio " << s.getId()
                      << " (tipoPlan = " << s.getTipoPlan() << ").\n";
             } else {
                 cout << "Error al guardar el socio con el nuevo tipo de plan.\n";
+                delete[] vec;
+                system("pause");
+                break;
             }
+
+            //[FALTA VER]Aca hay que inscribir clases segun el plan:
+            //   - Si el plan es "Solo una clase" => pedir clase y crear 1 registro ClasexSocio
+            //   - Si el plan es "Gym + clases"  => permitir varias inscripciones ClasexSocio (bucle)
+            
 
             delete[] vec;
             system("pause");
             break;
         }
+
         case 5: {
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a eliminar: ";
@@ -318,6 +342,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
         }
+
         case 0:{
             break;
         }
