@@ -15,8 +15,6 @@ App::App():
             _cantidadOpciones = 7 ;
         }
 
-
-
 void App::run(){
     int opcion;
     do{

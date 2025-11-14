@@ -302,7 +302,7 @@
 	"socio.h"
 	<cstring>
 
-1763153848 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
+1763154261 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 	"rlutil.h"
@@ -367,19 +367,15 @@
 	"Fecha.h"
 	"ArchivoCobranzas.h"
 
-1763151892 c:\users\nacho\documents\github4\fitmanage\managerclases.h
+1763158526 c:\users\nacho\documents\github4\fitmanage\managerclases.h
 	"clase.h"
 	"archivoClases.h"
-	"archivoClasexSocio.h"
-	"socio.h"
-	"archivoSocios.h"
-	"clasexsocio.h"
 
 1762958338 c:\users\nacho\documents\github4\fitmanage\archivoclases.h
 	<string>
 	"clase.h"
 
-1763153645 source:c:\users\nacho\documents\github4\fitmanage\managerclases.cpp
+1763158538 source:c:\users\nacho\documents\github4\fitmanage\managerclases.cpp
 	<iostream>
 	"managerClases.h"
 	"rlutil.h"

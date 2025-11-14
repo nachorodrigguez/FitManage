@@ -294,7 +294,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                          << " | Tipo: " << vec[i].getTipo()
                          << " | Periodo: " << vec[i].getPeriodo()
                          << " | Precio: $" << vec[i].getPrecio()
-                         << " | Duracion: " << vec[i].getDuracion() << " meses\n";
+                         << " | Duracion: " << vec[i].getDuracion() << " meses\n" << endl;
                     hayActivos = true;
                 }
             }

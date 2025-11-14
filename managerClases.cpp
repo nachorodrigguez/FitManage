@@ -3,9 +3,9 @@
 #include "rlutil.h"
 using namespace std;
 
-ManagerClases::ManagerClases(string nombreArchivo) : archivoClases("clases.dat"), archivoclasesxsocio("clasexsocio.dat"),archivosocios("socios.dat")
+ManagerClases::ManagerClases(string nombreArchivo) : archivoClases("clases.dat")
 {
-    _cantidadOpciones = 5;
+    _cantidadOpciones = 3;
 }
 
 void ManagerClases::run() {
@@ -24,8 +24,6 @@ void ManagerClases::mostrarOpciones() {
     cout << "1 - AGREGAR CLASE" << endl;
     cout << "2 - LISTAR CLASES" << endl;
     cout << "3 - BUSCAR CLASE" << endl;
-    cout << "4 - INSCRIBIR SOCIO A CLASE" << endl;
-    cout << "5 - ELIMINAR SOCIO DE CLASE" << endl;
     cout << "0 - SALIR" << endl;
     cout << "======================" << endl;
 }
@@ -72,62 +70,6 @@ void ManagerClases::ejecutarOpcion(int opcion) {
                 cout << "No se encontró una clase con ese ID." << endl;
             }
             rlutil::anykey();
-            break;
-        }
-        case 4:{
-            int dni;
-            bool idValido = false;
-
-            do{
-                cout << "Ingrese ID del socio (DNI): ";
-                cin >> dni;
-
-                int posicionExiste = archivosocios.Buscar(dni);
-
-                if (posicionExiste == -1){
-                    cout << "Socio no ingresado en el sistema." << endl;
-                    system("pause");
-                    return;
-                }else{
-                    idValido = true;
-                    socio = archivosocios.Leer(posicionExiste);
-                }
-            }while(!idValido);
-
-            if(socio.getEstado() == true){
-                cout << "=== CLASES ==="<<endl;
-                cout << "====================="<< endl;
-                cout << "1) Spinning\n";
-                cout << "2) Boxeo\n";
-                cout << "3) Yoga\n";
-                cout << "4) Crossfit\n";
-                cout << "5) Pilates\n";
-                cout << "6) Funcional\n";
-                cout << "======================"<< endl;
-            int opcion;
-            cout << "Opcion: " << endl;
-            cin >> opcion;
-
-            switch(opcion){
-                case 1:{
-                        clasexsocio.setIDClase(opcion);
-                        clasexsocio.setIdSocio(dni);
-                        clasexsocio.Cargar();
-
-                        int nuevoID = archivoclasesxsocio.CantidadRegistros() + 1;
-                        clasexsocio.setIDClasexSocio(nuevoID);
-                        if(archivoclasesxsocio.Guardar(clasexsocio)){
-                            cout << endl;
-                            cout << "Socio inscripto correctamente!" << endl;
-                        }else{
-                            cout << "Error al inscribir socio." << endl;
-                        }
-                    }
-                }
-            }else{
-                cout << "Socio inactivo." << endl;
-            }
-            system("pause");
             break;
         }
         case 0:
