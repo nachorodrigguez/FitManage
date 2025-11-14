@@ -57,19 +57,41 @@ void ManagerReportes::ejecutarOpcion(int opcion){
             int cantidad = archivocob.CantidadRegistros();
             float recMensual[12] = {};
             float recAnual = 0;
+
+            int anio;
+            cout <<  "INGRESE ANIO: " ;
+            cin >> anio;
+            cout << endl;
+
             for(int i=0; i<cantidad; i++){
                 cob = archivocob.Leer(i);
 
-                int mes = cob.getFechaTransaccion().getMes();
-                float monto = cob.getMontoTotal();
+                if(cob.getFechaTransaccion().getAnio() == anio){
+                    int mes = cob.getFechaTransaccion().getMes();
+                    float monto = cob.getMontoTotal();
 
-                recMensual[mes-1] += monto;
-                recAnual += monto;
+                    recMensual[mes-1] += monto;
+                    recAnual += monto;
+                    }
                 }
             cout << fixed << setprecision(0);
+            cout << "FACTURACION MENSUAL - ANUAL " << anio << endl;
+
+            string meses [12]={"Enero",
+                               "Febrero",
+                               "Marzo",
+                               "Abril",
+                               "Mayo",
+                               "Junio",
+                               "Julio",
+                               "Agosto",
+                               "Septiembre",
+                               "Octubre",
+                               "Noviembre",
+                               "Diciembre"};
             cout << "=== RECAUDACION MENSUAL ===" << endl;
             for (int i=0; i <12; i++){
-                cout << "Mes " << (i+1) << ": $" << recMensual[i] << endl;
+                cout << left << setw(12) << meses[i] << ": $" << right << recMensual[i] << endl;
             }
             cout << "=== RECAUDACION ANUAL ===" << endl;
             cout << "Total: $" << recAnual << endl;
