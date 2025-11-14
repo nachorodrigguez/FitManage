@@ -20,7 +20,7 @@ bool existeNombrePlan(const char* nombreBuscado, ArchivoPlanes &archivo) {
         }
     }
 
-    return false;  // No existe
+    return false;
 }
 
 int seleccionarPlan(ArchivoPlanes &archivo) {
@@ -53,7 +53,7 @@ int seleccionarPlan(ArchivoPlanes &archivo) {
         return -1;
     }
 
-    cout << "\nSELECCIONE UN PLAN(0 para cancelar): ";
+    cout << "\nSELECCIONE UN PLAN  (0 para cancelar): ";
     int opcion;
     cin >> opcion;
     while(cin.fail()){
@@ -76,7 +76,7 @@ int seleccionarPlan(ArchivoPlanes &archivo) {
 
     int posReal = indices[opcion - 1];
     delete[] vec;
-    return posReal;    // posición real en el archivo
+    return posReal;
 }
 
 
@@ -147,7 +147,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
 
             plan.Cargar();
 
-            // guardar
+
             if (archivoPlanes.Guardar(plan)) {
                 cout << "PLAN GUARDADO EXITOSAMENTE!" << endl;
             } else {
