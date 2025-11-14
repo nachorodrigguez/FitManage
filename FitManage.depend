@@ -375,8 +375,9 @@
 
 1763132592 c:\users\nacho\documents\github4\fitmanage\managerreportes.h
 
-1763132749 source:c:\users\nacho\documents\github4\fitmanage\managerreportes.cpp
+1763135276 source:c:\users\nacho\documents\github4\fitmanage\managerreportes.cpp
 	<iostream>
+	<iomanip>
 	"ManagerReportes.h"
 	"ArchivoCobranzas.h"
 	"cobranza.h"
