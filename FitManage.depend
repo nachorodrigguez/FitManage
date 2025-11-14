@@ -292,7 +292,7 @@
 	"socio.h"
 	<cstring>
 
-1763048840 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
+1763129754 source:c:\users\nacho\documents\github4\fitmanage\app.cpp
 	<iostream>
 	"app.h"
 
@@ -372,12 +372,13 @@
 	"archivoClases.h"
 	<iostream>
 
-1763048748 c:\users\nacho\documents\github4\fitmanage\managerreportes.h
-	"ArchivoCobranzas.h"
+1763132592 c:\users\nacho\documents\github4\fitmanage\managerreportes.h
 
-1763048862 source:c:\users\nacho\documents\github4\fitmanage\managerreportes.cpp
+1763132749 source:c:\users\nacho\documents\github4\fitmanage\managerreportes.cpp
 	<iostream>
 	"ManagerReportes.h"
+	"ArchivoCobranzas.h"
+	"cobranza.h"
 
 1762915351 source:c:\users\sante\documents\github\fitmanage\archivoclases.cpp
 	"archivoClases.h"

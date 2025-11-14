@@ -5,7 +5,7 @@
 		<Option title="FitManage" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managercobranzas/;archivosocios/;managerlistados/;archivoplanes/;archivoinstructores/;archivocobranzas/;managerclases/;archivoclases/;managerreportes/" />
+		<Option virtualFolders="persona/;plan/;app/;clasexsocio/;clase/;managerinstructores/;managerplanes/;fecha/;managersocio/;socio/;cobranza/;instructor/;managercobranzas/;archivosocios/;archivoplanes/;archivoinstructores/;archivocobranzas/;managerclases/;archivoclases/;managerreportes/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/FitManage" prefix_auto="1" extension_auto="1" />
