@@ -1,9 +1,9 @@
 #include "fecha.h"
 #include <iostream>
 #include <iomanip>   // setw, setfill (para imprimir en los cout con un ancho minimo de caracteres predeterminado)
-#include <limits>    // numeric_limits (para limpiar buffer) 
-
-//helpers 
+#include <limits>    // numeric_limits (para limpiar buffer)
+#include <ctime>
+//helpers
 bool Fecha::esBisiesto(int a) {
     return ( (a % 4 == 0 && a % 100 != 0) || (a % 400 == 0) );
 }
@@ -35,8 +35,16 @@ bool Fecha::esValida(int d, int m, int a) {
     return true;
 }
 
-//Constructores 
-Fecha::Fecha() : dia(1), mes(1), anio(2000) {}
+//Constructores
+Fecha::Fecha(){
+    time_t t;
+    t= time(NULL);
+    struct tm *fecha;
+    fecha =localtime(&t);
+    dia = fecha ->tm_mday;
+    mes = fecha ->tm_mon+1;
+    anio = fecha ->tm_year+1900;
+}
 
 Fecha::Fecha(int d, int m, int a) {
     if (esValida(d, m, a)) { dia = d; mes = m; anio = a; }
