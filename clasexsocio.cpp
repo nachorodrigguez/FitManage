@@ -7,6 +7,7 @@ using namespace std;
 ClasexSocio::ClasexSocio(){
     _IDClasexSocio = 0;
     _idSocio = 0;
+    _fechaInscripcion = Fecha::FechaActual();
     _IDClase = 0;
     _estado = true;   // por defecto, inscripcion activa
 }
@@ -57,25 +58,8 @@ void ClasexSocio::setEstado(bool e){
 void ClasexSocio::Cargar(){
     cout << "\n=== Nueva inscripcion de socio a clase ===\n";
 
-    // ID del socio
-    cout << "ID del socio: ";
-    while(!(cin >> _idSocio)){
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Entrada invalida. Ingrese nuevamente ID del socio: ";
-    }
-
-    // ID de la clase
-    cout << "ID de la clase (1-7): ";
-    while(!(cin >> _IDClase) || _IDClase < 1 || _IDClase > 7){
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Entrada invalida. Ingrese un ID de clase entre 1 y 7: ";
-    }
-
     // Fecha de inscripcion
-    cout << "\nFecha de inscripcion:\n";
-    _fechaInscripcion.Cargar();
+    _fechaInscripcion.Mostrar();
 
     _estado = true;  // inscripcion activa
 
