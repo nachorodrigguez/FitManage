@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+
 //CONSTRUCTOR
 int Plan::ultimoID = 0;
 Plan::Plan(int id, const char* tip, const char* per, float pre, int dur){
@@ -46,13 +48,16 @@ int  Plan::ObtenerUltimoId() { return ultimoID; }
 void Plan::Cargar() {
     idPlan = ++ultimoID;
     cout << "Cargando Plan #" << idPlan << endl;
+    cout << endl;
 
     cin.ignore();
+
+    /*
     string tipoDePlan;
     cout << "INGRESE EL NOMBRE DEL PLAN: ";
     getline(cin, tipoDePlan);
     strncpy(tipoPlan, tipoDePlan.c_str(), sizeof(tipoPlan) - 1);
-    tipoPlan[sizeof(tipoPlan) - 1] = '\0';
+    tipoPlan[sizeof(tipoPlan) - 1] = '\0';*/
 
     string descripcionDelPlan;
     cout << "INGRESE LA DESCRIPCION DEL PLAN: ";

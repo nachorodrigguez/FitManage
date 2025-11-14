@@ -3,18 +3,18 @@
 #include "archivoplanes.h"
 
 class ManagerPlanes{
-    public:
-        ManagerPlanes(std::string nombreArchivoPlanes);
-        void run();
+    private:
+        int _cantidadOpciones;
+        Plan plan;
+        ArchivoPlanes archivoPlanes;
 
     protected:
         void mostrarOpciones();
         int seleccionOpcion();
         void ejecutarOpcion(int opcion);
 
-    private:
-        int _cantidadOpciones;
-        Plan plan;
-        ArchivoPlanes archivoPlanes;
+    public:
+        ManagerPlanes(std::string nombreArchivoPlanes);
+        void run();
 
 };

@@ -1,7 +1,85 @@
 #include <iostream>
 #include "managerplanes.h"
+#include <cstring>
+
 
 using namespace std;
+
+
+bool existeNombrePlan(const char* nombreBuscado, ArchivoPlanes &archivo) {
+    int cantidad = archivo.CantidadRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+        Plan plan = archivo.Leer(i);
+
+        if (plan.getEstado()) {
+
+            if (strcasecmp(plan.getTipo(), nombreBuscado) == 0) {
+                return true;
+            }
+        }
+    }
+
+    return false;  // No existe
+}
+
+int seleccionarPlan(ArchivoPlanes &archivo) {
+    int cantidad = archivo.CantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay planes cargados.\n";
+        return -1;
+    }
+
+
+    Plan* vec = new Plan[cantidad];
+    archivo.Leer(cantidad, vec);
+
+    cout << "=== LISTA DE PLANES ACTIVOS ===\n";
+
+    int indices[200];
+    int cantMostrar = 0;
+
+    for (int i = 0; i < cantidad; i++) {
+        if (vec[i].getEstado()) {
+            cout << (cantMostrar + 1) << " - " << vec[i].getTipo() << endl;
+            indices[cantMostrar] = i;
+            cantMostrar++;
+        }
+    }
+
+    if (cantMostrar == 0) {
+        cout << "\nNo hay planes activos.\n";
+        delete[] vec;
+        return -1;
+    }
+
+    cout << "\nSELECCIONE UN PLAN(0 para cancelar): ";
+    int opcion;
+    cin >> opcion;
+    while(cin.fail()){
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Entrada invalida. Ingrese un numero: ";
+        cin >> opcion;
+    }
+
+    if (opcion == 0) {
+        delete[] vec;
+        return -1;
+    }
+
+    if (opcion < 1 || opcion > cantMostrar) {
+        cout << "Opcion incorrecta.\n";
+        delete[] vec;
+        return -1;
+    }
+
+    int posReal = indices[opcion - 1];
+    delete[] vec;
+    return posReal;    // posición real en el archivo
+}
+
+
 
 ManagerPlanes::ManagerPlanes(std::string nombreArchivoPlanes)
     : archivoPlanes(nombreArchivoPlanes) {
@@ -49,29 +127,45 @@ int ManagerPlanes::seleccionOpcion(){
 
 void ManagerPlanes::ejecutarOpcion(int opcion){
     switch(opcion){
-        case 1:{
+
+    case 1: {
+            cin.ignore();
+            string nombre;
+
+            do {
+                cout << "INGRESE EL NOMBRE DEL PLAN: ";
+                getline(cin, nombre);
+                cout << endl;
+
+                if (existeNombrePlan(nombre.c_str(), archivoPlanes)) {
+                    cout << "Ya existe un plan con ese nombre. Intente otro.\n";
+                    cout << endl;
+                }
+            } while (existeNombrePlan(nombre.c_str(), archivoPlanes));
+
+            plan.setTipoPlan(nombre.c_str());
+
             plan.Cargar();
+
+            // guardar
             if (archivoPlanes.Guardar(plan)) {
-            cout << "PLAN GUARDADO EXITOSAMENTE!" << endl;
+                cout << "PLAN GUARDADO EXITOSAMENTE!" << endl;
             } else {
                 cout << "Error al guardar el plan." << endl;
             }
+
             system("pause");
             break;
-            }
+        }
         case 2: {
-            int idBuscado;
-            cout << "Ingrese el ID del plan a modificar: ";
-            cin >> idBuscado;
-
-            int posicion = archivoPlanes.Buscar(idBuscado);
+            int posicion = seleccionarPlan(archivoPlanes);
             if (posicion < 0) {
-                cout << "No existe un plan con ese ID." << endl;
                 system("pause");
                 break;
             }
 
             Plan planActual = archivoPlanes.Leer(posicion);
+
             cout << "\n--- PLAN ENCONTRADO ---\n";
             planActual.Mostrar();
             cout << "-------------------------" << endl;
@@ -117,7 +211,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
             if (nuevaDuracion > 0) planModificado.setDuracion(nuevaDuracion);
 
             // Guardamos cambios (ID y estado se mantienen)
-            if (archivoPlanes.ModificarPorId(idBuscado, planModificado)) {
+            if (archivoPlanes.Guardar(planModificado, posicion)) {
                 cout << "\nPLAN MODIFICADO CORRECTAMENTE." << endl;
             } else {
                 cout << "\nError al modificar el plan." << endl;
