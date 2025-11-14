@@ -208,11 +208,12 @@
 	"cobranza.h"
 	"archivoplanes.h"
 
-1762466971 source:c:\users\nacho\documents\github4\fitmanage\fecha.cpp
+1763133385 source:c:\users\nacho\documents\github4\fitmanage\fecha.cpp
 	"fecha.h"
 	<iostream>
 	<iomanip>
 	<limits>
+	<ctime>
 
 1763127270 source:c:\users\nacho\documents\github4\fitmanage\instructor.cpp
 	<iostream>
