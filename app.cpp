@@ -34,9 +34,8 @@ void App::mostrarOpciones(){
         cout << "3 - PLANES"<< endl;
         cout << "4 - CLASES"<< endl;
         cout << "5 - PAGOS"<< endl;
-        cout << "6 - CONSULTAS"<< endl;
-        cout << "7 - REPORTES"<< endl;
-        cout << "8 - CONFIGURACIONES"<< endl;
+        cout << "6 - REPORTES"<< endl;
+        cout << "7 - CONFIGURACIONES"<< endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -82,11 +81,10 @@ void App::ejecutarOpcion(int opcion){
         break;
         }
         case 6:{
-        managerlis.run();
+        managerrep.run();
         break;
         }
         case 7:{
-        managerrep.run();
         break;
         }
     }

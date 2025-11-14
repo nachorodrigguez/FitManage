@@ -4,7 +4,6 @@
 #include "managerplanes.h"
 #include "managerClases.h"
 #include "managerCobranzas.h"
-#include "Managerlistados.h"
 #include "ManagerReportes.h"
 
 class App{
@@ -22,7 +21,6 @@ class App{
     ManagerInstructores managerinstructores;
     ManagerClases managerclases;
     ManagerCobranzas managercob;
-    ManagerListados managerlis;
     ManagerReportes managerrep;
 
     private:
