@@ -9,7 +9,7 @@
 using namespace std;
 
 ManagerSocios::ManagerSocios(std::string nombreArchivo): archivoSocios(nombreArchivo){
-    _cantidadOpcines = 6 ;
+    _cantidadOpcines = 7 ;
 }
 
 void ManagerSocios::run(){
@@ -23,14 +23,15 @@ void ManagerSocios::run(){
 }
 
 void ManagerSocios::mostrarOpciones(){
-    cout << "MENU PRINCIPAL"<<endl;
+    cout << "MENU SOCIOS"<<endl;
     cout << "====================="<< endl;
     cout << "1 - CARGAR SOCIO"<< endl;
     cout << "2 - MODIFICAR SOCIO" << endl;    //test rama backup
     cout << "3 - LISTADO DE SOCIOS" << endl;
     cout << "4 - ASIGNAR PLAN A SOCIO" << endl;
-    cout << "5 - ASIGNAR CLASE A SOCIO" << endl;    
-    cout << "6 - ELIMINAR SOCIO" << endl;
+    cout << "5 - ASIGNAR CLASE A SOCIO" << endl;
+    cout << "6 - ELIMINAR CLASE DE SOCIO" << endl;   
+    cout << "7 - ELIMINAR SOCIO" << endl;
     cout << "0 - SALIR"<< endl;
     cout << "======================"<< endl;
 }
@@ -88,6 +89,31 @@ static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
     }
 }
 
+/// lo de abajo es nuevo 16/11 2da modificacion
+// Lista las clases activas de un socio. Devuelve true si encontró al menos una.
+static bool listarClasesDeSocio(ArchivoClasexSocio& arc, int idSocio){
+    int n = arc.CantidadRegistros();
+    ClasexSocio reg;
+    bool alguno = false;
+
+    cout << "\nClases activas del socio " << idSocio << ":\n";
+
+    for(int i = 0; i < n; i++){
+        if(arc.Leer(i, reg)){
+            if(reg.getIdSocio() == idSocio && reg.getEstado()){
+                cout << " - ID Clase: " << reg.getIDClase()
+                     << " (ID Inscripcion: " << reg.getIDClasexSocio() << ")\n";
+                alguno = true;
+            }
+        }
+    }
+
+    if(!alguno){
+        cout << "   (No tiene clases activas)\n";
+    }
+
+    return alguno;
+}
 /// ---------- LO DE ABAJO ES LO AGREGADO 16/11 ------ ///
 // Devuelve cuántas clases puede tener el socio según el tipo de plan.
 // 0  = no puede inscribirse a clases
@@ -482,9 +508,89 @@ void ManagerSocios::ejecutarOpcion(int opcion){
         }
         
         /// LO DE ARRIBA NUEVO 16/11
-        
-        
+        // case 6 nuevo 16/11 2da ver
         case 6: {
+            // Eliminar (baja lógica) una clase de un socio
+            cout << "=== ELIMINAR CLASE DE SOCIO ===" << endl;
+
+            int idBuscado;
+            cout << "Ingrese el ID (DNI) del socio: ";
+            cin >> idBuscado;
+
+            int posSocio = archivoSocios.Buscar(idBuscado);
+            if (posSocio < 0) {
+                cout << "No existe un socio con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            Socio s = archivoSocios.Leer(posSocio);
+
+            if (!s.getEstado()) {
+                cout << "El socio esta inactivo. No se puede modificar sus clases." << endl;
+                system("pause");
+                break;
+            }
+
+            ArchivoClasexSocio arcIns;
+            int totalIns = arcIns.CantidadRegistros();
+            if (totalIns <= 0) {
+                cout << "No hay inscripciones cargadas en el sistema." << endl;
+                system("pause");
+                break;
+            }
+
+            // Mostrar las clases activas de ese socio
+            bool tieneClases = listarClasesDeSocio(arcIns, s.getId());
+            if (!tieneClases) {
+                cout << "El socio no tiene clases activas para eliminar." << endl;
+                system("pause");
+                break;
+            }
+
+            int idClase;
+            cout << "\nIngrese el ID de la clase que desea dar de baja: ";
+            cin >> idClase;
+
+            // Buscar esa inscripción específica
+            int posIns = arcIns.BuscarPorSocioYClase(s.getId(), idClase);
+            if (posIns < 0) {
+                cout << "No se encontro una inscripcion ACTIVA de ese socio a esa clase." << endl;
+                system("pause");
+                break;
+            }
+
+            ClasexSocio reg;
+            if (!arcIns.Leer(posIns, reg)) {
+                cout << "Error al leer la inscripcion." << endl;
+                system("pause");
+                break;
+            }
+
+            cout << "\nInscripcion encontrada:\n";
+            reg.Mostrar();
+
+            cout << "\nConfirma eliminar esta inscripcion? (s/n): ";
+            char conf;
+            cin >> conf;
+            if (conf != 's' && conf != 'S') {
+                cout << "Operacion cancelada." << endl;
+                system("pause");
+                break;
+            }
+
+            reg.setEstado(false);
+            if (arcIns.Sobrescribir(posIns, reg)) {
+                cout << "Inscripcion dada de baja correctamente." << endl;
+            } else {
+                cout << "Error al actualizar la inscripcion." << endl;
+            }
+
+            system("pause");
+            break;
+        }
+        //arriba nuevo 16/11 ver2
+        case 7: {
             // Baja logica del socio (marca inactivo)
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a eliminar: ";
