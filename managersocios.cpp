@@ -9,7 +9,7 @@
 using namespace std;
 
 ManagerSocios::ManagerSocios(std::string nombreArchivo): archivoSocios(nombreArchivo){
-    _cantidadOpcines = 5 ;
+    _cantidadOpcines = 6 ;
 }
 
 void ManagerSocios::run(){
@@ -29,7 +29,8 @@ void ManagerSocios::mostrarOpciones(){
     cout << "2 - MODIFICAR SOCIO" << endl;    //test rama backup
     cout << "3 - LISTADO DE SOCIOS" << endl;
     cout << "4 - ASIGNAR PLAN A SOCIO" << endl;
-    cout << "5 - ELIMINAR SOCIO" << endl;
+    cout << "5 - ASIGNAR CLASE A SOCIO" << endl;    
+    cout << "6 - ELIMINAR SOCIO" << endl;
     cout << "0 - SALIR"<< endl;
     cout << "======================"<< endl;
 }
@@ -65,7 +66,7 @@ static bool existeInscripcionActiva(ArchivoClasexSocio& arc, int idSocio, int id
 }
 
 static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
-    // Crea y persiste una inscripción socio→clase con fecha y estado activo
+    // Crea y persiste una inscripci├│n socioΓåÆclase con fecha y estado activo
     ClasexSocio reg;
     int nuevoID = arc.BuscarUltimoID() + 1;
     reg.setIDClasexSocio(nuevoID);
@@ -87,6 +88,52 @@ static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
     }
 }
 
+/// ---------- LO DE ABAJO ES LO AGREGADO 16/11 ------ ///
+// Devuelve cuántas clases puede tener el socio según el tipo de plan.
+// 0  = no puede inscribirse a clases
+// 1  = puede tener una sola clase activa
+// -1 = ilimitadas (mientras exista la clase)
+static int maxClasesPorPlan(const char* tipoPlan){
+    if (tipoPlan == nullptr || std::strcmp(tipoPlan, "Sin asignar") == 0) {
+        return 0;
+    }
+
+    // Ajustá estos nombres a cómo crean los planes en ManagerPlanes
+    if (std::strstr(tipoPlan, "FLEX") != nullptr) {
+        // Solo gimnasio
+        return 0;
+    }
+    if (std::strstr(tipoPlan, "PLUS") != nullptr) {
+        // Gimnasio + 1 clase
+        return 1;
+    }
+    if (std::strstr(tipoPlan, "TOTAL") != nullptr) {
+        // Gimnasio + todas las clases
+        return -1;
+    }
+
+    // Si el nombre no matchea nada conocido, por seguridad NO le doy clases
+    return 0;
+}
+
+// Cuenta cuántas inscripciones activas tiene un socio
+static int contarClasesActivas(ArchivoClasexSocio& arc, int idSocio){
+    int n = arc.CantidadRegistros();
+    ClasexSocio reg;
+    int cont = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (arc.Leer(i, reg)) {
+            if (reg.getIdSocio() == idSocio && reg.getEstado()) {
+                cont++;
+            }
+        }
+    }
+    return cont;
+}
+
+//---------------------LO DE ARRIBA ES LO AGREGADO 16/11----------
+
 void ManagerSocios::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1: {
@@ -96,7 +143,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             int idNuevo;
             bool idValido = false;
 
-            // Validación de ID duplicado
+            // Validaci├│n de ID duplicado
             do {
                 cout << "Ingrese ID del socio (DNI): ";
                 cin >> idNuevo;
@@ -234,8 +281,9 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             break;
         }
 
+        /// AGREADO ABAJO 16/11 /// 
         case 4: {
-            // Asignar plan a socio (valida existencia, estado e IDs de plan)
+            // Asignar plan a socio
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio: ";
             cin >> idBuscado;
@@ -255,7 +303,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // Confirmación de si ya tiene plan
+            // Confirmación si ya tiene plan
             if (s.tienePlan()) {
                 cout << "El socio ya tiene un plan activo asignado: "
                      << s.getTipoPlan() << endl;
@@ -305,7 +353,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // Elección de plan por ID (validación contra archivo)
+            // Elección de plan por ID
             int idPlanSel;
             cout << "\nIngrese el ID del plan a asignar: ";
             cin >> idPlanSel;
@@ -329,7 +377,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             // Asignar plan (se guarda el tipoPlan tal como está en el plan elegido)
             s.setTipoPlan(elegido.getTipo());
 
-            // Persistir el socio modificado en su misma posición
+            // Persistir el socio modificado
             if (archivoSocios.Guardar(s, posSocio)) {
                 cout << "Plan asignado correctamente al socio " << s.getId()
                      << " (tipoPlan = " << s.getTipoPlan() << ").\n";
@@ -340,41 +388,104 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // Inscribir clases según el plan (2 = una clase, 3 = múltiples)
-            {
-                ArchivoClasexSocio arcIns;
-
-                if(idPlanSel == 2){
-                    int idClase = pedirIdClase();
-                    if(existeInscripcionActiva(arcIns, s.getId(), idClase)){
-                        cout << "El socio ya tiene esa clase activa.\n";
-                    } else {
-                        crearInscripcion(arcIns, s.getId(), idClase);
-                    }
-                }
-                else if(idPlanSel == 3){
-                    char mas = 's';
-                    do{
-                        int idClase = pedirIdClase();
-                        if(existeInscripcionActiva(arcIns, s.getId(), idClase)){
-                            cout << "El socio ya tiene esa clase activa.\n";
-                        } else {
-                            crearInscripcion(arcIns, s.getId(), idClase);
-                        }
-                        cout << "Desea inscribir otra clase? (s/n): ";
-                        cin >> mas;
-                    } while(mas=='s' || mas=='S');
-                }
-                // idPlanSel == 1 -> Solo gimnasio (no inscribe clases)
-            }
-
             delete[] vec;
             system("pause");
             break;
         }
-
+        
+        /// LO DE ARRIBA ES NUEVO 16/11
+        /// LO DE ABAJO TAMBIEN NUEVA OPCION
+        
         case 5: {
-            // Baja lógica del socio (marca inactivo)
+            // Asignar clase(s) a socio según su plan
+            cout << "=== ASIGNAR CLASE A SOCIO ===" << endl;
+
+            int idBuscado;
+            cout << "Ingrese el ID (DNI) del socio: ";
+            cin >> idBuscado;
+
+            int posSocio = archivoSocios.Buscar(idBuscado);
+            if (posSocio < 0) {
+                cout << "No existe un socio con ese ID." << endl;
+                system("pause");
+                break;
+            }
+
+            Socio s = archivoSocios.Leer(posSocio);
+
+            if (!s.getEstado()) {
+                cout << "El socio esta inactivo. No se puede asignar clases." << endl;
+                system("pause");
+                break;
+            }
+
+            if (!s.tienePlan()) {
+                cout << "El socio no tiene un plan asignado. Asigne un plan primero." << endl;
+                system("pause");
+                break;
+            }
+
+            const char* tipoPlan = s.getTipoPlan();
+            int maxClases = maxClasesPorPlan(tipoPlan);
+
+            if (maxClases == 0) {
+                cout << "El plan actual (" << tipoPlan << ") no permite inscribirse a clases." << endl;
+                system("pause");
+                break;
+            }
+
+            ArchivoClasexSocio arcIns;
+            int clasesActuales = contarClasesActivas(arcIns, s.getId());
+
+            if (maxClases > 0 && clasesActuales >= maxClases) {
+                cout << "El socio ya tiene " << clasesActuales
+                     << " clase(s) activa(s), que es el máximo permitido para su plan." << endl;
+                system("pause");
+                break;
+            }
+
+            cout << "Plan del socio: " << tipoPlan << endl;
+            cout << "Clases activas actuales: " << clasesActuales << endl;
+
+            char mas = 's';
+            do {
+                int idClase = pedirIdClase();
+
+                if (existeInscripcionActiva(arcIns, s.getId(), idClase)) {
+                    cout << "El socio ya tiene esa clase activa.\n";
+                } else {
+                    // Si el plan tiene límite, validamos antes de crear una nueva
+                    if (maxClases > 0 && clasesActuales >= maxClases) {
+                        cout << "Se alcanzo el limite de clases para este socio.\n";
+                        break;
+                    }
+
+                    if (crearInscripcion(arcIns, s.getId(), idClase)) {
+                        clasesActuales++;
+                    }
+                }
+
+                // Si es TOTAL (maxClases < 0) puede seguir
+                // Si tiene límite, solo ofrecemos seguir si aún no lo alcanzó
+                if (maxClases < 0 || clasesActuales < maxClases) {
+                    cout << "Desea inscribir otra clase? (s/n): ";
+                    cin >> mas;
+                } else {
+                    cout << "Se alcanzo el limite de clases para este socio.\n";
+                    mas = 'n';
+                }
+
+            } while (mas == 's' || mas == 'S');
+
+            system("pause");
+            break;
+        }
+        
+        /// LO DE ARRIBA NUEVO 16/11
+        
+        
+        case 6: {
+            // Baja logica del socio (marca inactivo)
             int idBuscado;
             cout << "Ingrese el ID (DNI) del socio a eliminar: ";
             cin >> idBuscado;
