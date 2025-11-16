@@ -28,7 +28,7 @@ void ManagerSocios::mostrarOpciones(){
     rlutil::locate(60, 10);
     rlutil::locate(60, 11); cout << "MENU PRINCIPAL";
     rlutil::locate(60, 12); cout << "=====================";
-    rlutil::locate(60, 13); cout << "1 - CARGAR SOCIO";
+    rlutil::locate(60, 13); cout << "1 - CARGAR SOCIO";      //test ultimo commit
     rlutil::locate(60, 14); cout << "2 - MODIFICAR SOCIO";
     rlutil::locate(60, 15); cout << "3 - LISTADO DE SOCIOS"  ;
     rlutil::locate(60, 16); cout << "4 - ASIGNAR PLAN A SOCIO";
