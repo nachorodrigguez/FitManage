@@ -87,8 +87,8 @@ int ArchivoSocios::CantidadRegistros()
     {
         return 0;
     }
-    fseek(pArchivo, 0, SEEK_END);
-    int cantidadRegistros = ftell(pArchivo) / sizeof(Socio);
+    fseek(pArchivo, 0, SEEK_END); //Ir al final del archivo para saber cuanto pesa
+    int cantidadRegistros = ftell(pArchivo)/*Obtener el tamaño total*/ / sizeof(Socio)/*tamaño de un socio*/;
     fclose(pArchivo);
     return cantidadRegistros;
 }

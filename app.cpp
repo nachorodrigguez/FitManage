@@ -9,7 +9,8 @@ App::App():
     managerinstructores("instructores.dat"),
     managercob("cobranzas.dat"),
     managerclases("clases.dat"),
-    managerrep("cobranzas.dat")
+    managerreportes("cobranzas.dat")
+
         {
             _cantidadOpciones = 8 ;
         }
@@ -35,8 +36,8 @@ void App::mostrarOpciones(){
         cout << "4 - CLASES"<< endl;
         cout << "5 - PAGOS"<< endl;
         cout << "6 - CLASES POR SOCIOS" << endl;
-        cout << "6 - REPORTES"<< endl;
-        cout << "7 - CONFIGURACIONES"<< endl;
+        cout << "7 - REPORTES"<< endl;
+        cout << "8 - CONFIGURACIONES"<< endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -82,10 +83,11 @@ void App::ejecutarOpcion(int opcion){
         break;
         }
         case 6:{
+
         break;
         }
         case 7:{
-        managerrep.run();
+        managerreportes.run();
         break;
         }
     }

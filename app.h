@@ -21,7 +21,7 @@ class App{
     ManagerInstructores managerinstructores;
     ManagerClases managerclases;
     ManagerCobranzas managercob;
-    ManagerReportes managerrep;
+    ManagerReportes managerreportes;
 
     private:
     int _cantidadOpciones;

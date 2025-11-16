@@ -3,6 +3,10 @@
 #include "ManagerReportes.h"
 #include "ArchivoCobranzas.h"
 #include "cobranza.h"
+#include "ArchivoSocios.h"
+#include <map>
+#include <string>
+
 
 
 using namespace std;
@@ -99,8 +103,68 @@ void ManagerReportes::ejecutarOpcion(int opcion){
             break;
             }
         case 2: {
-            break;
+            ArchivoSocios archivosocios("socios.dat");
+            int cant = archivosocios.CantidadRegistros();
+
+            // Vectores dinámicos
+            string* planes = new string[cant];
+            int* cantidades = new int[cant];
+
+            if (planes == nullptr || cantidades == nullptr) {
+                cout << "Error de memoria." << endl;
+                return;
             }
+
+            int cantPlanes = 0;
+
+            // Recorro todos los socios del archivo
+            for (int i = 0; i < cant; i++) {
+                Socio socio = archivosocios.Leer(i);
+
+                if (socio.getEstado() == false) continue;
+
+
+                string plan = socio.getTipoPlan();
+
+                bool encontrado = false;
+                // Recorro los planes que ya tengo guardados para ver si este ya existe
+                for (int j = 0; j < cantPlanes; j++)
+                    {
+                    if (planes[j] == plan) {
+                        cantidades[j]++;
+                        encontrado = true;
+
+                        break;
+                    }
+                }
+                if (!encontrado) {
+
+                    planes[cantPlanes] = plan;
+                    cantidades[cantPlanes] = 1;
+                    cantPlanes++;
+                }
+            }
+
+            cout << "SOCIOS ACTIVOS POR PLAN\n\n";
+            cout << left << setw(25) << "PLAN" << "SOCIOS" << endl;
+            cout << "-------------------------------------\n";
+
+            int total = 0;
+
+            for (int i = 0; i < cantPlanes; i++) {
+                cout << left << setw(25) << planes[i] << cantidades[i] << endl;
+                total += cantidades[i];
+            }
+
+            cout << "-------------------------------------\n";
+            cout << left << setw(25) << "TOTAL SOCIOS:" << total << endl;
+            system("pause");
+
+            delete[] planes;
+            delete[] cantidades;
+            break;
+        }
+
         case 3: {
             break;
         }
