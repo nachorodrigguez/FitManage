@@ -1,7 +1,6 @@
 #include <iostream>
 #include "managerplanes.h"
 #include <cstring>
-#include "rlutil.h"
 
 
 using namespace std;
@@ -93,9 +92,9 @@ ManagerPlanes::ManagerPlanes(std::string nombreArchivoPlanes)
 void ManagerPlanes::run(){
     int opcion;
     do{
-        rlutil::cls();
+        system("cls");
         opcion = seleccionOpcion();
-        rlutil::cls();
+        system("cls");
         ejecutarOpcion(opcion);
     }while(opcion!=0);
 }
@@ -155,13 +154,13 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
                 cout << "Error al guardar el plan." << endl;
             }
 
-            rlutil::anykey();
+            system("pause");
             break;
         }
         case 2: {
             int posicion = seleccionarPlan(archivoPlanes);
             if (posicion < 0) {
-                rlutil::anykey();
+                system("pause");
                 break;
             }
 
@@ -176,7 +175,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
             cin >> confirmar;
             if (confirmar != 's' && confirmar != 'S') {
                 cout << "Operacion cancelada." << endl;
-                rlutil::anykey();
+                system("pause");
                 break;
             }
 
@@ -218,7 +217,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
                 cout << "\nError al modificar el plan." << endl;
             }
 
-            rlutil::anykey();
+            system("pause");
             break;
         }
 
@@ -226,13 +225,13 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
             int cantidad = archivoPlanes.CantidadRegistros();
             if (cantidad == 0) {
                 cout << "No hay planes cargados." << endl;
-                rlutil::anykey();
+                system("pause");
                 break;
             }
 
             int opcionListado = -1;
             do {
-                rlutil::cls();
+                system("cls");
                 cout << "=== SUBMENU - LISTAR PLANES ===" << endl;
                 cout << "1 - Planes Activos" << endl;
                 cout << "2 - Planes Inactivos" << endl;
@@ -245,11 +244,11 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
                 if (opcionListado == 0) break;
                 if (opcionListado < 0 || opcionListado > 3) {
                     cout << "Opcion incorrecta..." << endl;
-                    rlutil::anykey();
+                    system("pause");
                     continue;
                 }
 
-                rlutil::cls();
+                system("cls");
 
                 Plan* vectorPlanes = new Plan[cantidad];
                 archivoPlanes.Leer(cantidad, vectorPlanes);
@@ -294,7 +293,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
 
                 delete[] vectorPlanes;
                 cout << endl;
-                rlutil::anykey();
+                system("pause");
 
             } while (opcionListado != 0);
 
@@ -308,7 +307,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
             int posicion = archivoPlanes.Buscar(idPlanBuscado);
             if (posicion < 0) {
                 cout << "No existe un plan con ese ID." << endl;
-                rlutil::anykey();
+                system("pause");
                 break;
             }
 
@@ -330,7 +329,7 @@ void ManagerPlanes::ejecutarOpcion(int opcion){
                 cout << "Operacion cancelada." << endl;
             }
 
-            rlutil::anykey();
+            system("pause");
             break;
         }
         case 0:{

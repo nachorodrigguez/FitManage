@@ -1,7 +1,10 @@
 #pragma once
 #include "clase.h"
 #include "archivoClases.h"
-
+#include "archivoClasexSocio.h"
+#include "socio.h"
+#include "archivoSocios.h"
+#include "clasexsocio.h"
 
 using namespace std;
 
@@ -19,4 +22,8 @@ private:
     int _cantidadOpciones;
     Clase clase;
     ArchivoClases archivoClases;
+    ArchivoClasexSocio archivoclasesxsocio;
+    Socio socio;
+    ArchivoSocios archivosocios;
+    ClasexSocio clasexsocio;
 };

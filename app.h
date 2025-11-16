@@ -5,7 +5,6 @@
 #include "managerClases.h"
 #include "managerCobranzas.h"
 #include "ManagerReportes.h"
-#include "rlutil.h"
 
 class App{
     public:
@@ -25,7 +24,6 @@ class App{
     ManagerReportes managerrep;
 
     private:
-    const int CENTER_X = 60;
     int _cantidadOpciones;
 
 };

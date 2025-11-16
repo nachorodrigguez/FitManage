@@ -2,7 +2,6 @@
 #include <cstdio>
 #include "socio.h"
 #include <cstring>
-#include "rlutil.h"
 
 using namespace std;
 
@@ -47,10 +46,7 @@ const char* Socio::getTipoPlan() const { return tipoPlan; }
 void Socio::Cargar(int idExistente) {
 
     if (idExistente == 0) {
-        rlutil::setColor(rlutil::LIGHTGREEN);
-        rlutil::locate(60, 10);
         cout << "=== ALTA DE SOCIO ===" << endl;
-        rlutil::locate(60, 11);
         cout << "Ingrese ID del socio (DNI): ";
         cin >> idSocio;
     } else {
@@ -60,11 +56,10 @@ void Socio::Cargar(int idExistente) {
 
     Persona::Cargar();
     cout << endl;
-    rlutil::locate(60, 12);
+
     cout << "Ingrese fecha de inscripcion: " << endl;
     inscripcion.Cargar();
 
-    rlutil::locate(60, 13);
     cout << "Ingrese estado (1 = activo, 0 = inactivo): ";
     cin >> estado;
 
@@ -72,32 +67,27 @@ void Socio::Cargar(int idExistente) {
 
 void Socio::Mostrar() {
     cout << endl;
-    rlutil::locate(60, 11);
     cout << "ID del socio: " << idSocio << endl;
 
     Persona::Mostrar();
     cout << endl;
-    rlutil::locate(60, 12);
+
     cout << "Fecha de inscripcion: ";
     inscripcion.Mostrar();
     cout << endl;
-    rlutil::locate(60, 13);
     cout << "Estado: " << (estado ? "Activo" : "Inactivo") << endl;
-    rlutil::locate(60, 14);
     cout << "Tipo de plan: " << tipoPlan << endl;
 }
 
 void Socio::Modificar() {
-    rlutil::locate(60, 10);
     cout << "=== MODIFICAR SOCIO ===" << endl;
 
     Persona::Cargar();
     cout << endl;
-    rlutil::locate(60, 11);
+
     cout << "Ingrese fecha de inscripcion: " << endl;
     inscripcion.Cargar();
 
-    rlutil::locate(60, 12);
     cout << "Ingrese estado (1 = activo, 0 = inactivo): ";
     cin >> estado;
 }

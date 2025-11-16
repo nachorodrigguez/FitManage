@@ -2,7 +2,6 @@
 #include <string>
 #include "instructor.h"
 
-
 class Clase{
 private:
     int _IDClase;

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "ManagerCobranzas.h"
-#include "rlutil.h"
 
 using namespace std;
 
@@ -11,9 +10,9 @@ ManagerCobranzas::ManagerCobranzas(std::string nombreArchivo): archivocobranzas(
 void ManagerCobranzas::run(){
     int opcion;
     do{
-        rlutil::cls();
+        system("cls");
         opcion = seleccionOpcion();
-        rlutil::cls();
+        system("cls");
         ejecutarOpcion(opcion);
     }while(opcion!=0);
 }
@@ -58,7 +57,7 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
 
                 if (posicionExiste == -1){
                     cout << "Socio no ingresado en el sistema." << endl;
-                    rlutil::anykey();
+                    system("pause");
                     return;
                 }else{
                     idValido = true;
@@ -86,7 +85,7 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             }else {
                 cout << "Socio inactivo. No se puede registrar el pago." << endl;
             }
-            rlutil::anykey();
+            system("pause");
             break;
             }
         case 2 : {
@@ -99,14 +98,14 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             else {
                 cout << "No hay pagos registrados." << endl;
             }
-            rlutil::anykey();
+            system("pause");
         break;
         }
         case 3 : {
             int cantidad = archivocobranzas.CantidadRegistros();
             if(cantidad == 0){
                 cout << "No se registraron pagos." << endl;
-                rlutil::anykey();
+                system("pause");
                 break;
             }
 
@@ -122,7 +121,7 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
                 }
             delete [] vectorCob;
             cout << endl;
-            rlutil::anykey();
+            system("pause");
             break;
             }
         case 0:{
