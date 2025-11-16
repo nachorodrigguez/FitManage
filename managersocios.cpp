@@ -26,7 +26,7 @@ void ManagerSocios::mostrarOpciones(){
     cout << "MENU PRINCIPAL"<<endl;
     cout << "====================="<< endl;
     cout << "1 - CARGAR SOCIO"<< endl;
-    cout << "2 - MODIFICAR SOCIO" << endl;
+    cout << "2 - MODIFICAR SOCIO" << endl;    //test rama backup
     cout << "3 - LISTADO DE SOCIOS" << endl;
     cout << "4 - ASIGNAR PLAN A SOCIO" << endl;
     cout << "5 - ELIMINAR SOCIO" << endl;
