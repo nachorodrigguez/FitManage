@@ -4,7 +4,7 @@
 using namespace std;
 
 ManagerCobranzas::ManagerCobranzas(std::string nombreArchivo): archivocobranzas(nombreArchivo), archivosocios("socios.dat"){
-    _cantidadOpcines = 3 ;
+    _cantidadOpcines = 4 ;
 }
 
 void ManagerCobranzas::run(){
@@ -23,6 +23,7 @@ void ManagerCobranzas::mostrarOpciones(){
         cout << "1 - GENERAR PAGO"<< endl;
         cout << "2 - FACTURA" << endl;
         cout << "3 - LISTADO DE PAGOS" << endl;
+        cout << "4 - BUSCAR PAGOS" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -114,7 +115,6 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             bool hayResultados = false;
 
             cout << "LISTADO DE PAGOS" << endl;
-            cout << "ID             APELLIDO                FECHA TRANSACCION               PAGO" << endl;
             for (int i=0; i<cantidad; i++){
             vectorCob[i].Mostrar();
             cout << endl;
@@ -122,6 +122,30 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
                 }
             delete [] vectorCob;
             cout << endl;
+            system("pause");
+            break;
+            }
+        case 4:{
+            cout << "=== BUSCAR FACTURAS POR DNI ===" << endl;
+            int dni;
+            cout << "Ingrese DNI: ";
+            cin >> dni;
+
+            int facturas[500];
+            int cantidad;
+
+            archivocobranzas.BuscarPorDNI(dni, facturas, cantidad);
+
+            if(cantidad == 0){
+                cout << "No hay pagos registrados con ese DNI." << endl;
+                system("pause");
+                break;
+            }
+            for(int i=0; i < cantidad; i++){
+                Cobranza cobranzas = archivocobranzas.Leer(facturas[i]);
+                cobranzas.Mostrar();
+                cout << endl;
+            }
             system("pause");
             break;
             }

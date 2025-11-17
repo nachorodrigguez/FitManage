@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ManagerInstructores.h"
-#include "Instructor.h"
 #include "ArchivoInstructores.h"
+#include "Instructor.h"
 #include "Clase.h"
 #include "ArchivoClases.h"
 
@@ -9,7 +9,7 @@ using namespace std;
 
 ManagerInstructores::ManagerInstructores(std::string nombreArchivoInstructores)
     : archivoInstructores(nombreArchivoInstructores) {
-    _cantidadOpciones = 5; // (CARGAR, MODIFICAR, LISTADO, ESPECIALIDAD, ELIMINAR)
+    _cantidadOpciones = 6; // (CARGAR, MODIFICAR, LISTADO, ESPECIALIDAD, ELIMINAR)
 }
 
 void ManagerInstructores::run(){
@@ -30,6 +30,7 @@ void ManagerInstructores::mostrarOpciones(){
         cout << "3 - LISTADO DE INSTRUCTORES" << endl;
         cout << "4 - ASIGNAR CLASE A INSTRUCTOR" << endl;
         cout << "5 - ELIMINAR INSTRUCTOR" << endl;
+        cout << "6 - BUSCAR INSTRUCTOR" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -286,6 +287,24 @@ void ManagerInstructores::ejecutarOpcion(int opcion){
             } else {
                 cout << "Operación cancelada." << endl;
             }
+
+            system("pause");
+            break;
+        }
+        case 6:{
+            cout << "=== BUSCAR INSTRUCTOR ===" << endl;
+            int id;
+            cout << "Ingrese ID: ";
+            cin >> id;
+
+            int pos = archivoInstructores.Buscar(id);
+            if(pos == -1){
+                cout << "No hay un instructor registrado con ese DNI." << endl;
+                system("pause");
+                break;
+            }
+            Instructor instructor = archivoInstructores.Leer(pos);
+            instructor.Mostrar();
 
             system("pause");
             break;

@@ -14,4 +14,5 @@ class ArchivoCobranzas{
         Cobranza Leer(int posicion);
         int CantidadRegistros();
         void Leer(int cantidadRegistros, Cobranza *vector);
+        int BuscarPorDNI(int dni, int facturas[], int &cantidad);
 };

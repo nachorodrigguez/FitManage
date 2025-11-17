@@ -106,3 +106,22 @@ void ArchivoCobranzas::Leer(int cantidadRegistros, Cobranza *vector)
     }
     fclose(pArchivo);
 }
+int ArchivoCobranzas::BuscarPorDNI(int dni, int facturas[], int &cantidad){
+    cantidad = 0;
+    FILE* pArchivo = fopen(_nombreArchivo.c_str(), "rb");
+    if(pArchivo == NULL) return -1;
+
+    Cobranza reg;
+    int pos = 0;
+
+    while(fread(&reg, sizeof(Cobranza), 1, pArchivo) == 1){
+        if(reg.getDniSocio() == dni){
+            facturas[cantidad] = pos;
+            cantidad++;
+        }
+        pos++;
+    }
+
+    fclose(pArchivo);
+    return -1;
+}
