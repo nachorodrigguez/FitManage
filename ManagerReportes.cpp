@@ -7,8 +7,6 @@
 #include <map>
 #include <string>
 
-
-
 using namespace std;
 
 ManagerReportes::ManagerReportes(std::string nombreArchivoCobranzas){
@@ -31,7 +29,7 @@ void ManagerReportes::mostrarOpciones(){
         cout << "1 - RECAUDACION ANUAL Y MENSUAL" << endl;
         cout << "2 - SOCIOS ACTIVOS POR PLAN" << endl;
         cout << "3 - CLASES MAS DEMANDADAS" << endl;
-        cout << "4 - PAGOS PENDIENTES O ATRASADOS" << endl;
+        cout << "4 - PAGOS PENDIENTES" << endl;
         cout << "0 - SALIR"<< endl;
         cout << "======================"<< endl;
 }
@@ -168,7 +166,95 @@ void ManagerReportes::ejecutarOpcion(int opcion){
         case 3: {
             break;
         }
-        case 5: {
+        case 4: {
+            ArchivoCobranzas archivocob("cobranzas.dat");
+            ArchivoSocios archivosocios("socios.dat");
+            Cobranza cob;
+            Fecha fecha;
+            Fecha fechaVencimiento;
+            Plan plan;
+            Socio socio;
+
+
+            bool hayVencidos = false;
+
+            cout << "=== PAGOS PENDIENTES ===" << endl;
+            cout << "Fecha actual: ";
+            fecha.FechaActual().Mostrar();
+            cout << endl;
+            cout << "---------------------------------------------" << endl;
+            int cantidad = archivocob.CantidadRegistros();
+
+            for(int i=0; i<cantidad; i++){
+                cob = archivocob.Leer(i);
+                int id = cob.getDniSocio();
+                int pos = archivosocios.Buscar(id);
+                socio = archivosocios.Leer(pos);
+
+                bool Vencidos = false;
+                if(cob.getIdPlan() == 1 || cob.getIdPlan() == 3 || cob.getIdPlan() == 5 ){
+                        int dia = cob.getFechaTransaccion().getDia();
+                        int mes = cob.getFechaTransaccion().getMes()+1;
+                        int anio = cob.getFechaTransaccion().getAnio();
+                        if(mes > 12){
+                            mes = 1;
+                            anio++;
+                        }
+                        fechaVencimiento.setDia(dia);
+                        fechaVencimiento.setMes(mes);
+                        fechaVencimiento.setAnio(anio);
+
+                            if(fecha.FechaActual().getDia() >=  fechaVencimiento.getDia() and fecha.FechaActual().getMes()== fechaVencimiento.getMes()){
+                                Vencidos = true;
+                                    }
+                        if(Vencidos){
+                        cout << "ID Socio: " << cob.getDniSocio() << endl;
+                        cout << "Nombre: " << socio.getNombre() << " " << socio.getApellido() << endl;
+                        cout << "Fecha ultimo pago: ";
+                        cob.getFechaTransaccion().Mostrar();
+                        cout << endl;
+                        cout << "Fecha vencimiento: ";
+                        fechaVencimiento.Mostrar();
+                        cout << endl;
+                        cout << "---------------------------------------" << endl;
+
+                        hayVencidos = true;
+                    }
+                }
+
+                if(cob.getIdPlan() == 2 || cob.getIdPlan() == 4 || cob.getIdPlan() == 6){
+                        int dia = cob.getFechaTransaccion().getDia();
+                        int mes = cob.getFechaTransaccion().getMes();
+                        int anio = cob.getFechaTransaccion().getAnio()+1;
+
+                        fechaVencimiento.setDia(dia);
+                        fechaVencimiento.setMes(mes);
+                        fechaVencimiento.setAnio(anio);
+
+
+                            if(fecha.FechaActual().getDia() >=  fechaVencimiento.getDia() and fecha.FechaActual().getMes()== fechaVencimiento.getMes()
+                            and fecha.FechaActual().getAnio() == fechaVencimiento.getAnio()){
+                                Vencidos = true;
+                            }
+                            if(Vencidos){
+                        cout << "ID Socio: " << cob.getDniSocio() << endl;
+                        cout << "Nombre: " << socio.getNombre() << " " << socio.getApellido() << endl;
+                        cout << "Fecha ultimo pago: ";
+                        cob.getFechaTransaccion().Mostrar();
+                        cout << endl;
+                        cout << "Fecha vencimiento: ";
+                        fechaVencimiento.Mostrar();
+                        cout << endl;
+                        cout << "---------------------------------------" << endl;
+
+                        hayVencidos = true;
+                    }
+                }
+            }
+        if(!hayVencidos){
+            cout << "No hay pagos pendientes." << endl;
+        }
+        system("pause");
         break;
         }
     }
