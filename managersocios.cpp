@@ -9,7 +9,7 @@
 using namespace std;
 
 ManagerSocios::ManagerSocios(std::string nombreArchivo): archivoSocios(nombreArchivo){
-    _cantidadOpcines = 7 ;
+    _cantidadOpcines = 8 ;
 }
 
 void ManagerSocios::run(){
@@ -32,6 +32,7 @@ void ManagerSocios::mostrarOpciones(){
     cout << "5 - ASIGNAR CLASE A SOCIO" << endl;
     cout << "6 - ELIMINAR CLASE DE SOCIO" << endl;
     cout << "7 - ELIMINAR SOCIO" << endl;
+    cout << "8 - CONSULTAS DE SOCIOS" << endl;
     cout << "0 - SALIR"<< endl;
     cout << "======================"<< endl;
 }
@@ -67,7 +68,7 @@ static bool existeInscripcionActiva(ArchivoClasexSocio& arc, int idSocio, int id
 }
 
 static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
-    // Crea y persiste una inscripci├│n socioΓåÆclase con fecha y estado activo
+    // Crea y persiste una inscripciΓö£Γöén socio╬ô├Ñ├åclase con fecha y estado activo
     ClasexSocio reg;
     int nuevoID = arc.BuscarUltimoID() + 1;
     reg.setIDClasexSocio(nuevoID);
@@ -90,7 +91,7 @@ static bool crearInscripcion(ArchivoClasexSocio& arc, int idSocio, int idClase){
 }
 
 /// lo de abajo es nuevo 16/11 2da modificacion
-// Lista las clases activas de un socio. Devuelve true si encontró al menos una.
+// Lista las clases activas de un socio. Devuelve true si encontr├│ al menos una.
 static bool listarClasesDeSocio(ArchivoClasexSocio& arc, int idSocio){
     int n = arc.CantidadRegistros();
     ClasexSocio reg;
@@ -115,7 +116,7 @@ static bool listarClasesDeSocio(ArchivoClasexSocio& arc, int idSocio){
     return alguno;
 }
 /// ---------- LO DE ABAJO ES LO AGREGADO 16/11 ------ ///
-// Devuelve cuántas clases puede tener el socio según el tipo de plan.
+// Devuelve cu├íntas clases puede tener el socio seg├║n el tipo de plan.
 // 0  = no puede inscribirse a clases
 // 1  = puede tener una sola clase activa
 // -1 = ilimitadas (mientras exista la clase)
@@ -124,7 +125,7 @@ static int maxClasesPorPlan(const char* tipoPlan){
         return 0;
     }
 
-    // Ajustá estos nombres a cómo crean los planes en ManagerPlanes
+    // Ajust├í estos nombres a c├│mo crean los planes en ManagerPlanes
     if (std::strstr(tipoPlan, "FLEX") != nullptr) {
         // Solo gimnasio
         return 0;
@@ -142,7 +143,7 @@ static int maxClasesPorPlan(const char* tipoPlan){
     return 0;
 }
 
-// Cuenta cuántas inscripciones activas tiene un socio
+// Cuenta cu├íntas inscripciones activas tiene un socio
 static int contarClasesActivas(ArchivoClasexSocio& arc, int idSocio){
     int n = arc.CantidadRegistros();
     ClasexSocio reg;
@@ -159,7 +160,45 @@ static int contarClasesActivas(ArchivoClasexSocio& arc, int idSocio){
 }
 
 //---------------------LO DE ARRIBA ES LO AGREGADO 16/11----------
+/// ABAJO NUEVO
+// Compara dos fechas: devuelve true si a < b (más antigua)
+static bool fechaMenor(const Fecha& a, const Fecha& b){
+    if (a.getAnio() != b.getAnio()) return a.getAnio() < b.getAnio();
+    if (a.getMes()  != b.getMes())  return a.getMes()  < b.getMes();
+    return a.getDia() < b.getDia();
+}
 
+// Ordena el vector de socios alfabéticamente por apellido (A..Z)
+static void ordenarSociosPorApellido(Socio* vec, int n){
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            const char* apeI = vec[i].getApellido();
+            const char* apeJ = vec[j].getApellido();
+            if (std::strcmp(apeI, apeJ) > 0) {
+                Socio aux = vec[i];
+                vec[i] = vec[j];
+                vec[j] = aux;
+            }
+        }
+    }
+}
+
+// Ordena el vector de socios por fecha de inscripcion (de más vieja a más nueva)
+static void ordenarSociosPorFechaInscripcion(Socio* vec, int n){
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            Fecha fi = vec[i].getInscripcion();
+            Fecha fj = vec[j].getInscripcion();
+            if (!fechaMenor(fi, fj)) {
+                // si fi >= fj, los invertimos para dejar el más viejo primero
+                Socio aux = vec[i];
+                vec[i] = vec[j];
+                vec[j] = aux;
+            }
+        }
+    }
+}
+///ARRIBA NUEVO
 void ManagerSocios::ejecutarOpcion(int opcion){
     switch(opcion){
         case 1: {
@@ -169,7 +208,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             int idNuevo;
             bool idValido = false;
 
-            // Validaci├│n de ID duplicado
+            // ValidaciΓö£Γöén de ID duplicado
             do {
                 cout << "Ingrese ID del socio (DNI): ";
                 cin >> idNuevo;
@@ -225,87 +264,101 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
         }
-
+        ///CASE 3 NUEVO
         case 3: {
-            int cantidad = archivoSocios.CantidadRegistros();
-            if (cantidad == 0) {
-                cout << "No hay socios cargados." << endl;
-                system("pause");
+    int cantidad = archivoSocios.CantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay socios cargados." << endl;
+        system("pause");
+        break;
+    }
+
+    int opcionListado;
+
+    do {
+        system("cls");
+        cout << "=== LISTADO DE SOCIOS ===" << endl;
+        cout << "1 - LISTAR TODOS POR APELLIDO" << endl;
+        cout << "2 - LISTAR TODOS POR FECHA DE INSCRIPCION" << endl;
+        cout << "3 - LISTAR SOCIOS POR ESTADO (ACTIVO / INACTIVO)" << endl;
+        cout << "0 - VOLVER AL MENU SOCIOS" << endl;
+        cout << "===============================" << endl;
+        cout << "OPCION: ";
+        cin >> opcionListado;
+
+        if (opcionListado == 0) break;
+
+        while (opcionListado < 0 || opcionListado > 3) {
+            cout << "OPCION INCORRECTA. INGRESE NUEVAMENTE: ";
+            cin >> opcionListado;
+        }
+
+        system("cls");
+
+        // Leemos SIEMPRE todos los socios en un vector fresco
+        Socio* vectorSocios = new Socio[cantidad];
+        archivoSocios.Leer(cantidad, vectorSocios);
+        bool hayResultados = false;
+
+        switch (opcionListado) {
+            case 1: {
+                cout << "=== TODOS LOS SOCIOS (ORDENADOS POR APELLIDO) ===" << endl;
+                ordenarSociosPorApellido(vectorSocios, cantidad);
+                for (int i = 0; i < cantidad; i++) {
+                    vectorSocios[i].Mostrar();
+                    cout << "------------------" << endl;
+                    hayResultados = true;
+                }
+                if (!hayResultados) {
+                    cout << "NO HAY SOCIOS CARGADOS." << endl;
+                }
                 break;
             }
 
-            int opcionListado;
-
-            do {
-                system("cls");
-                cout << "1 - SOCIOS ACTIVOS" << endl;
-                cout << "2 - SOCIOS INACTIVOS" << endl;
-                cout << "3 - TODOS LOS SOCIOS" << endl;
-                cout << "0 - VOLVER AL MENU PRINCIPAL" << endl;
-                cout << "===============================" << endl;
-                cout << "OPCION: ";
-                cin >> opcionListado;
-
-                if (opcionListado == 0) break;
-
-                while (opcionListado < 0 || opcionListado > 3) {
-                    cout << "OPCION INCORRECTA. INGRESE NUEVAMENTE: ";
-                    cin >> opcionListado;
+            case 2: {
+                cout << "=== TODOS LOS SOCIOS (ORDENADOS POR FECHA DE INSCRIPCION) ===" << endl;
+                ordenarSociosPorFechaInscripcion(vectorSocios, cantidad);
+                for (int i = 0; i < cantidad; i++) {
+                    vectorSocios[i].Mostrar();
+                    cout << "------------------" << endl;
+                    hayResultados = true;
                 }
+                if (!hayResultados) {
+                    cout << "NO HAY SOCIOS CARGADOS." << endl;
+                }
+                break;
+            }
 
-                system("cls");
+            case 3: {
+                int estadoBuscado;
+                cout << "Ingrese estado a listar (1 = Activos, 0 = Inactivos): ";
+                cin >> estadoBuscado;
 
-                Socio* vectorSocios = new Socio[cantidad];
-                archivoSocios.Leer(cantidad, vectorSocios);
-                bool hayResultados = false;
+                cout << "=== SOCIOS " << (estadoBuscado == 1 ? "ACTIVOS" : "INACTIVOS") << " ===" << endl;
 
-                switch (opcionListado) {
-                    case 1: {
-                        cout << "=== SOCIOS ACTIVOS ===" << endl;
-                        for (int i = 0; i < cantidad; i++) {
-                            if (vectorSocios[i].getEstado() == true) {
-                                vectorSocios[i].Mostrar();
-                                cout << "------------------" << endl;
-                                hayResultados = true;
-                            }
-                        }
-                        if (!hayResultados) cout << "NO HAY SOCIOS ACTIVOS." << endl;
-                        break;
-                    }
-
-                    case 2: {
-                        cout << "=== SOCIOS INACTIVOS ===" << endl;
-                        for (int i = 0; i < cantidad; i++) {
-                            if (vectorSocios[i].getEstado() == false) {
-                                vectorSocios[i].Mostrar();
-                                cout << "------------------" << endl;
-                                hayResultados = true;
-                            }
-                        }
-                        if (!hayResultados) cout << "NO HAY SOCIOS INACTIVOS." << endl;
-                        break;
-                    }
-
-                    case 3: {
-                        cout << "=== TODOS LOS SOCIOS ===" << endl;
-                        for (int i = 0; i < cantidad; i++) {
-                            vectorSocios[i].Mostrar();
-                            cout << "------------------" << endl;
-                            hayResultados = true;
-                        }
-                        if (!hayResultados) cout << "NO HAY SOCIOS CARGADOS." << endl;
-                        break;
+                for (int i = 0; i < cantidad; i++) {
+                    if (vectorSocios[i].getEstado() == (estadoBuscado == 1)) {
+                        vectorSocios[i].Mostrar();
+                        cout << "------------------" << endl;
+                        hayResultados = true;
                     }
                 }
 
-                delete[] vectorSocios;
-                cout << endl;
-                system("pause");
-
-            } while (opcionListado != 0);
-
-            break;
+                if (!hayResultados) {
+                    cout << "No se encontraron socios con ese estado." << endl;
+                }
+                break;
+            }
         }
+
+        delete[] vectorSocios;
+        cout << endl;
+        system("pause");
+
+    } while (opcionListado != 0);
+
+    break;
+} ///AGREGADO NUEVO CASE3
 
         /// AGREADO ABAJO 16/11 ///
         case 4: {
@@ -329,7 +382,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // Confirmación si ya tiene plan
+            // Confirmaci├│n si ya tiene plan
             if (s.tienePlan()) {
                 cout << "El socio ya tiene un plan activo asignado: "
                      << s.getTipoPlan() << endl;
@@ -379,7 +432,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // Elección de plan por ID
+            // Elecci├│n de plan por ID
             int idPlanSel;
             cout << "\nIngrese el ID del plan a asignar: ";
             cin >> idPlanSel;
@@ -400,7 +453,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 break;
             }
 
-            // Asignar plan (se guarda el tipoPlan tal como está en el plan elegido)
+            // Asignar plan (se guarda el tipoPlan tal como est├í en el plan elegido)
             s.setTipoPlan(elegido.getTipo());
 
             // Persistir el socio modificado
@@ -423,7 +476,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
         /// LO DE ABAJO TAMBIEN NUEVA OPCION
 
         case 5: {
-            // Asignar clase(s) a socio según su plan
+            // Asignar clase(s) a socio seg├║n su plan
             cout << "=== ASIGNAR CLASE A SOCIO ===" << endl;
 
             int idBuscado;
@@ -465,7 +518,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
 
             if (maxClases > 0 && clasesActuales >= maxClases) {
                 cout << "El socio ya tiene " << clasesActuales
-                     << " clase(s) activa(s), que es el máximo permitido para su plan." << endl;
+                     << " clase(s) activa(s), que es el m├íximo permitido para su plan." << endl;
                 system("pause");
                 break;
             }
@@ -480,7 +533,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 if (existeInscripcionActiva(arcIns, s.getId(), idClase)) {
                     cout << "El socio ya tiene esa clase activa.\n";
                 } else {
-                    // Si el plan tiene límite, validamos antes de crear una nueva
+                    // Si el plan tiene l├¡mite, validamos antes de crear una nueva
                     if (maxClases > 0 && clasesActuales >= maxClases) {
                         cout << "Se alcanzo el limite de clases para este socio.\n";
                         break;
@@ -492,7 +545,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
                 }
 
                 // Si es TOTAL (maxClases < 0) puede seguir
-                // Si tiene límite, solo ofrecemos seguir si aún no lo alcanzó
+                // Si tiene l├¡mite, solo ofrecemos seguir si a├║n no lo alcanz├│
                 if (maxClases < 0 || clasesActuales < maxClases) {
                     cout << "Desea inscribir otra clase? (s/n): ";
                     cin >> mas;
@@ -510,7 +563,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
         /// LO DE ARRIBA NUEVO 16/11
         // case 6 nuevo 16/11 2da ver
         case 6: {
-            // Eliminar (baja lógica) una clase de un socio
+            // Eliminar (baja l├│gica) una clase de un socio
             cout << "=== ELIMINAR CLASE DE SOCIO ===" << endl;
 
             int idBuscado;
@@ -552,7 +605,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             cout << "\nIngrese el ID de la clase que desea dar de baja: ";
             cin >> idClase;
 
-            // Buscar esa inscripción específica
+            // Buscar esa inscripci├│n espec├¡fica
             int posIns = arcIns.BuscarPorSocioYClase(s.getId(), idClase);
             if (posIns < 0) {
                 cout << "No se encontro una inscripcion ACTIVA de ese socio a esa clase." << endl;
@@ -625,6 +678,148 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             break;
         }
 
+        //NUEVO
+        case 8: {
+            int opcionConsulta;
+            do {
+                system("cls");
+                cout << "=== CONSULTAS DE SOCIOS ===" << endl;
+                cout << "1 - BUSCAR SOCIO POR DNI" << endl;
+                cout << "2 - BUSCAR SOCIOS POR NOMBRE Y APELLIDO" << endl;
+                cout << "3 - LISTAR SOCIOS POR ESTADO (ACTIVOS / INACTIVOS)" << endl;
+                cout << "4 - LISTAR SOCIOS POR TIPO DE PLAN" << endl;
+                cout << "0 - VOLVER AL MENU SOCIOS" << endl;
+                cout << "===============================" << endl;
+                cout << "OPCION: ";
+                cin >> opcionConsulta;
+
+                if (opcionConsulta == 0) break;
+
+                while (opcionConsulta < 0 || opcionConsulta > 4) {
+                    cout << "OPCION INCORRECTA. INGRESE NUEVAMENTE: ";
+                    cin >> opcionConsulta;
+                }
+
+                system("cls");
+
+                int cantidad = archivoSocios.CantidadRegistros();
+                if (cantidad == 0) {
+                    cout << "No hay socios cargados." << endl;
+                    system("pause");
+                    break;
+                }
+
+                Socio* vectorSocios = new Socio[cantidad];
+                archivoSocios.Leer(cantidad, vectorSocios);
+
+                ArchivoClasexSocio arcIns; // para mostrar sus clases si queremos
+                bool hayResultados = false;
+
+                switch (opcionConsulta) {
+                    case 1: {   // Buscar por DNI
+                        int dniBuscado;
+                        cout << "Ingrese DNI del socio a buscar: ";
+                        cin >> dniBuscado;
+
+                        int pos = archivoSocios.Buscar(dniBuscado);
+                        if (pos < 0) {
+                            cout << "No se encontro un socio con ese DNI." << endl;
+                        } else {
+                            Socio s = archivoSocios.Leer(pos);
+                            s.Mostrar();
+                            if (s.getEstado()) {
+                                listarClasesDeSocio(arcIns, s.getId());
+                            }
+                        }
+                        break;
+                    }
+
+                    case 2: {   // Buscar por nombre y apellido
+                        char nombreBuscado[50], apellidoBuscado[50];
+                        cout << "Ingrese NOMBRE (sin espacios): ";
+                        cin >> nombreBuscado;
+                        cout << "Ingrese APELLIDO (sin espacios): ";
+                        cin >> apellidoBuscado;
+
+                        cout << "=== SOCIOS QUE COINCIDEN CON " << nombreBuscado
+                             << " " << apellidoBuscado << " ===" << endl;
+
+                        for (int i = 0; i < cantidad; i++) {
+                            if (std::strcmp(vectorSocios[i].getNombre(), nombreBuscado) == 0 &&
+                                std::strcmp(vectorSocios[i].getApellido(), apellidoBuscado) == 0) {
+                                vectorSocios[i].Mostrar();
+                                if (vectorSocios[i].getEstado()) {
+                                    listarClasesDeSocio(arcIns, vectorSocios[i].getId());
+                                }
+                                cout << "------------------" << endl;
+                                hayResultados = true;
+                            }
+                        }
+
+                        if (!hayResultados) {
+                            cout << "No se encontraron socios con ese nombre y apellido." << endl;
+                        }
+                        break;
+                    }
+
+                    case 3: {   // Listar por estado
+                        int estadoBuscado;
+                        cout << "Ingrese estado a listar (1 = Activos, 0 = Inactivos): ";
+                        cin >> estadoBuscado;
+
+                        cout << "=== SOCIOS " << (estadoBuscado == 1 ? "ACTIVOS" : "INACTIVOS") << " ===" << endl;
+
+                        for (int i = 0; i < cantidad; i++) {
+                            if (vectorSocios[i].getEstado() == (estadoBuscado == 1)) {
+                                vectorSocios[i].Mostrar();
+                                if (vectorSocios[i].getEstado()) {
+                                    listarClasesDeSocio(arcIns, vectorSocios[i].getId());
+                                }
+                                cout << "------------------" << endl;
+                                hayResultados = true;
+                            }
+                        }
+                        if (!hayResultados) {
+                            cout << "No se encontraron socios con ese estado." << endl;
+                        }
+                        break;
+                    }
+
+                    case 4: {   // Listar por tipo de plan
+                        char tipoPlanBuscado[50];
+                        cout << "Ingrese el TIPO DE PLAN a buscar (texto exacto): ";
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        cin.getline(tipoPlanBuscado, 50);
+
+                        cout << "=== SOCIOS CON PLAN: " << tipoPlanBuscado << " ===" << endl;
+
+                        for (int i = 0; i < cantidad; i++) {
+                            if (std::strcmp(vectorSocios[i].getTipoPlan(), tipoPlanBuscado) == 0) {
+                                vectorSocios[i].Mostrar();
+                                if (vectorSocios[i].getEstado()) {
+                                    listarClasesDeSocio(arcIns, vectorSocios[i].getId());
+                                }
+                                cout << "------------------" << endl;
+                                hayResultados = true;
+                            }
+                        }
+
+                        if (!hayResultados) {
+                            cout << "No se encontraron socios con ese tipo de plan." << endl;
+                        }
+                        break;
+                    }
+                }
+
+                delete[] vectorSocios;
+                cout << endl;
+                system("pause");
+
+            } while (opcionConsulta != 0);
+
+            break;
+        }
+        //nuevo mostrar
         case 0:{
             break;
         }
