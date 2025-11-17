@@ -30,7 +30,7 @@ void ManagerSocios::mostrarOpciones(){
     cout << "3 - LISTADO DE SOCIOS" << endl;
     cout << "4 - ASIGNAR PLAN A SOCIO" << endl;
     cout << "5 - ASIGNAR CLASE A SOCIO" << endl;
-    cout << "6 - ELIMINAR CLASE DE SOCIO" << endl;   
+    cout << "6 - ELIMINAR CLASE DE SOCIO" << endl;
     cout << "7 - ELIMINAR SOCIO" << endl;
     cout << "0 - SALIR"<< endl;
     cout << "======================"<< endl;
@@ -307,7 +307,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             break;
         }
 
-        /// AGREADO ABAJO 16/11 /// 
+        /// AGREADO ABAJO 16/11 ///
         case 4: {
             // Asignar plan a socio
             int idBuscado;
@@ -418,10 +418,10 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
         }
-        
+
         /// LO DE ARRIBA ES NUEVO 16/11
         /// LO DE ABAJO TAMBIEN NUEVA OPCION
-        
+
         case 5: {
             // Asignar clase(s) a socio según su plan
             cout << "=== ASIGNAR CLASE A SOCIO ===" << endl;
@@ -506,7 +506,7 @@ void ManagerSocios::ejecutarOpcion(int opcion){
             system("pause");
             break;
         }
-        
+
         /// LO DE ARRIBA NUEVO 16/11
         // case 6 nuevo 16/11 2da ver
         case 6: {

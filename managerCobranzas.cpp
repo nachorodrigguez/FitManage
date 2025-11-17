@@ -114,6 +114,7 @@ void ManagerCobranzas::ejecutarOpcion(int opcion){
             bool hayResultados = false;
 
             cout << "LISTADO DE PAGOS" << endl;
+            cout << "ID             APELLIDO                FECHA TRANSACCION               PAGO" << endl;
             for (int i=0; i<cantidad; i++){
             vectorCob[i].Mostrar();
             cout << endl;

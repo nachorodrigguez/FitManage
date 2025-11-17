@@ -4,6 +4,7 @@
 #include "ArchivoCobranzas.h"
 #include "cobranza.h"
 #include "ArchivoSocios.h"
+#include "archivoClasexSocio.h"
 #include <map>
 #include <string>
 
@@ -164,6 +165,58 @@ void ManagerReportes::ejecutarOpcion(int opcion){
         }
 
         case 3: {
+            ArchivoClasexSocio archivoclasexsocio("inscripciones.dat");
+            ClasexSocio clasexsocio;
+            int spinning = 0;
+            int boxeo = 0;
+            int yoga = 0;
+            int crossfit = 0;
+            int pilates = 0;
+            int funcional= 0;
+            int totalSocios = 0;
+
+            cout << "=== CLASES MAS DEMANDADAS ===" << endl;
+            cout << "------------------------------------------------------" << endl;
+            cout << "CLASE               SOCIOS              PORCENTAJES" << endl;
+            cout << "------------------------------------------------------" << endl;
+            int cantidad = archivoclasexsocio.CantidadRegistros();
+
+            for (int i =0; i < cantidad; i++){
+                clasexsocio = archivoclasexsocio.Leer(i);
+                int id = clasexsocio.getIDClase();
+                if(id == 1){
+                    spinning++;
+                }
+                else if(id == 2){
+                    boxeo++;
+                }
+                else if (id == 3){
+                    yoga++;
+                }
+                else if (id == 4){
+                    crossfit++;
+                }
+                else if (id == 5){
+                    pilates++;
+                }
+                else if (id == 6){
+                    funcional++;
+                }
+            }
+            totalSocios = spinning + boxeo + yoga + crossfit + pilates + funcional;
+            if (totalSocios >0){
+                cout << "Spinning               " << spinning << "                   " << (spinning * 100.0 / totalSocios) << "%" << endl;
+                cout << "Boxeo                  " << boxeo << "                   " << (boxeo * 100.0 / totalSocios) << "%" << endl;
+                cout << "Yoga                   " << yoga << "                   " << (yoga * 100.0 / totalSocios) << "%" << endl;
+                cout << "Crossfit               " << crossfit << "                   " << (crossfit * 100.0 / totalSocios) << "%" << endl;
+                cout << "Pilates                " << pilates << "                   " << (pilates * 100.0 / totalSocios) << "%" << endl;
+                cout << "Funcional              " << funcional << "                   " << (funcional * 100.0 / totalSocios) << "%" << endl;
+            }else {
+                cout << "No  hay socios inscritos en clases." << endl;
+            }
+            cout << "------------------------------------------------------" << endl;
+            cout << "TOTAL: " << totalSocios << endl;
+            system("pause");
             break;
         }
         case 4: {
